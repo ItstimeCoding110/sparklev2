@@ -1,0 +1,49 @@
+export interface Bead {
+  id: string;
+  name: string;
+  type: 'round' | 'heart' | 'star' | 'cube' | 'flower' | 'letter' | 'charm';
+  color: string; // Tailwind hex or color name
+  emoji: string;
+  price: number;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  code: string; // Product code, e.g. s-0001
+  description: string;
+  price: number;
+  originalPrice?: number;
+  image: string; // SVG representation tag or label
+  category: string;
+  colors: string[]; // representative colors
+  beadsUsed: string[]; // names or descriptions of beads
+  isBestSeller?: boolean;
+  isNew?: boolean;
+  isSoldOut?: boolean;
+}
+
+export interface CustomBracelet {
+  wording: string; // e.g. "CUTE", "LOVE", "BESTIE"
+  beadSequence: Bead[];
+  sizeStr: 'S' | 'M' | 'L'; // 14cm, 16cm, 18cm
+  claspType: 'Standard' | 'Elastic' | 'Adjustable';
+}
+
+export interface CartItem {
+  id: string; // Can be product ID, or custom ID for custom DIY bracelets
+  product: Product;
+  quantity: number;
+  customization?: CustomBracelet;
+}
+
+export interface ShopInfo {
+  name: string;
+  slogan: string;
+  about: string;
+  whatsappNumber: string; // For checkout
+  igUsername: string;
+  tiktokUsername: string;
+  address: string;
+  shippingOptions: string[];
+}

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
+  
+  --color-brand-pink: #ffb3c1;
+  --color-brand-yellow: #ffe57f;
+  --color-brand-purple: #d1c4e9;
+  --color-brand-mint: #c8e6c9;
+  --color-brand-blue: #b3e5fc;
+  --color-brand-peach: #ffccbc;
+  --color-brand-orange: #ffab91;
+  --color-brand-dark: #121212;
+}
+
+/* Custom soft brutalism utility classes if needed */
+.brutalist-card {
+  @apply border-3 border-brand-dark bg-white shadow-[4px_4px_0px_#121212] transition-all duration-200;
+}
+
+.brutalist-button {
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-yellow text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+}
+
+.brutalist-button-pink {
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-pink text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+}
+
+.brutalist-button-blue {
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-blue text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+}
+
+.brutalist-button-purple {
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-purple text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}

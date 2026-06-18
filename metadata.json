@@ -1,0 +1,6 @@
+{
+  "name": "ManikKita",
+  "description": "Toko aksesoris manik-manik estetik goodtobe.sparkle dengan desain soft brutalism, playful, dan eye catching untuk anak Gen-Z.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
