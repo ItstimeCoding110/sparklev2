@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../types';
 import { Plus, Trash2, Edit2, LogIn, LogOut, CheckCircle, AlertTriangle, ShieldCheck, FileText, Upload, Sparkles, X, Database, RefreshCw, Copy, Check, Heart, Star, Zap, Clock, Folder } from 'lucide-react';
+import { supabase } from '../supabaseClient';
 
 interface AdminTabProps {
   products: Product[];
@@ -97,10 +98,24 @@ export const AdminTab: React.FC<AdminTabProps> = ({
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [confirmDeleteCategoryName, setConfirmDeleteCategoryName] = useState<string | null>(null);
 
-  // Auto-save login logs
+  // Check active session on mount
   useEffect(() => {
-    localStorage.setItem('manikkita_login_history', JSON.stringify(loginHistory));
-  }, [loginHistory]);
+    const checkSession = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (data.session) {
+          setIsLoggedIn(true);
+          localStorage.setItem('manikkita_admin_logged', 'true');
+        } else {
+          setIsLoggedIn(false);
+          localStorage.removeItem('manikkita_admin_logged');
+        }
+      } catch (err) {
+        console.error('Error fetching Supabase session:', err);
+      }
+    };
+    checkSession();
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,14 +132,21 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     });
     
     try {
-      const res = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: cleanEmail, password: cleanPass }),
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: cleanEmail,
+        password: cleanPass,
       });
 
-      const data = await res.json();
-      if (res.ok && data.success) {
+      if (error) {
+        const newLog: LoginLog = {
+          timestamp,
+          username: cleanEmail || 'unknown',
+          status: 'GAGAL',
+          device: navigator.userAgent.split(') ')[0].replace('Mozilla/5.0 (', '') + ')',
+        };
+        setLoginHistory(prev => [newLog, ...prev]);
+        setLoginError(error.message || 'Email atau password Admin salah.');
+      } else {
         const newLog: LoginLog = {
           timestamp,
           username: cleanEmail,
@@ -136,15 +158,6 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         localStorage.setItem('manikkita_admin_logged', 'true');
         setLoginError('');
         setFormStatus(`Selamat datang kembali, Admin ${data.user?.email || cleanEmail}!`);
-      } else {
-        const newLog: LoginLog = {
-          timestamp,
-          username: cleanEmail || 'unknown',
-          status: 'GAGAL',
-          device: navigator.userAgent.split(') ')[0].replace('Mozilla/5.0 (', '') + ')',
-        };
-        setLoginHistory(prev => [newLog, ...prev]);
-        setLoginError(data.error || 'Email atau password Admin salah.');
       }
     } catch (err: any) {
       console.error('Error logging in:', err);
@@ -155,13 +168,18 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         device: navigator.userAgent.split(') ')[0].replace('Mozilla/5.0 (', '') + ')',
       };
       setLoginHistory(prev => [newLog, ...prev]);
-      setLoginError('Gagal menghubungi server untuk otorisasi.');
+      setLoginError('Gagal menghubungi Supabase Auth untuk otorisasi.');
     } finally {
       setIsLoggingIn(false);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+    } catch (err) {
+      console.error('Error logging out from Supabase:', err);
+    }
     setIsLoggedIn(false);
     localStorage.removeItem('manikkita_admin_logged');
     setFormStatus('Anda berhasil logout dari Panel Admin.');

@@ -12,6 +12,7 @@ import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import { Footer } from './components/Footer';
 import { Gift, Zap, Sparkles, Flame, Heart, Box } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { supabase, mapDbToProduct, mapProductToDb, SQL_INIT_SCRIPT } from './supabaseClient';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('shop');
@@ -36,40 +37,75 @@ export default function App() {
   const [supabaseStatus, setSupabaseStatus] = useState<any>(null);
 
   const fetchSupabaseStatus = async () => {
+    const hasUrl = !!import.meta.env.VITE_SUPABASE_URL;
+    const hasKey = !!import.meta.env.VITE_SUPABASE_ANON_KEY;
+    if (!hasUrl || !hasKey) {
+      setSupabaseStatus({
+        configured: false,
+        connected: false,
+        errorMsg: 'VITE_SUPABASE_URL atau VITE_SUPABASE_ANON_KEY belum terkonfigurasi di file .env',
+        sqlScript: SQL_INIT_SCRIPT
+      });
+      return;
+    }
+
     try {
-      const res = await fetch('/api/supabase-status');
-      if (res.ok) {
-        const data = await res.json();
-        setSupabaseStatus(data);
+      // Test simple select connection check
+      const { data, error } = await supabase.from('products').select('id').limit(1);
+      if (error) {
+        setSupabaseStatus({
+          configured: true,
+          connected: false,
+          errorMsg: `Gagal terhubung ke database: ${error.message}`,
+          sqlScript: SQL_INIT_SCRIPT
+        });
+      } else {
+        setSupabaseStatus({
+          configured: true,
+          connected: true,
+          errorMsg: '',
+          sqlScript: SQL_INIT_SCRIPT
+        });
       }
-    } catch (err) {
-      console.error('Error loading Supabase status:', err);
+    } catch (err: any) {
+      setSupabaseStatus({
+        configured: true,
+        connected: false,
+        errorMsg: `Kesalahan jaringan: ${err.message || err}`,
+        sqlScript: SQL_INIT_SCRIPT
+      });
     }
   };
 
   // Sync products and categories on mount
   useEffect(() => {
     const loadInitialData = async () => {
+      // Try to load products from Supabase
       try {
-        const prodRes = await fetch('/api/products');
-        if (prodRes.ok) {
-          const prods = await prodRes.json();
-          setProducts(prods);
-          localStorage.setItem('manikkita_products', JSON.stringify(prods));
+        const { data: dbProds, error: prodErr } = await supabase.from('products').select('*');
+        if (!prodErr && dbProds) {
+          const mapped = dbProds.map(mapDbToProduct);
+          setProducts(mapped);
+          localStorage.setItem('manikkita_products', JSON.stringify(mapped));
+        } else if (prodErr) {
+          console.error('Error fetching products from Supabase:', prodErr.message);
         }
       } catch (err) {
-        console.error('Error fetching products from backend:', err);
+        console.error('Error connecting to Supabase for products:', err);
       }
 
+      // Try to load categories from Supabase
       try {
-        const catRes = await fetch('/api/categories');
-        if (catRes.ok) {
-          const cats = await catRes.json();
-          setCategories(cats);
-          localStorage.setItem('manikkita_categories', JSON.stringify(cats));
+        const { data: dbCats, error: catErr } = await supabase.from('categories').select('name');
+        if (!catErr && dbCats) {
+          const catsList = dbCats.map((c: any) => c.name);
+          setCategories(catsList);
+          localStorage.setItem('manikkita_categories', JSON.stringify(catsList));
+        } else if (catErr) {
+          console.error('Error fetching categories from Supabase:', catErr.message);
         }
       } catch (err) {
-        console.error('Error fetching categories from backend:', err);
+        console.error('Error connecting to Supabase for categories:', err);
       }
 
       fetchSupabaseStatus();
@@ -81,23 +117,33 @@ export default function App() {
   const handleUpdateProducts = async (newProducts: Product[]) => {
     setProducts(newProducts);
     localStorage.setItem('manikkita_products', JSON.stringify(newProducts));
+    
     try {
-      const res = await fetch('/api/products', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newProducts),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.warning) {
-          setToastMessage(`Peringatan: ${data.warning}`);
-        } else {
-          setToastMessage('Produk berhasil disinkronisasi ke server!');
-        }
+      // 1. Dapatkan ID produk yang ada di Supabase saat ini
+      const { data: existing, error: getErr } = await supabase.from('products').select('id');
+      if (getErr) throw getErr;
+
+      const existingIds = (existing || []).map((p: any) => p.id);
+      const incomingIds = newProducts.map(p => p.id);
+
+      // 2. Hapus produk yang tidak ada di newProducts
+      const toDelete = existingIds.filter(id => !incomingIds.includes(id));
+      if (toDelete.length > 0) {
+        const { error: delErr } = await supabase.from('products').delete().in('id', toDelete);
+        if (delErr) throw delErr;
       }
-    } catch (err) {
+
+      // 3. Upsert produk baru
+      if (newProducts.length > 0) {
+        const rowsToUpsert = newProducts.map(mapProductToDb);
+        const { error: upsertErr } = await supabase.from('products').upsert(rowsToUpsert, { onConflict: 'id' });
+        if (upsertErr) throw upsertErr;
+      }
+
+      setToastMessage('Produk berhasil disinkronisasi ke database Supabase!');
+    } catch (err: any) {
       console.error('Sync products failed:', err);
-      setToastMessage('Gagal sinkronisasi data ke backend server.');
+      setToastMessage(`Gagal sinkronisasi ke Supabase: ${err.message || err}`);
     }
     fetchSupabaseStatus();
   };
@@ -105,23 +151,32 @@ export default function App() {
   const handleUpdateCategories = async (newCategories: string[]) => {
     setCategories(newCategories);
     localStorage.setItem('manikkita_categories', JSON.stringify(newCategories));
+    
     try {
-      const res = await fetch('/api/categories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newCategories),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.warning) {
-          setToastMessage(`Peringatan: ${data.warning}`);
-        } else {
-          setToastMessage('Kategori berhasil disinkronisasi ke server!');
-        }
+      // 1. Dapatkan nama kategori saat ini di Supabase
+      const { data: existing, error: getErr } = await supabase.from('categories').select('name');
+      if (getErr) throw getErr;
+
+      const existingNames = (existing || []).map((c: any) => c.name);
+
+      // 2. Hapus kategori yang sudah tidak ada
+      const toDelete = existingNames.filter(name => !newCategories.includes(name));
+      if (toDelete.length > 0) {
+        const { error: delErr } = await supabase.from('categories').delete().in('name', toDelete);
+        if (delErr) throw delErr;
       }
-    } catch (err) {
+
+      // 3. Upsert kategori baru
+      if (newCategories.length > 0) {
+        const rowsToUpsert = newCategories.map(name => ({ name }));
+        const { error: upsertErr } = await supabase.from('categories').upsert(rowsToUpsert, { onConflict: 'name' });
+        if (upsertErr) throw upsertErr;
+      }
+
+      setToastMessage('Kategori berhasil disinkronisasi ke database Supabase!');
+    } catch (err: any) {
       console.error('Sync categories failed:', err);
-      setToastMessage('Gagal sinkronisasi kategori ke server.');
+      setToastMessage(`Gagal sinkronisasi kategori ke Supabase: ${err.message || err}`);
     }
     fetchSupabaseStatus();
   };
