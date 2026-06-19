@@ -73,7 +73,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           ) : (
             cartItems.map((item) => {
               const p = item.product;
-              const hasCust = !!item.customization;
 
               return (
                 <div
@@ -86,11 +85,6 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       className="w-8 h-8 rounded-full border border-brand-dark shadow-[1px_1px_0px_#121212]" 
                       style={{ backgroundColor: p.colors[0] || '#ffb3c1' }}
                     />
-                    {hasCust && (
-                      <span className="absolute bottom-0 right-0 bg-brand-yellow font-mono text-[8px] border border-brand-dark rounded px-0.5 scale-95 font-bold">
-                        DIY
-                      </span>
-                    )}
                   </div>
 
                   {/* Quantity and Metas */}
@@ -100,18 +94,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         {p.name}
                       </h4>
                       
-                      {/* DIY Specific labels nested cleanly */}
-                      {item.customization ? (
-                        <div className="mt-1 space-y-0.5 text-[10px] font-mono text-stone-500 leading-normal">
-                          <p>✦ Tulisan: <strong className="text-brand-dark">&ldquo;{item.customization.wording || 'Polos'}&rdquo;</strong></p>
-                          <p>✦ Ukuran: {item.customization.sizeStr === 'S' ? 'S (14cm)' : item.customization.sizeStr === 'M' ? 'M (16cm)' : 'L (18cm)'}</p>
-                          <p>✦ Kail: {item.customization.claspType}</p>
-                        </div>
-                      ) : (
-                        <p className="text-[10px] font-mono text-stone-500 mt-0.5">
-                          Kategori: {p.category}
-                        </p>
-                      )}
+                      <p className="text-[10px] font-mono text-stone-500 mt-0.5">
+                        Kategori: {p.category}
+                      </p>
                     </div>
 
                     {/* Quantity controls */}

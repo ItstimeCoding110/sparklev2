@@ -48,17 +48,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       .map((item, idx) => {
         const p = item.product;
         const codeStr = p.code ? ` (${p.code})` : '';
-        let detailsText = '';
-        
-        // If DIY custom bracelet, print specific customized parameters
-        if (item.customization) {
-          const cust = item.customization;
-          const wordText = cust.wording ? `"${cust.wording}"` : 'Polos';
-          const sizeText = cust.sizeStr === 'S' ? 'S (14cm)' : cust.sizeStr === 'M' ? 'M (16cm)' : 'L (18cm)';
-          detailsText = `\n     └─ Huruf: ${wordText}\n     └─ Ukuran: ${sizeText}\n     └─ Kail: ${cust.claspType}`;
-        } else {
-          detailsText = `\n     └─ Kategori: ${p.category}\n     └─ Detail Manik: ${p.beadsUsed.join(', ')}`;
-        }
+        const detailsText = `\n     └─ Kategori: ${p.category}\n     └─ Detail Manik: ${p.beadsUsed.join(', ')}`;
 
         return `${idx + 1}. *[${item.quantity}x] ${p.name}${codeStr}*\n     Harga: Rp ${(p.price * item.quantity).toLocaleString('id-ID')}${detailsText}`;
       })

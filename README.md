@@ -1,11 +1,11 @@
 # ✦ goodtobe.sparkle ✦
 
-Toko online aksesoris manik buatan tangan (*handmade*) estetik dengan gaya retro-Y2K Neo-Brutalisme yang dirancang khusus untuk Gen-Z. Website ini dilengkapi fitur kustomisasi gelang DIY secara visual, keranjang belanja dinamis, formulir checkout otomatis ke WhatsApp, serta Panel Admin dengan integrasi database ganda (Supabase & Local JSON Fallback).
+Toko online aksesoris manik buatan tangan (*handmade*) estetik dengan gaya retro-Y2K Neo-Brutalisme yang dirancang khusus untuk Gen-Z. Website ini dilengkapi katalog produk dinamis, keranjang belanja interaktif, formulir checkout otomatis ke WhatsApp, serta Panel Admin dengan integrasi database ganda (Supabase & Local JSON Fallback).
 
 ---
 
 ## 🚀 Fitur Utama
-1. **DIY Customizer (BraceletVisualizer)**: Pengguna dapat mendesain gelang mereka secara interaktif dengan memilih jenis kawat/benang, memilih manik-manik secara visual, mengatur teks kustom (*wording*), ukuran pergelangan tangan, dan tipe pengait (*clasp*).
+1. **Catalog Showcase (ProductList)**: Pengguna dapat menjelajahi katalog produk cincin dan gelang manik ready-stock dengan filter kategori, pencarian langsung, status ketersediaan (*ready/sold out*), dan lencana status (*best seller/baru rilis*).
 2. **Katalog Produk Dinamis**: Menampilkan koleksi gelang dan cincin manik dengan animasi brutalist.
 3. **Checkout Terintegrasi WhatsApp**: Alur pemesanan langsung draf pesan template pesanan detail ke WhatsApp Admin (`6285123324775`) setelah mengisi Nama, Alamat, Metode Pembayaran, dan Layanan Pengiriman.
 4. **Promo Otomatis**: Gratis Ongkos Kirim otomatis jika memesan minimal 3 buah item (khusus area pengiriman Jakarta Selatan).
@@ -30,7 +30,7 @@ Toko online aksesoris manik buatan tangan (*handmade*) estetik dengan gaya retro
 ├── src/
 │   ├── components/         # Komponen UI utama React (Hero, About, Checkout, Admin, dll.)
 │   │   ├── Logo.tsx        # Logo SVG kustom Sparkle
-│   │   ├── BraceletVisualizer.tsx # Modul Kustomisasi Gelang DIY
+│   │   ├── BraceletVisualizer.tsx # Visualisasi Bentuk Manik-Manik 3D
 │   │   └── ...
 │   ├── data.ts             # Data fallback produk & info toko global
 │   ├── types.ts            # Definisi tipe TypeScript

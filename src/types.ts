@@ -23,18 +23,10 @@ export interface Product {
   isSoldOut?: boolean;
 }
 
-export interface CustomBracelet {
-  wording: string; // e.g. "CUTE", "LOVE", "BESTIE"
-  beadSequence: Bead[];
-  sizeStr: 'S' | 'M' | 'L'; // 14cm, 16cm, 18cm
-  claspType: 'Standard' | 'Elastic' | 'Adjustable';
-}
-
 export interface CartItem {
-  id: string; // Can be product ID, or custom ID for custom DIY bracelets
+  id: string; // Product ID
   product: Product;
   quantity: number;
-  customization?: CustomBracelet;
 }
 
 export interface ShopInfo {

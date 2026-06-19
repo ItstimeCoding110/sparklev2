@@ -94,17 +94,17 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
                     Pemesanan & Pengerjaan (Crafting Time)
                   </h4>
                   <p className="pl-7 text-xs text-stone-600">
-                    Produk aksesoris manik kami dibuat sepenuhnya dengan tangan (handmade), rajutan tangan artisan lokal yang presisi. Sebagian besar produk kami berstatus ready stock, namun untuk request khusus atau ukuran khusus, diperlukan waktu pengerjaan 1-2 hari kerja sebelum dikirimkan.
+                    Produk aksesoris manik kami dibuat sepenuhnya dengan tangan (handmade), rajutan tangan artisan lokal yang presisi. Seluruh produk kami berstatus ready stock siap kirim dan diproduksi dalam jumlah sangat terbatas (eksklusif 1 stock per model).
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
                   <h4 className="font-display font-black text-brand-dark text-sm sm:text-base flex items-center gap-2">
                     <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-yellow text-xs font-bold border border-brand-dark">2</span>
-                    Ukuran (Sizing Guide) & Kustomisasi
+                    Ukuran (Sizing Guide) Produk
                   </h4>
                   <p className="pl-7 text-xs text-stone-600">
-                    Pembeli wajib mengukur lingkar pergelangan tangan (untuk gelang) atau lingkar jari (untuk cincin) menggunakan panduan ukuran kertas/pita meteran. Kami tidak melayani penukaran atau pengembalian produk akibat kesalahan pengukuran ukuran pembeli setelah pesanan selesai diproses.
+                    Seluruh produk kami memiliki detail ukuran yang sudah tertera pada deskripsi masing-masing item. Pembeli disarankan untuk memeriksa detail ukuran lingkar pergelangan tangan atau cincin sebelum melakukan pembelian. Kami tidak melayani kustomisasi ukuran maupun penukaran/pengembalian produk setelah pesanan diproses.
                   </p>
                 </div>
 
@@ -175,7 +175,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
                     Penyimpanan Lokal (Cookies & LocalStorage)
                   </h4>
                   <p className="pl-7 text-xs text-stone-600">
-                    Situs ini memanfaatkan media penyimpanan lokal <code>LocalStorage</code> pada browser Anda demi menyajikan fitur keranjang belanja interaktif yang persisten, login admin sederhana, rincian kustomisasi item, serta kenyamanan penjelajahan. Data ini disimpan sepenuhnya di seluler / PC Anda sendiri, bukan di server cloud eksternal. Kami tidak menautkan tracker iklan beracun.
+                    Situs ini memanfaatkan media penyimpanan lokal <code>LocalStorage</code> pada browser Anda demi menyajikan fitur keranjang belanja interaktif yang persisten, login admin sederhana, rincian item keranjang, serta kenyamanan penjelajahan. Data ini disimpan sepenuhnya di seluler / PC Anda sendiri, bukan di server cloud eksternal. Kami tidak menautkan tracker iklan beracun.
                   </p>
                 </div>
 
@@ -185,7 +185,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
                     Hapus Data Riwayat Belanja
                   </h4>
                   <p className="pl-7 text-xs text-stone-600">
-                    Anda kapan saja memiliki kendali penuh untuk menghapus seluruh data keranjang belanjaan, produk kustom, atau logs pada situs kami dengan menekan tombol hapus atau menghapus cache/data browser Anda secara langsung.
+                    Anda kapan saja memiliki kendali penuh untuk menghapus seluruh data keranjang belanjaan atau logs pada situs kami dengan menekan tombol hapus atau menghapus cache/data browser Anda secara langsung.
                   </p>
                 </div>
               </div>
