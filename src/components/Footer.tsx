@@ -2,6 +2,16 @@ import React from 'react';
 import { SHOP_INFO } from '../data';
 import { Instagram, Send, MapPin, ShieldCheck, Lock, UserPlus } from 'lucide-react';
 
+const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 0 0 1.333 4.993L2 22l5.135-1.348a9.97 9.97 0 0 0 4.877 1.28h.005c5.505 0 9.99-4.478 9.99-9.985C22.007 6.478 17.519 2 12.012 2zm6.069 14.195c-.272.768-1.578 1.475-2.182 1.564-.541.08-1.248.137-3.674-.866-3.099-1.282-5.067-4.425-5.222-4.63-.155-.205-1.258-1.672-1.258-3.197 0-1.525.799-2.273 1.087-2.572.288-.299.631-.374.842-.374.21 0 .42.001.603.009.192.008.45-.072.705.545.266.64.91 2.22.988 2.38.077.16.13.346.024.557-.105.211-.158.344-.316.527-.158.183-.332.408-.474.547-.156.152-.319.319-.138.63.18.31.802 1.324 1.722 2.144.92.82 1.696 1.074 2.01 1.234.314.16.494.133.68-.083.185-.216.799-.93.101-1.04-.15-.024-.954-.403-1.054-.49-.1-.087-.166-.217-.1-.322.067-.105.3-.408.453-.563.153-.155.309-.327.462-.17.153.155.97.457 1.137.54.166.083.277.125.333.222.055.097.055.56-.217 1.328z"/>
+  </svg>
+);
+
 interface FooterProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
@@ -64,6 +74,18 @@ export const Footer: React.FC<FooterProps> = ({
                     <Instagram className="w-4 h-4 text-brand-dark" />
                   </span>
                   <span>@{SHOP_INFO.igUsername}</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/${SHOP_INFO.whatsappNumber}?text=Halo%20goodtobe.sparkle%20Admin!%20Saya%20ingin%20tanya-tanya%20mengenai%20produk%20aksesorisnya.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-2 bg-white border-2 border-brand-dark rounded-xl font-mono text-xs font-bold hover:bg-emerald-100 hover:-translate-y-0.5 transition-all text-brand-dark cursor-pointer"
+                >
+                  <span className="p-1 bg-emerald-100/50 rounded-lg flex items-center justify-center">
+                    <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />
+                  </span>
+                  <span>WhatsApp Admin</span>
                 </a>
               </div>
             </div>
