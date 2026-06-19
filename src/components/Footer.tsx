@@ -78,7 +78,7 @@ export const Footer: React.FC<FooterProps> = ({
 
                 <a
                   href={`https://wa.me/${SHOP_INFO.whatsappNumber}?text=Halo%20goodtobe.sparkle%20Admin!%20Saya%20ingin%20tanya-tanya%20mengenai%20produk%20aksesorisnya.`}
-                  target="_blank"
+                  target="_self"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-2 bg-white border-2 border-brand-dark rounded-xl font-mono text-xs font-bold hover:bg-emerald-100 hover:-translate-y-0.5 transition-all text-brand-dark cursor-pointer"
                 >
