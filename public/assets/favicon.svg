@@ -1,4 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <path d="M 50,10 Q 50,50 10,50 Q 50,50 50,90 Q 50,50 90,50 Q 50,50 50,10 Z" fill="#121212" stroke="#121212" stroke-width="2"/>
-  <path d="M 50,20 Q 50,50 20,50 Q 50,50 50,80 Q 50,50 80,50 Q 50,50 50,20 Z" fill="#ffb3c1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 35 210 140" fill="none">
+  <defs>
+    <radialGradient id="sparkleGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stopColor="#fffbf0" stopOpacity="1" />
+      <stop offset="25%" stopColor="#d8d3c5" stopOpacity="0.95" />
+      <stop offset="60%" stopColor="#3d3c39" stopOpacity="1" />
+      <stop offset="100%" stopColor="#121212" stopOpacity="1" />
+    </radialGradient>
+  </defs>
+
+  <path
+    d="M 115,48 Q 115,100 63,100 Q 115,100 115,152 Q 115,100 167,100 Q 115,100 115,48 Z"
+    fill="url(#sparkleGrad)"
+    stroke="#121212"
+    stroke-width="1"
+  />
+
+  <text
+    x="160"
+    y="108"
+    text-anchor="middle"
+    fill="#121212"
+    style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 38px; font-weight: 500; letter-spacing: -1.5px;"
+  >
+    goodtobe.
+  </text>
+
+  <text
+    x="165"
+    y="148"
+    text-anchor="middle"
+    fill="#121212"
+    style="font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 39px; font-weight: normal; letter-spacing: 0.5px;"
+  >
+    sparkle
+  </text>
 </svg>
