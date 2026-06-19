@@ -82,9 +82,8 @@ export const AboutTab: React.FC = () => {
       {/* 2. Brand Core Pillars */}
       <div className="space-y-6">
         <div className="text-center flex flex-col items-center">
-          <h3 className="font-display text-2xl md:text-3xl text-brand-dark uppercase flex items-center gap-2">
+          <h3 className="font-display text-2xl md:text-3xl text-brand-dark uppercase flex items-center">
             <span>KENAPA HARUS DI {SHOP_INFO.name}?</span>
-            <Star className="w-6 h-6 text-brand-yellow shrink-0 fill-brand-yellow" />
           </h3>
           <p className="text-xs font-mono text-stone-500 uppercase mt-0.5 tracking-wider">
             Empat standar keanggunan pergelangan tangan kamu
@@ -97,9 +96,6 @@ export const AboutTab: React.FC = () => {
               key={i}
               className={`${feat.bgColor} border-3 border-brand-dark p-5 rounded-2xl shadow-[3.5px_3.5px_0px_#121212] hover:-translate-y-1 transition-transform`}
             >
-              <div className="w-10 h-10 bg-white border-2 border-brand-dark rounded-xl flex items-center justify-center mb-3.5 shadow-[1.5px_1.5px_0px_#121212]">
-                <feat.icon className="w-5 h-5 text-brand-dark shrink-0" />
-              </div>
               <h4 className="font-display font-black text-lg text-brand-dark leading-tight mb-2">
                 {feat.title}
               </h4>
@@ -114,9 +110,6 @@ export const AboutTab: React.FC = () => {
       {/* 3. FAQ Section */}
       <div className="bg-white border-3 border-brand-dark p-6 md:p-8 rounded-3xl shadow-[5px_5.5px_0px_#121212] space-y-6">
         <div className="flex items-center gap-2.5">
-          <span className="p-1.5 bg-brand-yellow border-2 border-brand-dark rounded-xl font-bold flex items-center justify-center shadow-[1.5px_1.5px_0px_#121212]">
-            <Lightbulb className="w-5 h-5 text-brand-dark" />
-          </span>
           <div>
             <h3 className="font-display text-2xl text-brand-dark">
               PERTANYAAN PALING SERING DIAJUKAN (FAQ)

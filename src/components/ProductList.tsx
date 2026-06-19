@@ -49,9 +49,8 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
         {/* Row A: Title & tagline */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-brand-dark font-black tracking-tight uppercase flex items-center gap-2">
+            <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-brand-dark font-black tracking-tight uppercase flex items-center">
               <span>PILIH PILIHAN KATALOG UNISEX</span>
-              <Sparkles className="w-6 h-6 text-brand-orange shrink-0 align-middle" />
             </h2>
             <p className="text-[11px] sm:text-xs md:text-sm text-stone-500 font-sans mt-0.5">
               Cincin dan gelang manik-manik estetik netral gender yang didesain agar OOTD kamu makin menyala.
@@ -112,7 +111,6 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
       {/* Grid List Products */}
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12 bg-white border-3 border-dashed border-brand-dark rounded-3xl p-6">
-          <AlertCircle className="w-10 h-10 text-stone-400 mx-auto animate-bounce mb-3" />
           <h3 className="font-display text-lg sm:text-xl text-brand-dark font-black">Waduh, Gak Ketemu Bestie!</h3>
           <p className="text-xs text-stone-500 font-mono mt-1 max-w-[280px] mx-auto">
             Keyword &ldquo;{searchQuery}&rdquo; belum ada di katalog kami. Coba cari kata kunci lain ya!
@@ -130,26 +128,22 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                 {/* Visual badges in top corner */}
                 <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex flex-col gap-1 items-start">
                   {product.isSoldOut ? (
-                    <span className="bg-red-600 text-white font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold flex items-center gap-1">
-                      <XCircle className="w-3 h-3 text-white shrink-0" />
+                    <span className="bg-red-600 text-white font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
                       <span>SOLD OUT</span>
                     </span>
                   ) : (
                     <>
                       {product.isBestSeller && (
-                        <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider animate-pulse font-bold flex items-center gap-1">
-                          <Flame className="w-3 h-3 text-brand-dark shrink-0" />
+                        <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider animate-pulse font-bold">
                           <span>BEST SELLER</span>
                         </span>
                       )}
                       {product.isNew && (
-                        <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold flex items-center gap-1">
-                          <Zap className="w-3 h-3 text-brand-dark shrink-0" />
+                        <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
                           <span>NEW ITEM</span>
                         </span>
                       )}
-                      <span className="bg-brand-orange text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold flex items-center gap-1">
-                        <Hourglass className="w-3 h-3 text-brand-dark shrink-0" />
+                      <span className="bg-brand-orange text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
                         <span>STOK TERBATAS</span>
                       </span>
                     </>
@@ -177,8 +171,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                   </div>
                   {product.isSoldOut && (
                     <div className="absolute inset-0 bg-brand-dark/20 flex items-center justify-center">
-                      <span className="bg-red-600 text-white font-display font-black text-[10px] sm:text-xs tracking-wider uppercase px-2.5 py-1.5 border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#121212] -rotate-12 flex items-center gap-1">
-                        <XCircle className="w-3.5 h-3.5 text-white shrink-0" />
+                      <span className="bg-red-600 text-white font-display font-black text-[10px] sm:text-xs tracking-wider uppercase px-2.5 py-1.5 border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#121212] -rotate-12">
                         <span>OUT OF STOCK</span>
                       </span>
                     </div>
@@ -193,8 +186,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                       <span className="text-[8px] sm:text-[10px] font-mono text-stone-500 font-bold uppercase tracking-wider">
                         Kategori: {product.category}
                       </span>
-                      <span className="text-[8px] sm:text-[10px] text-brand-dark font-mono hidden sm:inline font-bold flex items-center gap-1">
-                        <Heart className="w-3 h-3 text-brand-dark shrink-0" />
+                      <span className="text-[8px] sm:text-[10px] text-brand-dark font-mono hidden sm:inline font-bold">
                         <span>100% HANDMADE</span>
                       </span>
                     </div>

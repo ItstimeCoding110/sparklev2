@@ -302,25 +302,22 @@ export default function App() {
 
             {/* Live Interactive Bento Ribbons / Small Perks */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-display select-none">
-              <div className="bg-brand-pink border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex items-center gap-3.5">
-                <Flame className="w-8 h-8 text-brand-dark shrink-0" />
+              <div className="bg-brand-pink border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex flex-col justify-center min-h-[90px]">
                 <div>
                   <h4 className="font-black text-xs sm:text-sm text-brand-dark leading-none">LIMITED Stock Terbatas</h4>
-                  <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1">Eksklusif & dibuat terbatas agar style kamu tak pasaran!</p>
+                  <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1.5">Eksklusif & dibuat terbatas agar style kamu tak pasaran!</p>
                 </div>
               </div>
-              <div className="bg-brand-blue border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex items-center gap-3.5">
-                <Heart className="w-8 h-8 text-brand-dark shrink-0" />
+              <div className="bg-brand-blue border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex flex-col justify-center min-h-[90px]">
                 <div>
                   <h4 className="font-black text-xs sm:text-sm text-brand-dark leading-none">HANDMADE With Care</h4>
-                  <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1">100% rajutan tangan artisan lokal presisi & rapi!</p>
+                  <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1.5">100% rajutan tangan artisan lokal presisi & rapi!</p>
                 </div>
               </div>
-              <div className="bg-brand-mint border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex items-center gap-3.5">
-                <Box className="w-8 h-8 text-brand-dark shrink-0" />
+              <div className="bg-brand-mint border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex flex-col justify-center min-h-[90px]">
                 <div>
                   <h4 className="font-black text-xs sm:text-sm text-brand-dark leading-none">FREE Shipping Jaksel</h4>
-                  <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1">Belanja minimal 3 item gratis ongkir khusus area Jakarta Selatan!</p>
+                  <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1.5">Belanja minimal 3 item gratis ongkir khusus area Jakarta Selatan!</p>
                 </div>
               </div>
             </div>
@@ -363,6 +360,9 @@ export default function App() {
           setTermsPrivacyInitialTab('privacy');
           setIsTermsPrivacyOpen(true);
         }}
+        onNavigateToCatalog={handleNavigateToCatalog}
+        onNavigateToAbout={handleNavigateToAbout}
+        onOpenCart={() => setIsCartOpen(true)}
       />
 
       {/* 3. Sliding Cart Drawer overlay inside React context */}

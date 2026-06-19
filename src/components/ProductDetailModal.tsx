@@ -81,8 +81,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             )}
           </div>
 
-          <span className="text-[8px] sm:text-[10px] font-mono text-stone-500 font-semibold mt-3 sm:mt-4 tracking-wider flex items-center gap-1">
-            <Sparkles className="w-2.5 sm:w-3" /> PREVIEWS 3D ROTATING SHAPE
+          <span className="text-[8px] sm:text-[10px] font-mono text-stone-500 font-semibold mt-3 sm:mt-4 tracking-wider">
+            PREVIEWS 3D ROTATING SHAPE
           </span>
         </div>
 
@@ -93,8 +93,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="space-y-1">
               <div className="flex flex-wrap gap-1.5">
                 {product.isSoldOut ? (
-                  <span className="inline-block bg-red-600 text-white px-2.5 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-wider flex items-center gap-1">
-                    <XCircle className="w-3 h-3 text-white shrink-0" />
+                  <span className="inline-block bg-red-600 text-white px-2.5 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-wider">
                     <span>SOLD OUT (HABIS)</span>
                   </span>
                 ) : (
@@ -145,9 +144,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {product.beadsUsed.map((bead, index) => (
                   <span
                     key={index}
-                    className="bg-brand-mint text-brand-dark border border-brand-dark font-sans font-bold px-2 py-0.5 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] shadow-[1px_1px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center gap-1"
+                    className="bg-brand-mint text-brand-dark border border-brand-dark font-sans font-bold px-2 py-0.5 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] shadow-[1px_1px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
                   >
-                    <Sparkles className="w-2.5 h-2.5 text-brand-dark shrink-0" />
                     <span>{bead}</span>
                   </span>
                 ))}
@@ -155,8 +153,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Delivery Alert tag */}
-            <div className="bg-brand-peach/25 border border-dashed border-brand-orange p-2 sm:p-2.5 rounded-xl text-[8px] sm:text-[9px] font-mono text-stone-700 flex items-start gap-1 sm:gap-1.5">
-              <AlertCircle className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-brand-orange shrink-0 mt-0.5" />
+            <div className="bg-brand-peach/25 border border-dashed border-brand-orange p-2 sm:p-2.5 rounded-xl text-[8px] sm:text-[9px] font-mono text-stone-700">
               <span>
                 Setiap aksesoris dirakit handmade presisi tinggi. Pengiriman aman seluruh Indonesia!
               </span>
