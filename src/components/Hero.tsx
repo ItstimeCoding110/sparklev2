@@ -50,7 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onNavigateToAbout 
             className="brutalist-button py-3 text-sm px-6 bg-brand-yellow flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#121212] hover:shadow-[6px_6px_0px_#121212] whitespace-nowrap"
           >
             <ShoppingBag className="w-4 h-4 text-brand-dark shrink-0" />
-            <span>JELAJAHI KATALOG UNISEX</span>
+            <span>LIHAT DAFTAR PRODUK</span>
             <ArrowRight className="w-4 h-4 text-brand-dark shrink-0" />
           </button>
           
