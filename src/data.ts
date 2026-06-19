@@ -9,7 +9,8 @@ export const SHOP_INFO: ShopInfo = {
   tiktokUsername: "goodtobe.sparkle",
   address: "Jl. Mangga Dalam, Jakarta Selatan, DKI Jakarta 12420",
   shippingOptions: [
-    "Kurir Toko (Rp 5.000)"
+    "Kurir Toko (Rp 5.000)",
+    "Ambil di Tempat (Rp 0)"
   ]
 };
 
