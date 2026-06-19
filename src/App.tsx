@@ -10,7 +10,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { CheckoutModal } from './components/CheckoutModal';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import { Footer } from './components/Footer';
-import { Gift, Zap, Sparkles, Flame, Heart, Box, MapPin, ShieldCheck } from 'lucide-react';
+import { Gift, Zap, Sparkles, Flame, Heart, Box, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { supabase, mapDbToProduct, mapProductToDb, SQL_INIT_SCRIPT } from './supabaseClient';
 
@@ -329,29 +329,10 @@ export default function App() {
               onAddToCart={handleAddToCart}
             />
 
-            {/* Manifesto & Alamat/Kurir Section */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-8 border-t-4 border-brand-dark/10">
-              {/* Manifesto Card */}
-              <div className="md:col-span-7 bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ff85a2] flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="inline-block bg-brand-pink text-brand-dark px-3 py-1 font-display font-bold text-xs uppercase border-2 border-brand-dark rounded-md tracking-wider">
-                    MANIFESTO KITA ✦
-                  </div>
-                  <h3 className="font-display font-black text-xl sm:text-2xl leading-tight text-brand-dark tracking-tight">
-                    {SHOP_INFO.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans text-stone-700 leading-relaxed">
-                    {SHOP_INFO.about}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 mt-6 pt-4 border-t border-stone-100 text-xs font-mono text-stone-500">
-                  <ShieldCheck className="w-4 h-4 text-brand-mint shrink-0" />
-                  <span>Aman & Terpercaya ✦ Checkout WhatsApp Instan</span>
-                </div>
-              </div>
-
+            {/* Alamat/Kurir Section */}
+            <div className="pt-8 border-t-4 border-brand-dark/10 flex justify-center">
               {/* Shipping & Location Card */}
-              <div className="md:col-span-5 bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ffdf6d] flex flex-col justify-between">
+              <div className="w-full max-w-2xl bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ffdf6d] flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="inline-block bg-brand-yellow text-brand-dark px-3 py-1 font-display font-bold text-xs border-2 border-brand-dark rounded-md tracking-wider flex items-center gap-1.5 w-fit">
                     <span>ALAMAT TOKO & KURIR</span>
