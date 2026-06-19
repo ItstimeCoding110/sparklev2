@@ -5,12 +5,12 @@ import { Hero } from './components/Hero';
 import { ProductList } from './components/ProductList';
 import { AboutTab } from './components/AboutTab';
 import { AdminTab } from './components/AdminTab';
-import { PRODUCTS } from './data';
+import { PRODUCTS, SHOP_INFO } from './data';
 import { CartDrawer } from './components/CartDrawer';
 import { CheckoutModal } from './components/CheckoutModal';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import { Footer } from './components/Footer';
-import { Gift, Zap, Sparkles, Flame, Heart, Box } from 'lucide-react';
+import { Gift, Zap, Sparkles, Flame, Heart, Box, MapPin, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { supabase, mapDbToProduct, mapProductToDb, SQL_INIT_SCRIPT } from './supabaseClient';
 
@@ -328,6 +328,65 @@ export default function App() {
               categoriesList={categories}
               onAddToCart={handleAddToCart}
             />
+
+            {/* Manifesto & Alamat/Kurir Section */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-8 border-t-4 border-brand-dark/10">
+              {/* Manifesto Card */}
+              <div className="md:col-span-7 bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ff85a2] flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="inline-block bg-brand-pink text-brand-dark px-3 py-1 font-display font-bold text-xs uppercase border-2 border-brand-dark rounded-md tracking-wider">
+                    MANIFESTO KITA ✦
+                  </div>
+                  <h3 className="font-display font-black text-xl sm:text-2xl leading-tight text-brand-dark tracking-tight">
+                    {SHOP_INFO.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm font-sans text-stone-700 leading-relaxed">
+                    {SHOP_INFO.about}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 mt-6 pt-4 border-t border-stone-100 text-xs font-mono text-stone-500">
+                  <ShieldCheck className="w-4 h-4 text-brand-mint shrink-0" />
+                  <span>Aman & Terpercaya ✦ Checkout WhatsApp Instan</span>
+                </div>
+              </div>
+
+              {/* Shipping & Location Card */}
+              <div className="md:col-span-5 bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ffdf6d] flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="inline-block bg-brand-yellow text-brand-dark px-3 py-1 font-display font-bold text-xs border-2 border-brand-dark rounded-md tracking-wider flex items-center gap-1.5 w-fit">
+                    <span>ALAMAT TOKO & KURIR</span>
+                    <MapPin className="w-3.5 h-3.5 text-brand-dark shrink-0" />
+                  </div>
+                  
+                  <div className="text-xs sm:text-sm font-mono leading-relaxed text-stone-800">
+                    {SHOP_INFO.address}
+                  </div>
+
+                  <div className="pt-2 border-t border-stone-100">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-stone-600 block mb-1.5">
+                      Ekspedisi Tersedia:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {SHOP_INFO.shippingOptions.map((opt, i) => {
+                        const cleanName = opt.includes(' - ') ? opt.split(' - ')[0] : opt.split(' (')[0];
+                        return (
+                          <span
+                            key={i}
+                            className="bg-brand-mint/20 border-1.5 border-brand-dark text-brand-dark px-2 py-0.5 rounded text-[10px] font-mono font-bold shadow-[1px_1.5px_0px_#121212]"
+                          >
+                            {cleanName}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-[10px] font-mono text-stone-500 mt-6 pt-4 border-t border-stone-100 flex items-center gap-1.5">
+                  <span>Buka Setiap Hari ✦ Jam 08.30 - 23.00 WIB</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
