@@ -88,12 +88,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg bg-white border-4 border-brand-dark rounded-3xl shadow-[8px_8px_0px_#121212] overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-lg bg-white border-4 border-brand-dark rounded-3xl shadow-[8px_8px_0px_#000000] overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header Modal - Thick Banner */}
         <div className="bg-brand-yellow text-brand-dark p-4 border-b-4 border-brand-dark flex justify-between items-center select-none">
           <div className="flex items-center gap-2">
-            <span className="p-1.5 bg-white border-2 border-brand-dark rounded-lg flex items-center justify-center shadow-[1.5px_1.5px_0px_#121212]">
+            <span className="p-1.5 bg-white border-2 border-brand-dark rounded-lg flex items-center justify-center shadow-[1.5px_1.5px_0px_#000000]">
               <Truck className="w-5 h-5 text-brand-dark" />
             </span>
             <div>
@@ -107,7 +107,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1 px-2.5 bg-white hover:bg-rose-100 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold text-xs shadow-[2px_2px_0px_#121212] active:translate-y-0.5"
+            className="p-1 px-2.5 bg-white hover:bg-rose-100 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold text-xs shadow-[2px_2px_0px_#000000] active:translate-y-0.5"
           >
             <X className="w-5.5 h-5.5 text-brand-dark" />
           </button>
@@ -117,7 +117,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         <div className="p-6 overflow-y-auto space-y-5 flex-1 select-none">
           
           {/* Quick Notice */}
-          <div className="bg-brand-mint/40 border-2 border-brand-dark p-3.5 rounded-2xl flex items-start gap-2.5 shadow-[3px_3px_0px_#121212]">
+          <div className="bg-brand-mint/40 border-2 border-brand-dark p-3.5 rounded-2xl flex items-start gap-2.5 shadow-[3px_3px_0px_#000000]">
             <Info className="w-5 h-5 text-brand-dark shrink-0 mt-0.5" />
             <p className="text-xs text-stone-700 leading-relaxed font-sans">
               Isi formulir pengiriman di bawah ya, bestie! Setelah diisi, klik tombol <strong>KIRIM KE WHATSAPP</strong> di bawah. Kamu akan langsung dialihkan ke chat WA Mimin untuk pembayaran & konfirmasi resi.
@@ -214,7 +214,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   onClick={() => setIsJaksel(true)}
                   className={`px-3 py-2 border-2 rounded-xl text-xs font-mono font-bold transition-all ${
                     isJaksel
-                      ? 'border-brand-dark bg-brand-mint text-brand-dark shadow-[2.5px_2.5px_0px_#121212]'
+                      ? 'border-brand-dark bg-brand-mint text-brand-dark shadow-[2.5px_2.5px_0px_#000000]'
                       : 'border-stone-200 bg-white text-stone-600 hover:bg-stone-50 border-b-4'
                   }`}
                 >
@@ -225,7 +225,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   onClick={() => setIsJaksel(false)}
                   className={`px-3 py-2 border-2 rounded-xl text-xs font-mono font-bold transition-all ${
                     !isJaksel
-                      ? 'border-brand-dark bg-stone-100 text-brand-dark shadow-[2.5px_2.5px_0px_#121212]'
+                      ? 'border-brand-dark bg-stone-100 text-brand-dark shadow-[2.5px_2.5px_0px_#000000]'
                       : 'border-stone-200 bg-white text-stone-600 hover:bg-stone-50 border-b-4'
                   }`}
                 >
@@ -249,7 +249,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     key={index}
                     className={`flex items-center gap-3 px-3 py-2 border-2 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${
                       selectedCourier === courier
-                        ? 'border-brand-dark bg-brand-blue/60 shadow-[2.5px_2.5px_0px_#121212]'
+                        ? 'border-brand-dark bg-brand-blue/60 shadow-[2.5px_2.5px_0px_#000000]'
                         : 'border-stone-200 bg-white text-stone-600 hover:bg-stone-50'
                     }`}
                   >
@@ -352,7 +352,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             target="_self"
             className={`w-full py-3 px-6 rounded-2xl flex items-center justify-center gap-3 border-3 transition-all font-display font-black text-base tracking-widest ${
               isFormValid
-                ? 'bg-[#25D366] border-brand-dark text-brand-dark hover:-translate-y-0.5 shadow-[3.5px_4px_0px_#121212] hover:shadow-[5.5px_6px_0px_#121212] cursor-pointer'
+                ? 'bg-[#25D366] border-brand-dark text-brand-dark hover:-translate-y-0.5 shadow-[3.5px_4px_0px_#000000] hover:shadow-[5.5px_6px_0px_#000000] cursor-pointer'
                 : 'bg-stone-200 text-stone-400 border-stone-300 shadow-none cursor-not-allowed pointer-events-none'
             }`}
           >

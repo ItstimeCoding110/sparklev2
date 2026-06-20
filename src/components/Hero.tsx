@@ -8,23 +8,23 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onNavigateToAbout }) => {
   return (
-    <div className="relative overflow-hidden bg-brand-pink/25 border-3 border-brand-dark p-6 md:p-10 rounded-4xl shadow-[6px_6.5px_0px_#121212] my-8 select-none">
+    <div className="relative overflow-hidden bg-brand-pink/25 border-3 border-brand-dark p-6 md:p-10 rounded-4xl shadow-[6px_6.5px_0px_#000000] my-8 select-none">
       {/* Absolute decorative floating background badges */}
       <div className="absolute top-4 right-4 hidden md:flex flex-col gap-2 rotate-6">
-        <span className="bg-brand-pink font-display font-black text-xs border-2 border-brand-dark px-3 py-1 rounded shadow-[2.5px_2.5px_0px_#121212] uppercase tracking-wide">
+        <span className="bg-brand-pink font-display font-black text-xs border-2 border-brand-dark px-3 py-1 rounded shadow-[2.5px_2.5px_0px_#000000] uppercase tracking-wide">
           <span>Limited Stock Terbatas</span>
         </span>
-        <span className="bg-brand-blue font-display font-black text-xs border-2 border-brand-dark px-3 py-1 rounded shadow-[2.5px_2.5px_0px_#121212] uppercase tracking-wide -rotate-2">
+        <span className="bg-brand-blue font-display font-black text-xs border-2 border-brand-dark px-3 py-1 rounded shadow-[2.5px_2.5px_0px_#000000] uppercase tracking-wide -rotate-2">
           <span>100% Handmade</span>
         </span>
-        <span className="bg-brand-mint font-display font-black text-[11px] border-2 border-brand-dark px-3 py-1 rounded shadow-[2.5px_2.5px_0px_#121212] uppercase tracking-wide rotate-3">
+        <span className="bg-brand-mint font-display font-black text-[11px] border-2 border-brand-dark px-3 py-1 rounded shadow-[2.5px_2.5px_0px_#000000] uppercase tracking-wide rotate-3">
           <span>Gratis Ongkir Jaksel Min 3</span>
         </span>
       </div>
 
       <div className="max-w-2xl space-y-6">
         {/* Playful Gen-Z tag */}
-        <div className="inline-flex items-center bg-brand-mint border-2 border-brand-dark px-2.5 py-0.5 sm:py-1 rounded-full shadow-[2px_2.5px_0px_#121212]">
+        <div className="inline-flex items-center bg-brand-mint border-2 border-brand-dark px-2.5 py-0.5 sm:py-1 rounded-full shadow-[2px_2.5px_0px_#000000]">
           <span className="font-mono text-[9px] min-[375px]:text-[10px] sm:text-xs font-black uppercase tracking-wider text-brand-dark">
             HANDMADE - LIMITED - FOR EVERY STYLE
           </span>
@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onNavigateToAbout 
         <div className="flex flex-col sm:flex-row gap-3 pt-3">
           <button
             onClick={onExploreCatalog}
-            className="brutalist-button py-3 text-xs sm:text-sm px-4 sm:px-6 bg-brand-yellow flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#121212] hover:shadow-[6px_6px_0px_#121212]"
+            className="brutalist-button py-3 text-xs sm:text-sm px-4 sm:px-6 bg-brand-yellow flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#000000] hover:shadow-[6px_6px_0px_#000000]"
           >
             <ShoppingBag className="w-4 h-4 text-brand-dark shrink-0" />
             <span>LIHAT DAFTAR PRODUK</span>
@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onNavigateToAbout 
           
           <button
             onClick={onNavigateToAbout}
-            className="brutalist-button-pink py-3 text-xs sm:text-sm px-4 sm:px-6 flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#121212] hover:shadow-[6px_6px_0px_#121212]"
+            className="brutalist-button-pink py-3 text-xs sm:text-sm px-4 sm:px-6 flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#000000] hover:shadow-[6px_6px_0px_#000000]"
           >
             <Info className="w-4 h-4 text-brand-dark shrink-0" />
             <span>TENTANG GOODTOBE.SPARKLE</span>

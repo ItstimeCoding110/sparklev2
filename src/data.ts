@@ -24,7 +24,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 24000,
     image: "star-black-chrome",
     category: "Gelang",
-    colors: ["#121212", "#e0e0e0", "#b3e5fc"],
+    colors: ["#000000", "#e0e0e0", "#b3e5fc"],
     beadsUsed: ["Black Matte Bead", "Chrome Grey Pearl", "Silver Metal Star"],
     isBestSeller: true
   },
@@ -60,7 +60,7 @@ export const PRODUCTS: Product[] = [
     price: 19000,
     image: "acid-green-black-orange",
     category: "Gelang",
-    colors: ["#00e676", "#121212", "#ffab91"],
+    colors: ["#00e676", "#000000", "#ffab91"],
     beadsUsed: ["Acid Green Bead", "Charcoal Dark Block", "Sunset Peach Bead"],
     isBestSeller: true
   },
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 12000,
     image: "yinyang-black-white",
     category: "Cincin",
-    colors: ["#121212", "#ffffff"],
+    colors: ["#000000", "#ffffff"],
     beadsUsed: ["Minimalist Black Bead", "Pure Pearl White"],
     isBestSeller: true
   },
@@ -85,7 +85,7 @@ export const PRODUCTS: Product[] = [
     price: 9000,
     image: "cyber-neon-blue",
     category: "Cincin",
-    colors: ["#b3e5fc", "#121212", "#c8e6c9"],
+    colors: ["#b3e5fc", "#000000", "#c8e6c9"],
     beadsUsed: ["Electric Blue Bead", "Smoky Matte Bead"],
     isNew: true
   },

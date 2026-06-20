@@ -45,7 +45,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
   return (
     <div className="space-y-8 select-none" id="katalog-produk-section">
       {/* Search & Category Filter Widget */}
-      <div className="bg-white border-3 border-brand-dark p-4 sm:p-6 rounded-3xl shadow-[5px_5.5px_0px_#121212] space-y-4">
+      <div className="bg-white border-3 border-brand-dark p-4 sm:p-6 rounded-3xl shadow-[5px_5.5px_0px_#000000] space-y-4">
         {/* Row A: Title & tagline */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -78,7 +78,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 font-display text-xs font-black rounded-xl border-2 transition-all cursor-pointer flex items-center gap-1.5 ${
                 selectedCategory === cat
-                  ? 'bg-brand-purple text-brand-dark border-brand-dark shadow-[2.5px_2.5px_0px_#121212] -translate-x-0.5 -translate-y-0.5'
+                  ? 'bg-brand-purple text-brand-dark border-brand-dark shadow-[2.5px_2.5px_0px_#000000] -translate-x-0.5 -translate-y-0.5'
                   : 'bg-white text-stone-600 border-stone-200 hover:border-brand-dark hover:text-brand-dark hover:bg-stone-50'
               }`}
             >
@@ -123,27 +123,27 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
               <div
                 key={product.id}
                 onClick={() => setSelectedDetailProduct(product)}
-                className="group relative bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#121212] transition-all duration-300 cursor-pointer"
+                className="group relative bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#000000] transition-all duration-300 cursor-pointer"
               >
                 {/* Visual badges in top corner */}
                 <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex flex-col gap-1 items-start">
                   {product.isSoldOut ? (
-                    <span className="bg-red-600 text-white font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
+                    <span className="bg-red-600 text-white font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#000000] tracking-wider font-bold">
                       <span>SOLD OUT</span>
                     </span>
                   ) : (
                     <>
                       {product.isBestSeller && (
-                        <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider animate-pulse font-bold">
+                        <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#000000] tracking-wider animate-pulse font-bold">
                           <span>BEST SELLER</span>
                         </span>
                       )}
                       {product.isNew && (
-                        <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
+                        <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#000000] tracking-wider font-bold">
                           <span>NEW ITEM</span>
                         </span>
                       )}
-                      <span className="bg-brand-orange text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
+                      <span className="bg-brand-orange text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#000000] tracking-wider font-bold">
                         <span>STOK TERBATAS</span>
                       </span>
                     </>
@@ -171,7 +171,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                   </div>
                   {product.isSoldOut && (
                     <div className="absolute inset-0 bg-brand-dark/20 flex items-center justify-center">
-                      <span className="bg-red-600 text-white font-display font-black text-[10px] sm:text-xs tracking-wider uppercase px-2.5 py-1.5 border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#121212] -rotate-12">
+                      <span className="bg-red-600 text-white font-display font-black text-[10px] sm:text-xs tracking-wider uppercase px-2.5 py-1.5 border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#000000] -rotate-12">
                         <span>OUT OF STOCK</span>
                       </span>
                     </div>
@@ -252,7 +252,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                           e.stopPropagation();
                           onAddToCart(product);
                         }}
-                        className="brutalist-button-blue text-[10px] sm:text-xs rounded-xl py-1 sm:py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1.5 font-display font-black w-full sm:w-auto shadow-[1.5px_1.5px_0px_#121212] sm:shadow-[2.5px_2.5px_0px_#121212] transition-all cursor-pointer active:translate-y-0 active:shadow-none"
+                        className="brutalist-button-blue text-[10px] sm:text-xs rounded-xl py-1 sm:py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1.5 font-display font-black w-full sm:w-auto shadow-[1.5px_1.5px_0px_#000000] sm:shadow-[2.5px_2.5px_0px_#000000] transition-all cursor-pointer active:translate-y-0 active:shadow-none"
                       >
                         <ShoppingCart className="w-3.5 h-3.5 text-brand-dark shrink-0" />
                         <span>Beli</span>

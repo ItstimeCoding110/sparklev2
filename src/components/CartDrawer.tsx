@@ -29,7 +29,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
 
       {/* Cart Container - Soft Brutalist Panel */}
-      <div className="relative w-full max-w-md h-full bg-white border-l-4 border-brand-dark shadow-[-8px_0px_0px_#121212] flex flex-col justify-between overflow-hidden z-10">
+      <div className="relative w-full max-w-md h-full bg-white border-l-4 border-brand-dark shadow-[-8px_0px_0px_#000000] flex flex-col justify-between overflow-hidden z-10">
         
         {/* Header Drawer Banner */}
         <div className="bg-brand-pink text-brand-dark p-4 border-b-4 border-brand-dark flex justify-between items-center select-none">
@@ -47,7 +47,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           
           <button
             onClick={onClose}
-            className="p-1 px-2.5 bg-white border-2 border-brand-dark rounded-xl transition-all font-bold text-xs shadow-[2px_2px_0px_#121212] active:translate-y-0.5 cursor-pointer leading-none flex items-center gap-1"
+            className="p-1 px-2.5 bg-white border-2 border-brand-dark rounded-xl transition-all font-bold text-xs shadow-[2px_2px_0px_#000000] active:translate-y-0.5 cursor-pointer leading-none flex items-center gap-1"
           >
             <X className="w-3.5 h-3.5" />
             <span>TUTUP</span>
@@ -77,13 +77,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               return (
                 <div
                   key={item.id}
-                  className="bg-white border-2 border-brand-dark rounded-2xl p-4 shadow-[3.5px_3.5px_0px_#121212] flex gap-3 relative"
+                  className="bg-white border-2 border-brand-dark rounded-2xl p-4 shadow-[3.5px_3.5px_0px_#000000] flex gap-3 relative"
                 >
                   {/* Decorative visual circle showing primary representative color */}
                   <div className="w-14 h-14 rounded-xl border-2 border-brand-dark bg-stone-50 flex-shrink-0 flex items-center justify-center p-1 overflow-hidden relative">
                     <span 
-                      className="w-8 h-8 rounded-full border border-brand-dark shadow-[1px_1px_0px_#121212]" 
-                      style={{ backgroundColor: p.colors[0] || '#ffb3c1' }}
+                      className="w-8 h-8 rounded-full border border-brand-dark shadow-[1px_1px_0px_#000000]" 
+                      style={{ backgroundColor: p.colors[0] || '#ff6584' }}
                     />
                   </div>
 
@@ -153,7 +153,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               
               {/* Dynamic Free Shipping Promo Banner */}
               {isFreeShipping ? (
-                <div className="bg-brand-mint/55 border-2 border-brand-dark p-2.5 rounded-xl text-[11px] font-mono flex items-center gap-2 shadow-[2px_2.5px_0px_#121212]">
+                <div className="bg-brand-mint/55 border-2 border-brand-dark p-2.5 rounded-xl text-[11px] font-mono flex items-center gap-2 shadow-[2px_2.5px_0px_#000000]">
                   <Sparkles className="w-5 h-5 text-brand-dark shrink-0" />
                   <div>
                     <span className="font-extrabold text-brand-dark block text-xs">YAY! GRATIS ONGKIR SEGERA AKTIF!</span>
@@ -161,7 +161,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </div>
                 </div>
               ) : (
-                <div className="bg-brand-orange/25 border-2 border-brand-dark p-2.5 rounded-xl text-[11px] font-mono flex items-center gap-2 shadow-[2px_2.5px_0px_#121212]">
+                <div className="bg-brand-orange/25 border-2 border-brand-dark p-2.5 rounded-xl text-[11px] font-mono flex items-center gap-2 shadow-[2px_2.5px_0px_#000000]">
                   <Box className="w-5 h-5 text-brand-dark shrink-0 animate-pulse" />
                   <div>
                     <span className="font-extrabold text-brand-dark block text-xs">DIKIT LAGI GRATIS ONGKIR JAKSEL!</span>
@@ -183,7 +183,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <div className="h-[1.5px] bg-stone-200 my-1" />
                 <div className="flex justify-between items-center">
                   <span className="font-display font-black text-sm text-brand-dark">TOTAL BELANJA:</span>
-                  <span className="font-mono font-black text-lg text-brand-dark bg-brand-yellow/80 border-1.5 border-brand-dark rounded px-2 py-0.5 shadow-[1.5px_1.5px_0px_#121212]">
+                  <span className="font-mono font-black text-lg text-brand-dark bg-brand-yellow/80 border-1.5 border-brand-dark rounded px-2 py-0.5 shadow-[1.5px_1.5px_0px_#000000]">
                     Rp {totalPrice.toLocaleString('id-ID')}
                   </span>
                 </div>

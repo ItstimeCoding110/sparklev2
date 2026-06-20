@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => setActiveTab('shop')}
             className={`font-display text-sm px-4 py-2 rounded-xl border-2 transition-all cursor-pointer flex items-center gap-2 ${
               activeTab === 'shop'
-                ? 'bg-brand-yellow text-brand-dark border-brand-dark shadow-[3px_3px_0px_#121212] -translate-x-0.5 -translate-y-0.5'
+                ? 'bg-brand-yellow text-brand-dark border-brand-dark shadow-[3px_3px_0px_#000000] -translate-x-0.5 -translate-y-0.5'
                 : 'bg-white text-stone-600 border-stone-200 hover:border-brand-dark hover:text-brand-dark'
             }`}
           >
@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => setActiveTab('about')}
             className={`font-display text-sm px-4 py-2 rounded-xl border-2 transition-all cursor-pointer flex items-center gap-2 ${
               activeTab === 'about'
-                ? 'bg-brand-purple text-brand-dark border-brand-dark shadow-[3px_3px_0px_#121212] -translate-x-0.5 -translate-y-0.5'
+                ? 'bg-brand-purple text-brand-dark border-brand-dark shadow-[3px_3px_0px_#000000] -translate-x-0.5 -translate-y-0.5'
                 : 'bg-white text-stone-600 border-stone-200 hover:border-brand-dark hover:text-brand-dark'
             }`}
           >
@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Quick shop filter shortcut button for mobile view */}
           <button
             onClick={() => setActiveTab('shop')}
-            className="md:hidden flex items-center justify-center p-2.5 rounded-xl border-2.5 border-brand-dark bg-brand-pink text-brand-dark shadow-[2.5px_2.5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[0px_0px_0px] transition-all cursor-pointer"
+            className="md:hidden flex items-center justify-center p-2.5 rounded-xl border-2.5 border-brand-dark bg-brand-pink text-brand-dark shadow-[2.5px_2.5px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[0px_0px_0px] transition-all cursor-pointer"
             title="Lihat Katalog"
           >
             <ShoppingBag className="w-5 h-5 text-brand-dark shrink-0" />
@@ -68,14 +68,14 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Interactive Cart Button with Soft Brutalist badge */}
           <button
             onClick={onOpenCart}
-            className="flex items-center gap-2 border-2.5 border-brand-dark bg-brand-blue text-brand-dark px-4 py-2.5 rounded-xl shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none"
+            className="flex items-center gap-2 border-2.5 border-brand-dark bg-brand-blue text-brand-dark px-4 py-2.5 rounded-xl shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000000] active:translate-y-0 active:shadow-[1px_1px_0px_#000000] transition-all cursor-pointer select-none"
             id="header-cart-button"
           >
             <ShoppingBag className="w-5 h-5 text-brand-dark" />
             <span className="font-display font-bold text-sm hidden sm:inline text-brand-dark">
               Keranjang
             </span>
-            <span className="bg-brand-yellow text-brand-dark font-mono text-xs font-black border-2 border-brand-dark px-2 py-0.5 rounded-md min-w-[20px] text-center shadow-[1px_1.5px_0px_#121212] scale-105">
+            <span className="bg-brand-yellow text-brand-dark font-mono text-xs font-black border-2 border-brand-dark px-2 py-0.5 rounded-md min-w-[20px] text-center shadow-[1px_1.5px_0px_#000000] scale-105">
               {cartCount}
             </span>
           </button>

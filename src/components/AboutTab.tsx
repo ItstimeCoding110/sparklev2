@@ -53,7 +53,7 @@ export const AboutTab: React.FC = () => {
   return (
     <div className="space-y-12 select-none" id="about-tentang-kami-page">
       {/* 1. Brand Banner Intro */}
-      <div className="bg-brand-peach/40 border-3 border-brand-dark p-8 rounded-3xl shadow-[5px_5px_0px_#121212] grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div className="bg-brand-peach/40 border-3 border-brand-dark p-8 rounded-3xl shadow-[5px_5px_0px_#000000] grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-8 space-y-4">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4.5xl text-brand-dark leading-snug">
             KENALAN SAMA <br />
@@ -68,8 +68,8 @@ export const AboutTab: React.FC = () => {
         
         {/* Fun visual bento side-block */}
         <div className="md:col-span-4 flex justify-center">
-          <div className="bg-white border-3 border-brand-dark p-4 rounded-2xl shadow-[4px_4px_0px_#121212] rotate-3 hover:rotate-0 transition-transform duration-300 relative">
-            <span className="absolute -top-3.5 -right-3 bg-brand-pink border-2 border-brand-dark font-mono text-[9px] font-bold rounded px-1.5 py-0.5 shadow-[1.5px_1.5px_0px_#121212]">
+          <div className="bg-white border-3 border-brand-dark p-4 rounded-2xl shadow-[4px_4px_0px_#000000] rotate-3 hover:rotate-0 transition-transform duration-300 relative">
+            <span className="absolute -top-3.5 -right-3 bg-brand-pink border-2 border-brand-dark font-mono text-[9px] font-bold rounded px-1.5 py-0.5 shadow-[1.5px_1.5px_0px_#000000]">
               EST. 2026
             </span>
             <div className="w-48 h-48 bg-brand-mint/30 rounded-xl border border-stone-200 flex items-center justify-center p-2 text-center overflow-hidden">
@@ -94,7 +94,7 @@ export const AboutTab: React.FC = () => {
           {features.map((feat, i) => (
             <div
               key={i}
-              className={`${feat.bgColor} border-3 border-brand-dark p-5 rounded-2xl shadow-[3.5px_3.5px_0px_#121212] hover:-translate-y-1 transition-transform`}
+              className={`${feat.bgColor} border-3 border-brand-dark p-5 rounded-2xl shadow-[3.5px_3.5px_0px_#000000] hover:-translate-y-1 transition-transform`}
             >
               <h4 className="font-display font-black text-lg text-brand-dark leading-tight mb-2">
                 {feat.title}
@@ -108,7 +108,7 @@ export const AboutTab: React.FC = () => {
       </div>
 
       {/* 3. FAQ Section */}
-      <div className="bg-white border-3 border-brand-dark p-6 md:p-8 rounded-3xl shadow-[5px_5.5px_0px_#121212] space-y-6">
+      <div className="bg-white border-3 border-brand-dark p-6 md:p-8 rounded-3xl shadow-[5px_5.5px_0px_#000000] space-y-6">
         <div className="flex items-center gap-2.5">
           <div>
             <h3 className="font-display text-2xl text-brand-dark">

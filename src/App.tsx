@@ -321,19 +321,19 @@ export default function App() {
 
             {/* Live Interactive Bento Ribbons / Small Perks */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-display select-none">
-              <div className="bg-brand-pink border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex flex-col justify-center min-h-[90px]">
+              <div className="bg-brand-pink border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#000000] flex flex-col justify-center min-h-[90px]">
                 <div>
                   <h4 className="font-black text-xs sm:text-sm text-brand-dark leading-none">LIMITED Stock Terbatas</h4>
                   <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1.5">Eksklusif & dibuat terbatas agar style kamu tak pasaran!</p>
                 </div>
               </div>
-              <div className="bg-brand-blue border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex flex-col justify-center min-h-[90px]">
+              <div className="bg-brand-blue border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#000000] flex flex-col justify-center min-h-[90px]">
                 <div>
                   <h4 className="font-black text-xs sm:text-sm text-brand-dark leading-none">HANDMADE With Care</h4>
                   <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1.5">100% rajutan tangan artisan lokal presisi & rapi!</p>
                 </div>
               </div>
-              <div className="bg-brand-mint border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#121212] flex flex-col justify-center min-h-[90px]">
+              <div className="bg-brand-mint border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3.5px_0px_#000000] flex flex-col justify-center min-h-[90px]">
                 <div>
                   <h4 className="font-black text-xs sm:text-sm text-brand-dark leading-none">FREE Shipping Jaksel</h4>
                   <p className="text-[10px] font-mono text-stone-700 leading-tight mt-1.5">Belanja minimal 3 item gratis ongkir khusus area Jakarta Selatan!</p>
@@ -372,7 +372,7 @@ export default function App() {
                         return (
                           <span
                             key={i}
-                            className="bg-brand-mint/20 border-1.5 border-brand-dark text-brand-dark px-2 py-0.5 rounded text-[10px] font-mono font-bold shadow-[1px_1.5px_0px_#121212]"
+                            className="bg-brand-mint/20 border-1.5 border-brand-dark text-brand-dark px-2 py-0.5 rounded text-[10px] font-mono font-bold shadow-[1px_1.5px_0px_#000000]"
                           >
                             {cleanName}
                           </span>
@@ -465,7 +465,7 @@ export default function App() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-6 right-6 z-50 bg-brand-yellow text-brand-dark border-3 border-brand-dark px-5 py-3.5 rounded-2xl font-display font-black text-xs md:text-sm shadow-[4px_4.5px_0px_#121212] flex items-center gap-3 max-w-sm sm:max-w-md"
+            className="fixed bottom-6 right-6 z-50 bg-brand-yellow text-brand-dark border-3 border-brand-dark px-5 py-3.5 rounded-2xl font-display font-black text-xs md:text-sm shadow-[4px_4.5px_0px_#000000] flex items-center gap-3 max-w-sm sm:max-w-md"
             id="toast-notification"
           >
             <Sparkles className="w-5 h-5 text-brand-dark shrink-0" />
@@ -478,7 +478,7 @@ export default function App() {
                     setIsCartOpen(true);
                     setToastMessage(null);
                   }}
-                  className="bg-brand-blue hover:bg-brand-mint text-brand-dark text-[10px] font-mono font-black uppercase px-2.5 py-1.5 border border-brand-dark rounded-xl transition-colors cursor-pointer shadow-[1.5px_1.5px_0px_#121212] active:translate-y-px active:shadow-none w-fit"
+                  className="bg-brand-blue hover:bg-brand-mint text-brand-dark text-[10px] font-mono font-black uppercase px-2.5 py-1.5 border border-brand-dark rounded-xl transition-colors cursor-pointer shadow-[1.5px_1.5px_0px_#000000] active:translate-y-px active:shadow-none w-fit"
                 >
                   Buka Keranjang 🛍️
                 </button>

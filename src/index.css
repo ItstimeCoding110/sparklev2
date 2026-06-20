@@ -7,35 +7,35 @@
   --font-mono: "JetBrains Mono", monospace;
   --font-serif: "Playfair Display", Georgia, serif;
   
-  --color-brand-pink: #ffb3c1;
-  --color-brand-yellow: #ffe57f;
-  --color-brand-purple: #d1c4e9;
-  --color-brand-mint: #c8e6c9;
-  --color-brand-blue: #b3e5fc;
-  --color-brand-peach: #ffccbc;
-  --color-brand-orange: #ffab91;
-  --color-brand-dark: #121212;
+  --color-brand-pink: #ff6584;
+  --color-brand-yellow: #ffd056;
+  --color-brand-purple: #b58dfb;
+  --color-brand-mint: #86d79d;
+  --color-brand-blue: #7dd3fc;
+  --color-brand-peach: #ffa890;
+  --color-brand-orange: #ff7043;
+  --color-brand-dark: #000000;
 }
 
 /* Custom soft brutalism utility classes if needed */
 .brutalist-card {
-  @apply border-3 border-brand-dark bg-white shadow-[4px_4px_0px_#121212] transition-all duration-200;
+  @apply border-3 border-brand-dark bg-white shadow-[4px_4px_0px_#000000] transition-all duration-200;
 }
 
 .brutalist-button {
-  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-yellow text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-yellow text-brand-dark font-bold shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#000000] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
 }
 
 .brutalist-button-pink {
-  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-pink text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-pink text-brand-dark font-bold shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#000000] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
 }
 
 .brutalist-button-blue {
-  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-blue text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-blue text-brand-dark font-bold shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#000000] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
 }
 
 .brutalist-button-purple {
-  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-purple text-brand-dark font-bold shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#121212] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#121212] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
+  @apply border-3 border-brand-dark font-display px-4 py-2 bg-brand-purple text-brand-dark font-bold shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#000000] transition-all cursor-pointer select-none inline-flex items-center justify-center gap-2;
 }
 
 .marquee-container {

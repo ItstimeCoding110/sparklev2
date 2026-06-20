@@ -10,7 +10,7 @@ interface BraceletVisualizerProps {
 }
 
 export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
-  colors = ['#ffb3c1', '#ffe57f', '#b3e5fc'],
+  colors = ['#ff6584', '#ffd056', '#7dd3fc'],
   wording = '',
   beadSequence = [],
   size = 'md',
@@ -57,7 +57,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
 
   return (
     <div
-      className={`relative inline-flex items-center justify-center bg-brand-dark/5 p-2 sm:p-4 rounded-3xl border-3 border-brand-dark shadow-[4px_4px_0px_#121212] overflow-hidden w-full aspect-square ${
+      className={`relative inline-flex items-center justify-center bg-brand-dark/5 p-2 sm:p-4 rounded-3xl border-3 border-brand-dark shadow-[4px_4px_0px_#000000] overflow-hidden w-full aspect-square ${
         isRotating ? 'animate-[spin_40s_linear_infinite]' : ''
       }`}
       style={{ maxWidth: pixelSize, maxHeight: pixelSize }}
@@ -87,7 +87,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
           rx="72"
           ry="72"
           fill="none"
-          stroke="#121212"
+          stroke="#000000"
           strokeWidth="3"
           strokeDasharray="4,4"
         />
@@ -126,7 +126,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                 <polygon
                   points={pts.join(' ')}
                   fill={bead.color}
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="2.5"
                 />
                 {/* Shiny star dot */}
@@ -146,7 +146,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                 <path
                   d="M0,5 C-6,0 -11,-4 -11,-10 C-11,-16 -6,-21 0,-21 C6,-21 11,-16 11,-10 C11,-4 6,0 0,5 Z"
                   fill={bead.color}
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="2.5"
                   transform="translate(0, 7)"
                 />
@@ -177,7 +177,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                       cy={py}
                       r={petalRadius}
                       fill={bead.color}
-                      stroke="#121212"
+                      stroke="#000000"
                       strokeWidth="1.5"
                     />
                   );
@@ -188,7 +188,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                   cy="0"
                   r="4.5"
                   fill="#ffe57f"
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="1.5"
                 />
               </g>
@@ -206,14 +206,14 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                   cy={y + 6}
                   r="4"
                   fill="none"
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="2.5"
                 />
                 {/* Bow Wings */}
                 <path
                   d={`M ${x},${charmY} C ${x - 16},${charmY - 8} ${x - 16},${charmY + 12} ${x},${charmY + 4} C ${x + 16},${charmY + 12} ${x + 16},${charmY - 8} ${x},${charmY} Z`}
                   fill={bead.color}
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="2.5"
                   strokeLinejoin="round"
                 />
@@ -223,13 +223,13 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                   cy={charmY + 2}
                   r="4.5"
                   fill="#ffd54f"
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="2.5"
                 />
                 {/* Tails */}
                 <path
                   d={`M ${x - 2},${charmY + 6} L ${x - 8},${charmY + 16} M ${x + 2},${charmY + 6} L ${x + 8},${charmY + 16}`}
-                  stroke="#121212"
+                  stroke="#000000"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                 />
@@ -245,7 +245,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                 cy={y}
                 r="10.5"
                 fill={bead.color}
-                stroke="#121212"
+                stroke="#000000"
                 strokeWidth="2.5"
                 style={{ color: bead.color }}
               />
@@ -280,7 +280,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
               width={wordLength * 22 + 16}
               height="30"
               rx="15"
-              fill="#121212"
+              fill="#000000"
             />
             {/* Main plaque rect */}
             <rect
@@ -290,7 +290,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
               height="30"
               rx="15"
               fill="#ffe57f"
-              stroke="#121212"
+              stroke="#000000"
               strokeWidth="3"
             />
             {wording
@@ -310,12 +310,12 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                       height="18"
                       rx="3"
                       fill="#ffffff"
-                      stroke="#121212"
+                      stroke="#000000"
                       strokeWidth="2.5"
                     />
                     {/* Inner detail lines of bead block */}
-                    <circle cx="-9" cy="0" r="1.5" fill="#121212" />
-                    <circle cx="9" cy="0" r="1.5" fill="#121212" />
+                    <circle cx="-9" cy="0" r="1.5" fill="#000000" />
+                    <circle cx="9" cy="0" r="1.5" fill="#000000" />
                     {/* Character */}
                     <text
                       x="0"
@@ -323,7 +323,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                       fontFamily="sans-serif"
                       fontWeight="900"
                       fontSize="13"
-                      fill="#121212"
+                      fill="#000000"
                       textAnchor="middle"
                     >
                       {char}

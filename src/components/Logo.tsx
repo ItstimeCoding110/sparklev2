@@ -21,7 +21,7 @@ export const Logo: React.FC<LogoProps> = ({
 
   return (
     <div 
-      className={`relative select-none flex items-center ${showBackground ? 'bg-[#EAE5D9] p-6 rounded-2xl border-3 border-[#121212] shadow-[4px_4px_0px_#121212] justify-center' : 'justify-start'} ${sizeClasses[size]} ${className}`}
+      className={`relative select-none flex items-center ${showBackground ? 'bg-[#EAE5D9] p-6 rounded-2xl border-3 border-[#000000] shadow-[4px_4px_0px_#000000] justify-center' : 'justify-start'} ${sizeClasses[size]} ${className}`}
       id="goodtobesparkle-brand-logo"
     >
       <svg
@@ -36,7 +36,7 @@ export const Logo: React.FC<LogoProps> = ({
             <stop offset="0%" stopColor="#fffbf0" stopOpacity="1" />
             <stop offset="25%" stopColor="#d8d3c5" stopOpacity="0.95" />
             <stop offset="60%" stopColor="#3d3c39" stopOpacity="1" />
-            <stop offset="100%" stopColor="#121212" stopOpacity="1" />
+            <stop offset="100%" stopColor="#000000" stopOpacity="1" />
           </radialGradient>
         </defs>
 
@@ -45,7 +45,7 @@ export const Logo: React.FC<LogoProps> = ({
         <path
           d="M 115,48 Q 115,100 63,100 Q 115,100 115,152 Q 115,100 167,100 Q 115,100 115,48 Z"
           fill="url(#sparkleGrad)"
-          stroke="#121212"
+          stroke="#000000"
           strokeWidth="1"
           className="animate-pulse"
           style={{ animationDuration: '4s' }}
@@ -56,7 +56,7 @@ export const Logo: React.FC<LogoProps> = ({
           x="160"
           y="108"
           textAnchor="middle"
-          fill="#121212"
+          fill="#000000"
           className="font-serif font-medium tracking-normal select-none"
           style={{
             fontFamily: '"Playfair Display", Georgia, "Times New Roman", serif',
@@ -72,7 +72,7 @@ export const Logo: React.FC<LogoProps> = ({
           x="165"
           y="148"
           textAnchor="middle"
-          fill="#121212"
+          fill="#000000"
           className="font-serif font-normal select-none"
           style={{
             fontFamily: '"Playfair Display", Georgia, "Times New Roman", serif',

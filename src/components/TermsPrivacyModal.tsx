@@ -24,12 +24,12 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-        className="relative w-full max-w-2xl bg-white border-4 border-brand-dark rounded-3xl shadow-[8px_8px_0px_#121212] overflow-hidden flex flex-col max-h-[85vh]"
+        className="relative w-full max-w-2xl bg-white border-4 border-brand-dark rounded-3xl shadow-[8px_8px_0px_#000000] overflow-hidden flex flex-col max-h-[85vh]"
       >
         {/* Header - Brutalist Theme Banner */}
         <div className="bg-brand-pink text-brand-dark p-4 sm:p-5 border-b-4 border-brand-dark flex justify-between items-center select-none shrink-0">
           <div className="flex items-center gap-3">
-            <span className="p-1.5 sm:p-2 bg-white border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#121212] flex items-center justify-center">
+            <span className="p-1.5 sm:p-2 bg-white border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#000000] flex items-center justify-center">
               <Scale className="w-5 h-5 sm:w-6 sm:h-6 text-brand-dark" />
             </span>
             <div>
@@ -43,7 +43,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 bg-white hover:bg-rose-100 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold shadow-[2px_2px_0px_#121212] active:translate-y-0.5"
+            className="p-1.5 bg-white hover:bg-rose-100 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold shadow-[2px_2px_0px_#000000] active:translate-y-0.5"
             title="Tutup"
           >
             <X className="w-5 h-5 text-brand-dark" />
@@ -56,7 +56,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
             onClick={() => setActiveTab('terms')}
             className={`flex-1 py-2 px-3 rounded-xl border-2 font-display font-black text-xs sm:text-sm text-center transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'terms'
-                ? 'bg-brand-yellow text-brand-dark border-brand-dark shadow-[2px_2px_0px_#121212]'
+                ? 'bg-brand-yellow text-brand-dark border-brand-dark shadow-[2px_2px_0px_#000000]'
                 : 'bg-white text-stone-500 border-stone-200 hover:border-brand-dark'
             }`}
           >
@@ -67,7 +67,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
             onClick={() => setActiveTab('privacy')}
             className={`flex-1 py-2 px-3 rounded-xl border-2 font-display font-black text-xs sm:text-sm text-center transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'privacy'
-                ? 'bg-brand-mint text-brand-dark border-brand-dark shadow-[2px_2px_0px_#121212]'
+                ? 'bg-brand-mint text-brand-dark border-brand-dark shadow-[2px_2px_0px_#000000]'
                 : 'bg-white text-stone-500 border-stone-200 hover:border-brand-dark'
             }`}
           >
@@ -197,7 +197,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
         <div className="p-4 bg-stone-50 border-t-3 border-brand-dark flex justify-end shrink-0">
           <button
             onClick={onClose}
-            className="px-5 py-2.5 bg-brand-dark hover:bg-neutral-800 text-white rounded-2xl font-display font-black text-xs sm:text-sm shadow-[3.5px_3.5px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer flex items-center gap-1.5"
+            className="px-5 py-2.5 bg-brand-dark hover:bg-neutral-800 text-white rounded-2xl font-display font-black text-xs sm:text-sm shadow-[3.5px_3.5px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer flex items-center gap-1.5"
           >
             <CheckCircle2 className="w-4 h-4 text-brand-mint" />
             <span>SAYA MENGERTI & OK</span>

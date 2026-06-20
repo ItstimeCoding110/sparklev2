@@ -36,13 +36,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="relative bg-[#faf8f6] border-4 border-brand-dark rounded-3xl w-full max-w-lg md:max-w-2xl overflow-y-auto max-h-[85vh] sm:max-h-[90vh] md:max-h-none shadow-[6px_6px_0px_#121212] sm:shadow-[8px_8px_0px_#121212] z-10 flex flex-col md:flex-row"
+        className="relative bg-[#faf8f6] border-4 border-brand-dark rounded-3xl w-full max-w-lg md:max-w-2xl overflow-y-auto max-h-[85vh] sm:max-h-[90vh] md:max-h-none shadow-[6px_6px_0px_#000000] sm:shadow-[8px_8px_0px_#000000] z-10 flex flex-col md:flex-row"
         id="product-detail-modal"
       >
         {/* Close Button top-right (absolute style) */}
         <button
           onClick={onClose}
-          className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 bg-brand-pink p-1.5 sm:p-2 border-2 border-brand-dark rounded-xl text-brand-dark hover:bg-brand-pink/80 transition-all cursor-pointer shadow-[1.5px_1.5px_0px_#121212] sm:shadow-[2px_2px_0px_#121212] active:translate-y-0.5 active:shadow-none"
+          className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 bg-brand-pink p-1.5 sm:p-2 border-2 border-brand-dark rounded-xl text-brand-dark hover:bg-brand-pink/80 transition-all cursor-pointer shadow-[1.5px_1.5px_0px_#000000] sm:shadow-[2px_2px_0px_#000000] active:translate-y-0.5 active:shadow-none"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
@@ -52,12 +52,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           {/* Badge overlays inside visual box */}
           <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 flex flex-col gap-1 items-start">
             {product.isBestSeller && (
-              <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 sm:border-2 border-brand-dark px-1.5 sm:px-2 py-0.5 rounded shadow-[1px_1px_0px_#121212]">
+              <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 sm:border-2 border-brand-dark px-1.5 sm:px-2 py-0.5 rounded shadow-[1px_1px_0px_#000000]">
                 BEST SELLER
               </span>
             )}
             {product.isNew && (
-              <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 sm:border-2 border-brand-dark px-1.5 sm:px-2 py-0.5 rounded shadow-[1px_1px_0px_#121212]">
+              <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 sm:border-2 border-brand-dark px-1.5 sm:px-2 py-0.5 rounded shadow-[1px_1px_0px_#000000]">
                 BARU rilis
               </span>
             )}
@@ -116,7 +116,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Price section with old price cross-out */}
-            <div className="bg-brand-yellow/30 border-2 border-brand-dark p-2.5 sm:p-3.5 rounded-2xl flex items-center justify-between select-none shadow-[2px_2px_0px_#121212]">
+            <div className="bg-brand-yellow/30 border-2 border-brand-dark p-2.5 sm:p-3.5 rounded-2xl flex items-center justify-between select-none shadow-[2px_2px_0px_#000000]">
               <span className="font-display font-black text-[10px] sm:text-[11px] text-stone-600 uppercase">Harga:</span>
               <div className="text-right">
                 {product.originalPrice && (
@@ -149,7 +149,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {product.beadsUsed.map((bead, index) => (
                   <span
                     key={index}
-                    className="bg-brand-mint text-brand-dark border border-brand-dark font-sans font-bold px-2 py-0.5 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] shadow-[1px_1px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+                    className="bg-brand-mint text-brand-dark border border-brand-dark font-sans font-bold px-2 py-0.5 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] shadow-[1px_1px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
                   >
                     <span>{bead}</span>
                   </span>
@@ -181,7 +181,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   onAddToCart(product);
                   onClose();
                 }}
-                className="brutalist-button-blue w-full rounded-2xl py-2 px-3 sm:py-3 sm:px-4 flex items-center justify-center gap-1.5 sm:gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3px_0px_#121212] sm:shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer"
+                className="brutalist-button-blue w-full rounded-2xl py-2 px-3 sm:py-3 sm:px-4 flex items-center justify-center gap-1.5 sm:gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3px_0px_#000000] sm:shadow-[4px_4px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer"
               >
                 <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-dark shrink-0" />
                 <span>BELI SEKARANG</span>

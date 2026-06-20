@@ -81,7 +81,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
   const [formPrice, setFormPrice] = useState(15000);
   const [formOriginalPrice, setFormOriginalPrice] = useState<number | ''>('');
   const [formBeads, setFormBeads] = useState('manik premium, bintang perak');
-  const [formColors, setFormColors] = useState('#121212, #ff85a2, #40e0d0');
+  const [formColors, setFormColors] = useState('#000000, #ff85a2, #40e0d0');
   const [formImageBase64, setFormImageBase64] = useState<string | null>(null);
   const [formIsNew, setFormIsNew] = useState(false);
   const [formIsBestSeller, setFormIsBestSeller] = useState(false);
@@ -234,7 +234,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormPrice(15000);
     setFormOriginalPrice('');
     setFormBeads('manik premium, bintang perak');
-    setFormColors('#121212, #ff85a2, #40e0d0');
+    setFormColors('#000000, #ff85a2, #40e0d0');
     setFormImageBase64(null);
     setFormIsNew(false);
     setFormIsBestSeller(false);
@@ -443,9 +443,9 @@ export const AdminTab: React.FC<AdminTabProps> = ({
   if (!isLoggedIn) {
     return (
       <div className="max-w-md mx-auto py-12 px-4 select-none">
-        <div className="bg-white border-4 border-brand-dark rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#121212] space-y-6">
+        <div className="bg-white border-4 border-brand-dark rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-16 h-16 bg-brand-yellow border-3 border-brand-dark rounded-2xl flex items-center justify-center mx-auto shadow-[3px_3.5px_0px_#121212]">
+            <div className="w-16 h-16 bg-brand-yellow border-3 border-brand-dark rounded-2xl flex items-center justify-center mx-auto shadow-[3px_3.5px_0px_#000000]">
               <ShieldCheck className="w-8 h-8 text-brand-dark" />
             </div>
             <h1 className="font-display font-black text-xl sm:text-2xl text-brand-dark tracking-tight uppercase">
@@ -499,7 +499,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               className={`w-full py-3 rounded-2xl flex items-center justify-center gap-2 font-display font-black text-xs sm:text-sm transition-all cursor-pointer ${
                 isLoggingIn
                   ? "bg-stone-200 text-stone-500 border-2 border-stone-400 cursor-not-allowed"
-                  : "brutalist-button-blue shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none"
+                  : "brutalist-button-blue shadow-[4px_4px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none"
               }`}
             >
               <LogIn className={`w-4 h-4 text-brand-dark ${isLoggingIn ? "animate-spin" : ""}`} />
@@ -538,7 +538,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
   return (
     <div className="space-y-8 select-none">
       {/* Header Admin Bar */}
-      <div className="bg-white border-3 border-brand-dark p-4 sm:p-6 rounded-3xl shadow-[5px_5.5px_0px_#121212] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="bg-white border-3 border-brand-dark p-4 sm:p-6 rounded-3xl shadow-[5px_5.5px_0px_#000000] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-emerald-600">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -556,7 +556,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
 
         <button
           onClick={handleLogout}
-          className="bg-brand-peach border-2 border-brand-dark px-4 py-2 font-display font-black text-xs rounded-xl flex items-center gap-1.5 shadow-[2px_2.5px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+          className="bg-brand-peach border-2 border-brand-dark px-4 py-2 font-display font-black text-xs rounded-xl flex items-center gap-1.5 shadow-[2px_2.5px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
         >
           <LogOut className="w-3.5 h-3.5 text-brand-dark" />
           <span>Keluar Sesi</span>
@@ -564,9 +564,9 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       </div>
 
       {/* Supabase Integration Widget */}
-      <div className="bg-white border-3 border-brand-dark p-4 sm:p-5 rounded-3xl shadow-[5px_5.5px_0px_#121212] flex flex-col md:flex-row md:items-center justify-between gap-4 select-none">
+      <div className="bg-white border-3 border-brand-dark p-4 sm:p-5 rounded-3xl shadow-[5px_5.5px_0px_#000000] flex flex-col md:flex-row md:items-center justify-between gap-4 select-none">
         <div className="flex items-start gap-3">
-          <div className="p-2.5 bg-brand-pink/20 rounded-xl border-2 border-brand-dark shadow-[1.5px_1.5px_0px_#121212] shrink-0 text-xl font-bold">
+          <div className="p-2.5 bg-brand-pink/20 rounded-xl border-2 border-brand-dark shadow-[1.5px_1.5px_0px_#000000] shrink-0 text-xl font-bold">
             <Database className="w-5 h-5 text-brand-dark" />
           </div>
           <div className="space-y-1">
@@ -612,7 +612,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         <div className="flex items-center gap-2 flex-wrap shrink-0">
           <button
             onClick={() => setShowSqlViewer(!showSqlViewer)}
-            className="flex-1 sm:flex-none uppercase bg-white border-2 border-brand-dark font-display font-black text-[10px] sm:text-xs px-3.5 py-2 rounded-xl shadow-[2px_2px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-1.5"
+            className="flex-1 sm:flex-none uppercase bg-white border-2 border-brand-dark font-display font-black text-[10px] sm:text-xs px-3.5 py-2 rounded-xl shadow-[2px_2px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-1.5"
           >
             <Database className="w-3.5 h-3.5" />
             <span>{showSqlViewer ? "Sembunyikan SQL" : "Inisialisasi SQL"}</span>
@@ -625,7 +625,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               className={`border-2 border-brand-dark font-display font-black text-[10px] sm:text-xs px-3.5 py-2 rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                 isTesting 
                   ? "bg-stone-200 text-stone-500 cursor-not-allowed shadow-none" 
-                  : "bg-brand-mint shadow-[2px_2px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none"
+                  : "bg-brand-mint shadow-[2px_2px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none"
               }`}
               title="Refresh status koneksi"
             >
@@ -638,7 +638,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
 
       {/* SQL Script popup viewer section */}
       {showSqlViewer && supabaseStatus?.sqlScript && (
-        <div className="bg-neutral-900 border-3 border-brand-dark p-4 rounded-3xl shadow-[5px_5.5px_0px_#121212] text-white space-y-3">
+        <div className="bg-neutral-900 border-3 border-brand-dark p-4 rounded-3xl shadow-[5px_5.5px_0px_#000000] text-white space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="p-1 bg-neutral-800 border border-white/20 rounded-md text-xs flex items-center justify-center">
@@ -679,7 +679,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       )}
 
       {formStatus && (
-        <div className="bg-brand-yellow/20 border-3 border-brand-dark p-4 rounded-2xl flex items-center justify-between shadow-[2px_2px_0px_#121212]">
+        <div className="bg-brand-yellow/20 border-3 border-brand-dark p-4 rounded-2xl flex items-center justify-between shadow-[2px_2px_0px_#000000]">
           <span className="text-xs sm:text-sm font-sans font-bold text-brand-dark">
             {formStatus}
           </span>
@@ -696,7 +696,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         {/* Left Column: Form Upload / Update Produk & Category Manager */}
         <div className="lg:col-span-5 space-y-6">
           {/* Form Upload Card */}
-          <div className="bg-white border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#121212] space-y-6">
+          <div className="bg-white border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#000000] space-y-6">
           <div className="space-y-1">
             <span className="bg-brand-purple/20 text-brand-dark border border-brand-purple text-[9px] font-mono font-bold px-2 py-0.5 rounded-full uppercase inline-block">
               {isEditing ? 'MODE PERBARUI PRODUK' : 'UNGGAH PRODUK KREATIF'}
@@ -868,7 +868,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               </label>
               <input
                 type="text"
-                placeholder="#ff85a2, #40e0d0, #121212"
+                placeholder="#ff85a2, #40e0d0, #000000"
                 value={formColors}
                 onChange={(e) => setFormColors(e.target.value)}
                 className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2 text-xs text-brand-dark font-mono focus:outline-none"
@@ -886,7 +886,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                   onClick={() => setFormIsSoldOut(false)}
                   className={`py-2 px-3 rounded-xl border-2 font-display font-black text-xs text-center transition-all cursor-pointer ${
                     !formIsSoldOut
-                      ? 'bg-brand-mint text-brand-dark border-brand-dark shadow-[1.5px_1.5px_0px_#121212]'
+                      ? 'bg-brand-mint text-brand-dark border-brand-dark shadow-[1.5px_1.5px_0px_#000000]'
                       : 'bg-white text-stone-500 border-stone-200 hover:border-brand-dark'
                   }`}
                 >
@@ -899,7 +899,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                   onClick={() => setFormIsSoldOut(true)}
                   className={`py-2 px-3 rounded-xl border-2 font-display font-black text-xs text-center transition-all cursor-pointer ${
                     formIsSoldOut
-                      ? 'bg-red-50 text-white border-brand-dark shadow-[1.5px_1.5px_0px_#121212]'
+                      ? 'bg-red-50 text-white border-brand-dark shadow-[1.5px_1.5px_0px_#000000]'
                       : 'bg-white text-stone-500 border-stone-200 hover:border-brand-dark'
                   }`}
                 >
@@ -980,7 +980,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               )}
               <button
                 type="submit"
-                className="brutalist-button-blue flex-1 py-3.5 rounded-2xl flex items-center justify-center gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3.5px_0px_#121212] transition-all cursor-pointer"
+                className="brutalist-button-blue flex-1 py-3.5 rounded-2xl flex items-center justify-center gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3.5px_0px_#000000] transition-all cursor-pointer"
               >
                 <Plus className="w-4 h-4 text-brand-dark" />
                 <span>{isEditing ? 'SIMPAN PERUBAHAN ✓' : 'PUBLIKASIKAN KE KATALOG'}</span>
@@ -990,7 +990,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         </div>
 
         {/* Kelola Jenis Katalog/Kategori Card */}
-        <div className="bg-white border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#121212] space-y-4">
+        <div className="bg-white border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#000000] space-y-4">
           <div className="space-y-1">
             <span className="bg-brand-mint/20 text-brand-dark border border-brand-mint text-[9px] font-mono font-bold px-2 py-0.5 rounded-full uppercase inline-block">
               SISTEM KATALOG KATEGORI
@@ -1015,7 +1015,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
             />
             <button
               type="submit"
-              className="bg-brand-mint text-brand-dark border-2 border-brand-dark px-4 py-2 font-display font-black text-xs rounded-xl shadow-[2px_2px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer inline-flex items-center gap-1"
+              className="bg-brand-mint text-brand-dark border-2 border-brand-dark px-4 py-2 font-display font-black text-xs rounded-xl shadow-[2px_2px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer inline-flex items-center gap-1"
             >
               <Plus className="w-3.5 h-3.5 animate-pulse" />
               <span>Tambah</span>
@@ -1044,7 +1044,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                       />
                       <button
                         type="submit"
-                        className="bg-brand-yellow text-[10px] uppercase font-display font-black px-2.5 py-1.5 rounded-lg border border-brand-dark shadow-[1px_1px_0px_#121212] hover:translate-y-px cursor-pointer"
+                        className="bg-brand-yellow text-[10px] uppercase font-display font-black px-2.5 py-1.5 rounded-lg border border-brand-dark shadow-[1px_1px_0px_#000000] hover:translate-y-px cursor-pointer"
                       >
                         Simpan
                       </button>
@@ -1066,14 +1066,14 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                         <button
                           type="button"
                           onClick={() => handleConfirmDeleteCategory(catTier)}
-                          className="bg-red-500 text-white font-display font-black text-[10px] px-2.5 py-1.5 rounded-lg border border-brand-dark cursor-pointer hover:bg-red-600 shadow-[1px_1px_0px_#121212]"
+                          className="bg-red-500 text-white font-display font-black text-[10px] px-2.5 py-1.5 rounded-lg border border-brand-dark cursor-pointer hover:bg-red-600 shadow-[1px_1px_0px_#000000]"
                         >
                           Ya
                         </button>
                         <button
                           type="button"
                           onClick={() => setConfirmDeleteCategoryName(null)}
-                          className="bg-white text-stone-700 font-display font-black text-[10px] px-2 py-1.5 rounded-lg border border-brand-dark cursor-pointer hover:bg-stone-100 shadow-[1px_1px_0px_#121212]"
+                          className="bg-white text-stone-700 font-display font-black text-[10px] px-2 py-1.5 rounded-lg border border-brand-dark cursor-pointer hover:bg-stone-100 shadow-[1px_1px_0px_#000000]"
                         >
                           Batal
                         </button>
@@ -1126,7 +1126,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       {/* Right Column: Inventory List & Audit logs */}
         <div className="lg:col-span-7 space-y-6">
           {/* Inventory Manager Card */}
-          <div className="bg-white border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#121212] space-y-4">
+          <div className="bg-white border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#000000] space-y-4">
             <h2 className="font-display font-black text-lg sm:text-xl text-brand-dark tracking-tight uppercase flex items-center gap-2">
               <FileText className="w-5 h-5 text-brand-dark shrink-0" />
               <span>LIST KATALOG INVENTORY ({products.length} ITEM)</span>
@@ -1197,14 +1197,14 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                               setFormStatus(`Produk "${p.name}" sukses dihapus.`);
                               setConfirmDeleteId(null);
                             }}
-                            className="bg-red-500 text-white font-display font-black text-[10px] px-2.5 py-1 rounded-lg border border-brand-dark cursor-pointer hover:bg-red-600 shadow-[1px_1px_0px_#121212] active:translate-y-px"
+                            className="bg-red-500 text-white font-display font-black text-[10px] px-2.5 py-1 rounded-lg border border-brand-dark cursor-pointer hover:bg-red-600 shadow-[1px_1px_0px_#000000] active:translate-y-px"
                           >
                             Ya
                           </button>
                           <button
                             type="button"
                             onClick={() => setConfirmDeleteId(null)}
-                            className="bg-white text-stone-700 font-display font-black text-[10px] px-2 py-1 rounded-lg border border-brand-dark cursor-pointer hover:bg-stone-100 shadow-[1px_1px_0px_#121212] active:translate-y-px"
+                            className="bg-white text-stone-700 font-display font-black text-[10px] px-2 py-1 rounded-lg border border-brand-dark cursor-pointer hover:bg-stone-100 shadow-[1px_1px_0px_#000000] active:translate-y-px"
                           >
                             Batal
                           </button>
@@ -1213,14 +1213,14 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                         <>
                           <button
                             onClick={() => handleStartEdit(p)}
-                            className="bg-brand-yellow hover:bg-brand-yellow/80 border-2 border-brand-dark p-2 rounded-xl text-brand-dark cursor-pointer shadow-[1.5px_1.5px_0px_#121212] transition-transform active:translate-y-0.5"
+                            className="bg-brand-yellow hover:bg-brand-yellow/80 border-2 border-brand-dark p-2 rounded-xl text-brand-dark cursor-pointer shadow-[1.5px_1.5px_0px_#000000] transition-transform active:translate-y-0.5"
                             title="Sunting Detail"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => setConfirmDeleteId(p.id)}
-                            className="bg-brand-peach hover:bg-brand-peach/80 border-2 border-brand-dark p-2 rounded-xl text-brand-dark cursor-pointer shadow-[1.5px_1.5px_0px_#121212] transition-transform active:translate-y-0.5"
+                            className="bg-brand-peach hover:bg-brand-peach/80 border-2 border-brand-dark p-2 rounded-xl text-brand-dark cursor-pointer shadow-[1.5px_1.5px_0px_#000000] transition-transform active:translate-y-0.5"
                             title="Hapus Dari Katalog"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -1235,7 +1235,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
           </div>
 
           {/* Login Logs Terminal Log */}
-          <div className="bg-brand-dark border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#121212] text-white space-y-3">
+          <div className="bg-brand-dark border-3 border-brand-dark rounded-3xl p-4 sm:p-6 shadow-[5px_5.5px_0px_#000000] text-white space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="font-mono font-bold text-xs uppercase tracking-widest text-[#a8ffb2] flex items-center gap-1.5">
                 <FileText className="w-4 h-4 text-emerald-400" />
