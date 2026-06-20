@@ -367,7 +367,7 @@ export default function App() {
                       Cash on Delivery (COD)
                     </span>
                     <span className="bg-brand-yellow/20 border-1.5 border-brand-dark text-brand-dark px-3 py-1 rounded-xl text-[10px] sm:text-xs font-mono font-bold shadow-[1px_1.5px_0px_#000000]">
-                      Transfer Bank (BCA, Mandiri, BNI, BRI)
+                      Transfer Bank (Seabank, BCA, Mandiri)
                     </span>
                     <span className="bg-brand-mint/20 border-1.5 border-brand-dark text-brand-dark px-3 py-1 rounded-xl text-[10px] sm:text-xs font-mono font-bold shadow-[1px_1.5px_0px_#000000]">
                       QRIS All Payment

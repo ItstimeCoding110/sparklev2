@@ -15,7 +15,7 @@ export const AboutTab: React.FC = () => {
     },
     {
       q: "Pembayarannya lewat apa saja?",
-      a: "Kami menerima transfer bank lokal (BCA, Mandiri, BNI, BRI) serta e-wallet paling eksis (Gopay, OVO, Dana, ShopeePay, QRIS). Detail rekening penampung akan diberikan langsung oleh Mimin pas kamu chat ke WhatsApp."
+      a: "Kami menerima transfer bank lokal (Seabank, BCA, Mandiri) serta e-wallet paling eksis (Gopay, OVO, Dana, ShopeePay, QRIS). Detail rekening penampung akan diberikan langsung oleh Mimin pas kamu chat ke WhatsApp."
     },
     {
       q: "Manik-maniknya luntur gak kalo kena air?",
