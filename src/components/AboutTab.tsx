@@ -72,7 +72,7 @@ export const AboutTab: React.FC = () => {
             <span className="absolute -top-3.5 -right-3 bg-brand-pink border-2 border-brand-dark font-mono text-[9px] font-bold rounded px-1.5 py-0.5 shadow-[1.5px_1.5px_0px_#000000]">
               EST. 2026
             </span>
-            <div className="w-48 h-48 bg-brand-mint/30 rounded-xl border border-stone-200 flex items-center justify-center p-2 text-center overflow-hidden">
+            <div className="w-48 h-48 bg-white flex items-center justify-center p-2 text-center overflow-hidden">
               <Logo size="full" className="!justify-center" />
             </div>
           </div>
