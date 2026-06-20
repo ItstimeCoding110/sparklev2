@@ -32,10 +32,10 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         
         {/* Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 mb-12">
           
           {/* Col 1: Brand Info */}
-          <div className="space-y-4">
+          <div className="sm:col-span-2 md:col-span-4 space-y-4">
             <h2 className="font-display font-black text-2xl tracking-tighter text-white">
               goodtobe.sparkle
             </h2>
@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 2: Jelajahi */}
-          <div className="space-y-3">
+          <div className="sm:col-span-1 md:col-span-2 space-y-3">
             <h3 className="font-display font-bold text-xs uppercase tracking-wider text-stone-300">
               Jelajahi
             </h3>
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 3: Bantuan */}
-          <div className="space-y-3">
+          <div className="sm:col-span-1 md:col-span-2 space-y-3">
             <h3 className="font-display font-bold text-xs uppercase tracking-wider text-stone-300">
               Bantuan
             </h3>
@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 4: Legal */}
-          <div className="space-y-3">
+          <div className="sm:col-span-1 md:col-span-2 space-y-3">
             <h3 className="font-display font-bold text-xs uppercase tracking-wider text-stone-300">
               Legal
             </h3>
@@ -144,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 5: Ikuti Kami */}
-          <div className="space-y-3">
+          <div className="sm:col-span-1 md:col-span-2 space-y-3">
             <h3 className="font-display font-bold text-xs uppercase tracking-wider text-stone-300">
               Ikuti Kami
             </h3>
