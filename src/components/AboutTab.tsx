@@ -61,9 +61,14 @@ export const AboutTab: React.FC = () => {
               {SHOP_INFO.name.toUpperCase()}
             </span>
           </h2>
-          <p className="text-sm md:text-base text-stone-700 leading-relaxed font-sans">
-            {SHOP_INFO.about} We believe your wrist and fingers deserve some sparkling personality. Setiap untaian gelang dan cincin di goodtobe.sparkle adalah medium ekspresi keceriaan, persahabatan, dan estetika retro-Y2K yang kental. Yuk tunjukkan pesona aslimu melalui jalinan butiran halus manik terpilih!
-          </p>
+          <div className="text-sm md:text-base text-stone-700 leading-relaxed font-sans space-y-4">
+            <p>
+              goodtobe.sparkle adalah brand aksesori handmade yang menghadirkan gelang dan cincin manik-manik dengan desain estetik, unisex, dan penuh karakter. Setiap produk dirancang untuk melengkapi gaya sehari-hari sekaligus menjadi bentuk ekspresi diri yang unik.
+            </p>
+            <p>
+              Koleksi kami memadukan warna-warna menarik, detail manik pilihan, serta sentuhan Y2K yang timeless dengan gaya modern yang mudah dipadukan ke berbagai outfit. Dibuat secara handmade dengan perhatian pada setiap detail, menghasilkan aksesori yang nyaman dipakai, memiliki ciri khas tersendiri, dan cocok menemani berbagai momen.
+            </p>
+          </div>
         </div>
         
         {/* Fun visual bento side-block */}

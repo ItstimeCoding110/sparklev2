@@ -3,7 +3,7 @@ import { Product, ShopInfo } from './types';
 export const SHOP_INFO: ShopInfo = {
   name: "goodtobe.sparkle",
   slogan: "Dope unisex beaded accessories for everyone. Handcrafted in IDN.",
-  about: "goodtobe.sparkle adalah creative hub independen penyedia aksesori gelang dan cincin manik-manik estetik berdesain unisex, bergaya soft brutalism, playful dan dinamis untuk melengkapi OOTD harian anak muda Gen-Z. Setiap rajutan butir manik kami dirancang netral-gender (unisex), kokoh, ramah lingkungan, dan pas untuk menonjolkan keunikan dirimu!",
+  about: "goodtobe.sparkle adalah brand aksesori handmade yang menghadirkan gelang dan cincin manik-manik dengan desain estetik, unisex, dan penuh karakter. Setiap produk dirancang untuk melengkapi gaya sehari-hari sekaligus menjadi bentuk ekspresi diri yang unik.",
   whatsappNumber: "6285123324775", // WhatsApp number
   igUsername: "goodtobe.sparkle",
   tiktokUsername: "goodtobe.sparkle",
