@@ -669,7 +669,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
           </div>
           
           <p className="text-[11px] text-stone-300 font-sans leading-snug">
-            Cukup salin perintah di bawah ini, masuk ke dashboard <strong className="text-white">Supabase Console ➜ SQL Editor ➜ New Query</strong>, lalu paste berkas ini dan jalankan klik tombol <strong className="text-white">RUN</strong>.
+            Cukup salin perintah di bawah ini, masuk ke dashboard <strong className="text-white">Supabase Console &gt; SQL Editor &gt; New Query</strong>, lalu paste berkas ini dan jalankan klik tombol <strong className="text-white">RUN</strong>.
           </p>
 
           <pre className="p-3 bg-neutral-950 rounded-xl font-mono text-[10px] text-emerald-400 overflow-x-auto max-h-[160px] border border-white/5 select-all">
@@ -782,7 +782,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                   <div className="flex items-center gap-1.5 text-stone-600">
                     <Upload className="w-3.5 h-3.5" />
                     <span className="text-[9px] font-mono">
-                      {formImageBase64 ? 'Gambar Terpilih ✓' : 'Pilih Foto (Maks 2MB)'}
+                      {formImageBase64 ? 'Gambar Terpilih' : 'Pilih Foto (Maks 2MB)'}
                     </span>
                   </div>
                 </div>
@@ -983,7 +983,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                 className="brutalist-button-blue flex-1 py-3.5 rounded-2xl flex items-center justify-center gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3.5px_0px_#000000] transition-all cursor-pointer"
               >
                 <Plus className="w-4 h-4 text-brand-dark" />
-                <span>{isEditing ? 'SIMPAN PERUBAHAN ✓' : 'PUBLIKASIKAN KE KATALOG'}</span>
+                <span>{isEditing ? 'SIMPAN PERUBAHAN' : 'PUBLIKASIKAN KE KATALOG'}</span>
               </button>
             </div>
           </form>
@@ -1181,7 +1181,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                           {p.name}
                         </h4>
                         <p className="text-[10px] font-mono text-stone-600">
-                          Rp {p.price.toLocaleString('id-ID')} ✦ Stok: {p.stock !== undefined ? p.stock : 10}
+                          Rp {p.price.toLocaleString('id-ID')} | Stok: {p.stock !== undefined ? p.stock : 10}
                         </p>
                       </div>
                     </div>

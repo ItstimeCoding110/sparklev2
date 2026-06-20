@@ -383,7 +383,7 @@ export default function App() {
                 </div>
 
                 <div className="text-[10px] font-mono text-stone-500 mt-6 pt-4 border-t border-stone-100 flex items-center gap-1.5">
-                  <span>Buka Setiap Hari ✦ Jam 08.30 - 23.00 WIB</span>
+                  <span>Buka Setiap Hari | Jam 08.30 - 23.00 WIB</span>
                 </div>
               </div>
             </div>
@@ -480,7 +480,7 @@ export default function App() {
                   }}
                   className="bg-brand-blue hover:bg-brand-mint text-brand-dark text-[10px] font-mono font-black uppercase px-2.5 py-1.5 border border-brand-dark rounded-xl transition-colors cursor-pointer shadow-[1.5px_1.5px_0px_#000000] active:translate-y-px active:shadow-none w-fit"
                 >
-                  Buka Keranjang 🛍️
+                  Buka Keranjang
                 </button>
               )}
             </div>

@@ -214,7 +214,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                           key={i}
                           className="bg-stone-50 border border-stone-200 text-stone-600 px-1.5 py-0.5 rounded-md text-[9px] font-mono"
                         >
-                          ✦ {bead}
+                          {bead}
                         </span>
                       ))}
                     </div>

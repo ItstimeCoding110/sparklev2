@@ -37,7 +37,7 @@ export const TermsPrivacyModal: React.FC<TermsPrivacyModalProps> = ({
                 Legal & Kebijakan Toko
               </h3>
               <p className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-stone-700 mt-1 leading-none">
-                {SHOP_INFO.name} ✦ Transparansi & Kepercayaan No. 1
+                {SHOP_INFO.name} | Transparansi & Kepercayaan No. 1
               </p>
             </div>
           </div>
