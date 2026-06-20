@@ -10,7 +10,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { CheckoutModal } from './components/CheckoutModal';
 import { TermsPrivacyModal } from './components/TermsPrivacyModal';
 import { Footer } from './components/Footer';
-import { Gift, Zap, Sparkles, Flame, Heart, Box, MapPin } from 'lucide-react';
+import { Gift, Zap, Sparkles, Flame, Heart, Box, MapPin, CreditCard } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { supabase, mapDbToProduct, mapProductToDb, SQL_INIT_SCRIPT } from './supabaseClient';
 
@@ -349,7 +349,36 @@ export default function App() {
             />
 
             {/* Alamat/Kurir Section */}
-            <div className="pt-8 border-t-4 border-brand-dark/10 flex justify-center">
+            <div className="pt-8 border-t-4 border-brand-dark/10 flex flex-col items-center gap-6">
+              {/* Payment Methods Card */}
+              <div className="w-full max-w-2xl bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#b58dfb] flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="inline-block bg-brand-purple text-brand-dark px-3 py-1 font-display font-bold text-xs border-2 border-brand-dark rounded-md tracking-wider flex items-center gap-1.5 w-fit">
+                    <span>METODE PEMBAYARAN</span>
+                    <CreditCard className="w-3.5 h-3.5 text-brand-dark shrink-0" />
+                  </div>
+                  
+                  <div className="text-xs sm:text-sm font-mono leading-relaxed text-stone-800">
+                    Kami mendukung berbagai pilihan pembayaran untuk kemudahan transaksi Anda:
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <span className="bg-brand-pink/20 border-1.5 border-brand-dark text-brand-dark px-3 py-1 rounded-xl text-[10px] sm:text-xs font-mono font-bold shadow-[1px_1.5px_0px_#000000]">
+                      Cash on Delivery (COD)
+                    </span>
+                    <span className="bg-brand-yellow/20 border-1.5 border-brand-dark text-brand-dark px-3 py-1 rounded-xl text-[10px] sm:text-xs font-mono font-bold shadow-[1px_1.5px_0px_#000000]">
+                      Transfer Bank (BCA, Mandiri, BNI, BRI)
+                    </span>
+                    <span className="bg-brand-mint/20 border-1.5 border-brand-dark text-brand-dark px-3 py-1 rounded-xl text-[10px] sm:text-xs font-mono font-bold shadow-[1px_1.5px_0px_#000000]">
+                      QRIS All Payment
+                    </span>
+                    <span className="bg-brand-blue/20 border-1.5 border-brand-dark text-brand-dark px-3 py-1 rounded-xl text-[10px] sm:text-xs font-mono font-bold shadow-[1px_1.5px_0px_#000000]">
+                      E-Wallet (GoPay, ShopeePay, Dana, OVO)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               {/* Shipping & Location Card */}
               <div className="w-full max-w-2xl bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ffdf6d] flex flex-col justify-between">
                 <div className="space-y-4">
