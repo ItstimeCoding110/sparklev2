@@ -21,6 +21,7 @@ export interface Product {
   isBestSeller?: boolean;
   isNew?: boolean;
   isSoldOut?: boolean;
+  stock?: number;
 }
 
 export interface CartItem {

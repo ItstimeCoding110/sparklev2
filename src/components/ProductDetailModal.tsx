@@ -97,9 +97,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     <span>SOLD OUT (HABIS)</span>
                   </span>
                 ) : (
-                  <span className="inline-block bg-brand-purple text-brand-dark px-2 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-bold uppercase">
-                    {product.category} COLLECTION
-                  </span>
+                  <>
+                    <span className="inline-block bg-brand-purple text-brand-dark px-2 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-bold uppercase">
+                      {product.category} COLLECTION
+                    </span>
+                    <span className="inline-block bg-brand-yellow text-brand-dark px-2 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-bold uppercase">
+                      STOK: {product.stock !== undefined ? product.stock : 10}
+                    </span>
+                  </>
                 )}
               </div>
               <h2 className="font-display font-black text-lg sm:text-xl md:text-2xl text-brand-dark leading-tight tracking-tight pt-0.5">

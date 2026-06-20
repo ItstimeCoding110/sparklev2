@@ -95,7 +95,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       </h4>
                       
                       <p className="text-[10px] font-mono text-stone-500 mt-0.5">
-                        Kategori: {p.category}
+                        Kategori: {p.category} | Sisa Stok: {p.stock !== undefined ? p.stock : 10}
                       </p>
                     </div>
 
@@ -118,7 +118,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         </span>
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 hover:bg-stone-200 rounded cursor-pointer"
+                          className="p-1 hover:bg-stone-200 rounded cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                          disabled={item.quantity >= (p.stock !== undefined ? p.stock : 10)}
+                          title={item.quantity >= (p.stock !== undefined ? p.stock : 10) ? "Maksimal stok tercapai" : "Tambah jumlah"}
                         >
                           <Plus className="w-3 h-3 text-brand-dark" />
                         </button>

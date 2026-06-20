@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS products (
   is_best_seller BOOLEAN DEFAULT FALSE,
   is_new BOOLEAN DEFAULT FALSE,
   is_sold_out BOOLEAN DEFAULT FALSE,
+  stock INTEGER DEFAULT 10,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -59,7 +60,8 @@ export function mapDbToProduct(dbRow: any): Product {
     beadsUsed: Array.isArray(dbRow.beads_used) ? dbRow.beads_used : (typeof dbRow.beads_used === 'string' ? JSON.parse(dbRow.beads_used) : dbRow.beads_used || []),
     isBestSeller: !!dbRow.is_best_seller,
     isNew: !!dbRow.is_new,
-    isSoldOut: !!dbRow.is_sold_out
+    isSoldOut: !!dbRow.is_sold_out,
+    stock: dbRow.stock !== undefined ? Number(dbRow.stock) : 10
   };
 }
 
@@ -78,6 +80,7 @@ export function mapProductToDb(prod: Product) {
     beads_used: Array.isArray(prod.beadsUsed) ? prod.beadsUsed : [],
     is_best_seller: !!prod.isBestSeller,
     is_new: !!prod.isNew,
-    is_sold_out: !!prod.isSoldOut
+    is_sold_out: !!prod.isSoldOut,
+    stock: prod.stock !== undefined ? Number(prod.stock) : 10
   };
 }

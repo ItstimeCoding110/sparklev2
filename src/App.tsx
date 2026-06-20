@@ -230,6 +230,15 @@ export default function App() {
   }, [cartItems]);
 
   const handleAddToCart = (product: Product) => {
+    const limit = product.stock !== undefined ? product.stock : 10;
+    const existing = cartItems.find((item) => item.product.id === product.id);
+    const currentQty = existing ? existing.quantity : 0;
+
+    if (currentQty >= limit) {
+      setToastMessage(`Gagal: Stok terbatas! Maksimal pembelian untuk "${product.name}" adalah ${limit} pcs.`);
+      return;
+    }
+
     setCartItems((prev) => {
       const existingIdx = prev.findIndex((item) => item.product.id === product.id);
       if (existingIdx > -1) {
@@ -248,6 +257,16 @@ export default function App() {
       handleRemoveItem(id);
       return;
     }
+
+    const existing = cartItems.find((item) => item.id === id);
+    if (existing) {
+      const limit = existing.product.stock !== undefined ? existing.product.stock : 10;
+      if (nextQty > limit) {
+        setToastMessage(`Gagal: Stok terbatas! Maksimal pembelian untuk "${existing.product.name}" adalah ${limit} pcs.`);
+        return;
+      }
+    }
+
     setCartItems((prev) =>
       prev.map((item) => (item.id === id ? { ...item, quantity: nextQty } : item))
     );
@@ -446,11 +465,25 @@ export default function App() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-6 right-6 z-50 bg-brand-yellow text-brand-dark border-3 border-brand-dark px-5 py-3.5 rounded-2xl font-display font-black text-xs md:text-sm shadow-[4px_4.5px_0px_#121212] flex items-center gap-3"
+            className="fixed bottom-6 right-6 z-50 bg-brand-yellow text-brand-dark border-3 border-brand-dark px-5 py-3.5 rounded-2xl font-display font-black text-xs md:text-sm shadow-[4px_4.5px_0px_#121212] flex items-center gap-3 max-w-sm sm:max-w-md"
             id="toast-notification"
           >
             <Sparkles className="w-5 h-5 text-brand-dark shrink-0" />
-            <span>{toastMessage}</span>
+            <div className="flex flex-col gap-1.5 w-full">
+              <span>{toastMessage}</span>
+              {toastMessage.includes("Sukses memasukkan") && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsCartOpen(true);
+                    setToastMessage(null);
+                  }}
+                  className="bg-brand-blue hover:bg-brand-mint text-brand-dark text-[10px] font-mono font-black uppercase px-2.5 py-1.5 border border-brand-dark rounded-xl transition-colors cursor-pointer shadow-[1.5px_1.5px_0px_#121212] active:translate-y-px active:shadow-none w-fit"
+                >
+                  Buka Keranjang 🛍️
+                </button>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

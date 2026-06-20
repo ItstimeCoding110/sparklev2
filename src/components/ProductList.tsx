@@ -186,8 +186,8 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                       <span className="text-[8px] sm:text-[10px] font-mono text-stone-500 font-bold uppercase tracking-wider">
                         Kategori: {product.category}
                       </span>
-                      <span className="text-[8px] sm:text-[10px] text-brand-dark font-mono hidden sm:inline font-bold">
-                        <span>100% HANDMADE</span>
+                      <span className="text-[8px] sm:text-[10px] text-brand-dark font-mono font-bold bg-brand-yellow/30 px-1.5 py-0.5 border border-brand-dark/20 rounded">
+                        Stok: {product.stock !== undefined ? product.stock : 10}
                       </span>
                     </div>
 

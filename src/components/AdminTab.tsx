@@ -87,6 +87,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
   const [formIsBestSeller, setFormIsBestSeller] = useState(false);
   const [formIsLimited, setFormIsLimited] = useState(true);
   const [formIsSoldOut, setFormIsSoldOut] = useState(false);
+  const [formStock, setFormStock] = useState(10);
 
   // Category management helper states
   const [newCategoryInput, setNewCategoryInput] = useState('');
@@ -217,6 +218,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormIsBestSeller(!!product.isBestSeller);
     setFormIsLimited(true); // default true for handmade items
     setFormIsSoldOut(!!product.isSoldOut);
+    setFormStock(product.stock !== undefined ? product.stock : 10);
     
     // scroll to form
     const el = document.getElementById('admin-form-anchor');
@@ -237,6 +239,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormIsNew(false);
     setFormIsBestSeller(false);
     setFormIsSoldOut(false);
+    setFormStock(10);
   };
 
   const handleAddCategory = (e: React.FormEvent) => {
@@ -366,6 +369,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       // Edit existing product
       const updated = products.map(prod => {
         if (prod.id === isEditing) {
+          const finalStock = Number(formStock) || 0;
           return {
             ...prod,
             name: formName,
@@ -379,7 +383,8 @@ export const AdminTab: React.FC<AdminTabProps> = ({
             image: formImageBase64 || undefined,
             isNew: formIsNew,
             isBestSeller: formIsBestSeller,
-            isSoldOut: formIsSoldOut,
+            isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
+            stock: finalStock,
           };
         }
         return prod;
@@ -388,6 +393,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       setFormStatus(`Produk ${formName} (${formCode.toUpperCase()}) berhasil diperbarui!`);
     } else {
       // Add new product
+      const finalStock = Number(formStock) || 0;
       const newProduct: Product = {
         id: 'user_p_' + Date.now(),
         name: formName,
@@ -401,7 +407,8 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         image: formImageBase64 || undefined,
         isNew: formIsNew,
         isBestSeller: formIsBestSeller,
-        isSoldOut: formIsSoldOut,
+        isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
+        stock: finalStock,
       };
       onUpdateProducts([newProduct, ...products]);
       setFormStatus(`Sukses mengupload produk baru: ${formName} (${formCode.toUpperCase()})`);
@@ -796,10 +803,10 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               <div className="space-y-1">
                 <label className="text-[9px] font-mono font-semibold text-stone-500 uppercase block">
-                  Harga Jual (Rupiah)
+                  Harga Jual (Rp)
                 </label>
                 <input
                   type="number"
@@ -813,13 +820,28 @@ export const AdminTab: React.FC<AdminTabProps> = ({
 
               <div className="space-y-1">
                 <label className="text-[9px] font-mono font-semibold text-stone-500 uppercase block">
-                  Harga Coret (Diskon, Opsional)
+                  Harga Coret (Rp)
                 </label>
                 <input
                   type="number"
-                  placeholder="Misal: 25000"
+                  placeholder="Opsional"
                   value={formOriginalPrice}
                   onChange={(e) => setFormOriginalPrice(e.target.value === '' ? '' : Number(e.target.value))}
+                  className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2 text-xs text-brand-dark font-mono focus:outline-none"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[9px] font-mono font-semibold text-stone-500 uppercase block">
+                  Jumlah Stock
+                </label>
+                <input
+                  type="number"
+                  required
+                  min={0}
+                  placeholder="Misal: 10"
+                  value={formStock}
+                  onChange={(e) => setFormStock(Number(e.target.value) || 0)}
                   className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2 text-xs text-brand-dark font-mono focus:outline-none"
                 />
               </div>
@@ -1159,7 +1181,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                           {p.name}
                         </h4>
                         <p className="text-[10px] font-mono text-stone-600">
-                          Rp {p.price.toLocaleString('id-ID')}
+                          Rp {p.price.toLocaleString('id-ID')} ✦ Stok: {p.stock !== undefined ? p.stock : 10}
                         </p>
                       </div>
                     </div>
