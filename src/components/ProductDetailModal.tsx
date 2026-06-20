@@ -65,13 +65,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             )}
           </div>
 
-          <div className="w-full max-w-[120px] xs:max-w-[150px] sm:max-w-[200px] p-1 mt-6 md:mt-4 flex items-center justify-center aspect-square overflow-hidden">
+          <div className="w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] p-1 mt-6 md:mt-4 flex items-center justify-center aspect-square overflow-hidden">
             {product.image ? (
               <img
                 src={product.image}
                 alt={product.name}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-contain max-h-[180px] rounded-xl cursor-zoom-in hover:scale-102 transition-transform duration-150"
+                className="w-full h-full object-contain max-h-[240px] sm:max-h-[260px] rounded-xl cursor-zoom-in hover:scale-105 transition-transform duration-150"
                 onClick={() => setIsImageZoomed(true)}
                 title="Klik untuk perbesar foto"
               />
@@ -80,13 +80,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 colors={product.colors}
                 wording=""
                 size="lg"
-                isRotating={true}
+                isRotating={false}
               />
             )}
           </div>
 
           <span className="text-[8px] sm:text-[10px] font-mono text-stone-500 font-semibold mt-3 sm:mt-4 tracking-wider">
-            PREVIEWS 3D ROTATING SHAPE
+            PREVIEWS 3D STATIC SHAPE
           </span>
           {product.image && (
             <span className="text-[8px] sm:text-[9px] font-mono text-brand-pink font-bold mt-1 uppercase tracking-wide animate-pulse">
