@@ -349,9 +349,9 @@ export default function App() {
             />
 
             {/* Alamat/Kurir Section */}
-            <div className="pt-8 border-t-4 border-brand-dark/10 flex flex-col items-center gap-6">
+            <div className="pt-8 border-t-4 border-brand-dark/10 flex flex-col md:flex-row items-stretch justify-center gap-6 max-w-5xl mx-auto w-full">
               {/* Payment Methods Card */}
-              <div className="w-full max-w-2xl bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#b58dfb] flex flex-col justify-between">
+              <div className="flex-1 w-full bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#b58dfb] flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="inline-block bg-brand-purple text-brand-dark px-3 py-1 font-display font-bold text-xs border-2 border-brand-dark rounded-md tracking-wider flex items-center gap-1.5 w-fit">
                     <span>METODE PEMBAYARAN</span>
@@ -380,7 +380,7 @@ export default function App() {
               </div>
 
               {/* Shipping & Location Card */}
-              <div className="w-full max-w-2xl bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ffdf6d] flex flex-col justify-between">
+              <div className="flex-1 w-full bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#ffdf6d] flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="inline-block bg-brand-yellow text-brand-dark px-3 py-1 font-display font-bold text-xs border-2 border-brand-dark rounded-md tracking-wider flex items-center gap-1.5 w-fit">
                     <span>ALAMAT TOKO & KURIR</span>
