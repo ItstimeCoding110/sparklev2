@@ -136,12 +136,14 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                 <div className={`w-full aspect-square flex items-center justify-center p-2 sm:p-4 rounded-xl sm:rounded-2xl mb-2 sm:mb-4 border-2 border-brand-dark bg-stone-50 transition-all duration-300 overflow-hidden relative ${product.isSoldOut ? 'bg-stone-200/60' : 'group-hover:bg-brand-peach/10'}`}>
                   <div className={`w-full h-full flex items-center justify-center ${product.isSoldOut ? 'grayscale contrast-75 opacity-50' : ''}`}>
                     {product.image ? (
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-contain max-h-[140px] rounded-lg"
-                      />
+                      <div className="w-full h-full max-h-[140px] rounded-lg overflow-hidden relative isolation-isolate">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
                     ) : (
                       <BraceletVisualizer
                         colors={product.colors}

@@ -67,14 +67,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
           {product.image ? (
             <div className="w-full max-w-[200px] xs:max-w-[240px] sm:max-w-[300px] p-2 mt-6 md:mt-4 bg-white border-3 border-brand-dark rounded-3xl shadow-[4px_4px_0px_#000000] flex items-center justify-center aspect-square overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-contain rounded-2xl cursor-zoom-in hover:scale-105 transition-transform duration-150"
-                onClick={() => setIsImageZoomed(true)}
-                title="Klik untuk perbesar foto"
-              />
+              <div className="w-full h-full rounded-[18px] overflow-hidden relative isolation-isolate">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover cursor-zoom-in hover:scale-105 transition-transform duration-150"
+                  onClick={() => setIsImageZoomed(true)}
+                  title="Klik untuk perbesar foto"
+                />
+              </div>
             </div>
           ) : (
             <div className="w-full max-w-[200px] xs:max-w-[240px] sm:max-w-[300px] mt-6 md:mt-4 flex items-center justify-center aspect-square overflow-hidden">

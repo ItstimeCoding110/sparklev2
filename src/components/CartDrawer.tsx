@@ -83,12 +83,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   {/* Decorative visual block showing thumbnail or 3D visualizer */}
                   <div className="w-14 h-14 rounded-xl border-2 border-brand-dark bg-stone-50 flex-shrink-0 flex items-center justify-center p-1 overflow-hidden relative shadow-[2px_2px_0px_#000000]">
                     {p.image ? (
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        className="w-full h-full object-contain rounded-lg"
-                        referrerPolicy="no-referrer"
-                      />
+                      <div className="w-full h-full rounded-lg overflow-hidden relative isolation-isolate">
+                        <img
+                          src={p.image}
+                          alt={p.name}
+                          className="w-full h-full object-contain"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
                     ) : (
                       <BraceletVisualizer
                         colors={p.colors}
