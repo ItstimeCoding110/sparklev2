@@ -57,9 +57,7 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
 
   return (
     <div
-      className={`relative inline-flex items-center justify-center bg-brand-dark/5 p-2 sm:p-4 rounded-3xl border-3 border-brand-dark shadow-[4px_4px_0px_#000000] overflow-hidden w-full aspect-square ${
-        isRotating ? 'animate-[spin_40s_linear_infinite]' : ''
-      }`}
+      className="relative inline-flex items-center justify-center bg-brand-dark/5 p-2 sm:p-4 rounded-3xl border-3 border-brand-dark shadow-[4px_4px_0px_#000000] overflow-hidden w-full aspect-square"
       style={{ maxWidth: pixelSize, maxHeight: pixelSize }}
     >
       <svg
@@ -80,7 +78,11 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
           </radialGradient>
         </defs>
 
-        {/* Bracelet core string */}
+        <g
+          className={isRotating ? 'animate-[spin_40s_linear_infinite]' : ''}
+          style={{ transformOrigin: '120px 120px' }}
+        >
+          {/* Bracelet core string */}
         <ellipse
           cx="120"
           cy="120"
@@ -331,8 +333,9 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
                   </g>
                 );
               })}
-          </g>
-        )}
+            </g>
+          )}
+        </g>
       </svg>
       {/* Visual Indicator of Size in bottom right corner */}
       <div className="absolute bottom-2 right-2.5 bg-brand-dark text-white px-2 py-0.5 rounded-full text-[9px] font-mono border border-white uppercase tracking-wider">

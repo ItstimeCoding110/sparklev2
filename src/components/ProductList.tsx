@@ -76,33 +76,15 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 font-display text-xs font-black rounded-xl border-2 transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-4 py-1.5 font-display text-xs font-black rounded-xl border-2 transition-all cursor-pointer flex items-center ${
                 selectedCategory === cat
                   ? 'bg-brand-purple text-brand-dark border-brand-dark shadow-[2.5px_2.5px_0px_#000000] -translate-x-0.5 -translate-y-0.5'
                   : 'bg-white text-stone-600 border-stone-200 hover:border-brand-dark hover:text-brand-dark hover:bg-stone-50'
               }`}
             >
-              {cat === 'Semua' ? (
-                <>
-                  <Compass className="w-3.5 h-3.5 text-brand-dark shrink-0" />
-                  <span>Semua Aksesoris</span>
-                </>
-              ) : cat === 'Gelang' ? (
-                <>
-                  <Sparkles className="w-3.5 h-3.5 text-brand-dark shrink-0" />
-                  <span>Gelang Manik</span>
-                </>
-              ) : cat === 'Cincin' ? (
-                <>
-                  <Heart className="w-3.5 h-3.5 text-brand-dark shrink-0" />
-                  <span>Cincin Manik</span>
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-3.5 h-3.5 text-brand-dark shrink-0" />
-                  <span>{cat}</span>
-                </>
-              )}
+              <span>
+                {cat === 'Semua' ? 'Semua Aksesoris' : cat === 'Gelang' ? 'Gelang Manik' : cat === 'Cincin' ? 'Cincin Manik' : cat}
+              </span>
             </button>
           ))}
         </div>

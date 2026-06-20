@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../types';
 import { BraceletVisualizer } from './BraceletVisualizer';
 import { X, ShoppingCart, Sparkles, AlertCircle, Heart, XCircle } from 'lucide-react';
@@ -17,6 +17,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onClose,
   onAddToCart,
 }) => {
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
+
   if (!isOpen || !product) return null;
 
   return (
@@ -69,7 +71,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 src={product.image}
                 alt={product.name}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-contain max-h-[180px] rounded-xl"
+                className="w-full h-full object-contain max-h-[180px] rounded-xl cursor-zoom-in hover:scale-102 transition-transform duration-150"
+                onClick={() => setIsImageZoomed(true)}
+                title="Klik untuk perbesar foto"
               />
             ) : (
               <BraceletVisualizer
@@ -84,6 +88,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <span className="text-[8px] sm:text-[10px] font-mono text-stone-500 font-semibold mt-3 sm:mt-4 tracking-wider">
             PREVIEWS 3D ROTATING SHAPE
           </span>
+          {product.image && (
+            <span className="text-[8px] sm:text-[9px] font-mono text-brand-pink font-bold mt-1 uppercase tracking-wide animate-pulse">
+              (Klik foto untuk perbesar)
+            </span>
+          )}
         </div>
 
         {/* Right column: Content Info & Interactive Actions */}
@@ -190,6 +199,26 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
         </div>
       </motion.div>
+
+      {/* Lightbox Overlay for Image Zoom Detail */}
+      {isImageZoomed && product.image && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out"
+          onClick={() => setIsImageZoomed(false)}
+        >
+          <button
+            onClick={() => setIsImageZoomed(false)}
+            className="absolute top-4 right-4 bg-brand-pink text-brand-dark p-2 px-3 border-2 border-brand-dark rounded-xl font-display font-black text-xs shadow-[2px_2px_0px_#000000] cursor-pointer"
+          >
+            TUTUP [X]
+          </button>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="max-w-full max-h-[90vh] object-contain rounded-2xl border-4 border-brand-dark bg-white shadow-[8px_8px_0px_#000000]"
+          />
+        </div>
+      )}
     </div>
   );
 };

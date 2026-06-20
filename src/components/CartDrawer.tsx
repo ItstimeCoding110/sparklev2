@@ -1,6 +1,7 @@
 import React from 'react';
 import { CartItem } from '../types';
 import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, Box, Sparkles } from 'lucide-react';
+import { BraceletVisualizer } from './BraceletVisualizer';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -79,12 +80,23 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   key={item.id}
                   className="bg-white border-2 border-brand-dark rounded-2xl p-4 shadow-[3.5px_3.5px_0px_#000000] flex gap-3 relative"
                 >
-                  {/* Decorative visual circle showing primary representative color */}
-                  <div className="w-14 h-14 rounded-xl border-2 border-brand-dark bg-stone-50 flex-shrink-0 flex items-center justify-center p-1 overflow-hidden relative">
-                    <span 
-                      className="w-8 h-8 rounded-full border border-brand-dark shadow-[1px_1px_0px_#000000]" 
-                      style={{ backgroundColor: p.colors[0] || '#ff6584' }}
-                    />
+                  {/* Decorative visual block showing thumbnail or 3D visualizer */}
+                  <div className="w-14 h-14 rounded-xl border-2 border-brand-dark bg-stone-50 flex-shrink-0 flex items-center justify-center p-1 overflow-hidden relative shadow-[2px_2px_0px_#000000]">
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="w-full h-full object-contain rounded-lg"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <BraceletVisualizer
+                        colors={p.colors}
+                        wording=""
+                        size="sm"
+                        isRotating={false}
+                      />
+                    )}
                   </div>
 
                   {/* Quantity and Metas */}

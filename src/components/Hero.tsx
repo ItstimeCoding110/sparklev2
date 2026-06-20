@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onNavigateToAbout 
         <div className="flex flex-col sm:flex-row gap-3 pt-3">
           <button
             onClick={onExploreCatalog}
-            className="brutalist-button py-3 text-xs sm:text-sm px-4 sm:px-6 bg-brand-yellow flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#000000] hover:shadow-[6px_6px_0px_#000000]"
+            className="brutalist-button py-3 text-[10px] min-[375px]:text-xs sm:text-sm px-3.5 sm:px-6 bg-brand-yellow flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#000000] hover:shadow-[6px_6px_0px_#000000] whitespace-nowrap"
           >
             <ShoppingBag className="w-4 h-4 text-brand-dark shrink-0" />
             <span>LIHAT DAFTAR PRODUK</span>
@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onNavigateToAbout 
           
           <button
             onClick={onNavigateToAbout}
-            className="brutalist-button-pink py-3 text-xs sm:text-sm px-4 sm:px-6 flex items-center justify-center gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#000000] hover:shadow-[6px_6px_0px_#000000]"
+            className="brutalist-button-pink py-3 text-[10px] min-[375px]:text-xs sm:text-sm px-3.5 sm:px-6 flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl font-display font-black tracking-wider shadow-[4.5px_4.5px_0px_#000000] hover:shadow-[6px_6px_0px_#000000] whitespace-nowrap"
           >
             <Info className="w-4 h-4 text-brand-dark shrink-0" />
             <span>TENTANG GOODTOBE.SPARKLE</span>
