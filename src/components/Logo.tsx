@@ -27,7 +27,7 @@ export const Logo: React.FC<LogoProps> = ({
       <img
         src="/logo.png"
         alt="goodtobe.sparkle"
-        className={`w-full h-full object-contain mix-blend-multiply pointer-events-none ${
+        className={`w-full h-full object-contain bg-white pointer-events-none ${
           showBackground ? 'object-center' : 'object-left'
         }`}
       />
