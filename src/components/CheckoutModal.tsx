@@ -87,39 +87,39 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const isFormValid = buyerName.trim() !== '' && buyerPhone.trim() !== '' && deliveryAddress.trim() !== '';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-lg bg-white border-4 border-brand-dark rounded-3xl shadow-[8px_8px_0px_#121212] overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+      <div className="relative w-full max-w-lg bg-[#faf8f6] border-4 border-brand-dark rounded-3xl shadow-[8px_8px_0px_#000000] overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header Modal - Thick Banner */}
         <div className="bg-brand-yellow text-brand-dark p-4 border-b-4 border-brand-dark flex justify-between items-center select-none">
           <div className="flex items-center gap-2">
-            <span className="p-1.5 bg-white border-2 border-brand-dark rounded-lg flex items-center justify-center shadow-[1.5px_1.5px_0px_#121212]">
+            <span className="p-1.5 bg-white border-2 border-brand-dark rounded-lg flex items-center justify-center shadow-[2px_2px_0px_#000000]">
               <Truck className="w-5 h-5 text-brand-dark" />
             </span>
             <div>
               <h3 className="font-display font-black text-xl leading-none">
                 FORM CHECKOUT WA
               </h3>
-              <p className="text-[10px] font-mono uppercase tracking-wider text-stone-600 mt-1 leading-none">
+              <p className="text-[10px] font-mono uppercase tracking-wider text-stone-600 mt-1 leading-none font-bold">
                 Sisa 1 langkah buat dapetin orderanmu!
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 px-2.5 bg-white hover:bg-rose-100 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold text-xs shadow-[2px_2px_0px_#121212] active:translate-y-0.5"
+            className="p-1.5 px-3 bg-white hover:bg-brand-pink/20 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold text-xs shadow-[2.5px_2.5px_0px_#000000] active:translate-y-0.5"
           >
             <X className="w-5.5 h-5.5 text-brand-dark" />
           </button>
         </div>
 
         {/* Scrollable Form Body */}
-        <div className="p-6 overflow-y-auto space-y-5 flex-1 select-none">
+        <div className="p-6 overflow-y-auto space-y-5 flex-1 select-none bg-stone-50/30">
           
           {/* Quick Notice */}
-          <div className="bg-brand-mint/40 border-2 border-brand-dark p-3.5 rounded-2xl flex items-start gap-2.5 shadow-[3px_3px_0px_#121212]">
-            <Info className="w-5 h-5 text-brand-dark shrink-0 mt-0.5" />
-            <p className="text-xs text-stone-700 leading-relaxed font-sans">
+          <div className="bg-brand-mint border-2.5 border-brand-dark p-3.5 rounded-2xl flex items-start gap-2.5 shadow-[3px_3px_0px_#000000]">
+            <Info className="w-5.5 h-5.5 text-brand-dark shrink-0 mt-0.5" />
+            <p className="text-xs text-stone-850 leading-relaxed font-sans font-bold">
               Isi formulir pengiriman di bawah ya, bestie! Setelah diisi, klik tombol <strong>KIRIM KE WHATSAPP</strong> di bawah. Kamu akan langsung dialihkan ke chat WA Mimin untuk pembayaran & konfirmasi resi.
             </p>
           </div>
@@ -129,7 +129,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             
             {/* Name */}
             <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <User className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>NAMA LENGKAP PENERIMA</span>
               </label>
@@ -139,13 +139,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 value={buyerName}
                 onChange={(e) => setBuyerName(e.target.value)}
                 placeholder="nama lengkap kamu..."
-                className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2.5 font-mono text-xs text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                className="w-full brutalist-input font-mono text-xs text-brand-dark py-3"
               />
             </div>
 
             {/* WA No */}
             <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <Phone className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>NO. WHATSAPP AKTIF</span>
               </label>
@@ -155,13 +155,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 value={buyerPhone}
                 onChange={(e) => setBuyerPhone(e.target.value.replace(/\D/g, ''))}
                 placeholder="misal: 08123456789"
-                className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2.5 font-mono text-xs text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                className="w-full brutalist-input font-mono text-xs text-brand-dark py-3"
               />
             </div>
 
             {/* Address */}
             <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <MapPin className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>ALAMAT LENGKAP PENGIRIMAN</span>
               </label>
@@ -171,51 +171,53 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
                 placeholder="Tulis alamat jalan, RT/RW, Kec., Kota, Prov. dan Kode Pos..."
-                className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl p-3 font-mono text-xs text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-purple"
+                className="w-full brutalist-input font-mono text-xs text-brand-dark p-3"
               />
             </div>
 
             {/* Payment Method Dropdown */}
             <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <CreditCard className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>METODE PEMBAYARAN</span>
               </label>
-              <select
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full max-w-xs bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2 font-mono text-xs text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-purple cursor-pointer appearance-none"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 12px center',
-                  backgroundSize: '16px'
-                }}
-              >
-                <option value="Cash on Delivery">Cash on Delivery</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-                <option value="GoPay">GoPay</option>
-                <option value="ShopeePay">ShopeePay</option>
-                <option value="Dana">Dana</option>
-                <option value="QRIS All Payment">QRIS All Payment</option>
-                <option value="Lainnya (Hubungi Admin Sparkle)">Lainnya (Hubungi Admin Sparkle)</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="w-full max-w-xs brutalist-input font-mono text-xs text-brand-dark py-3 cursor-pointer appearance-none"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 14px center',
+                    backgroundSize: '18px'
+                  }}
+                >
+                  <option value="Cash on Delivery">Cash on Delivery</option>
+                  <option value="Bank Transfer">Bank Transfer</option>
+                  <option value="GoPay">GoPay</option>
+                  <option value="ShopeePay">ShopeePay</option>
+                  <option value="Dana">Dana</option>
+                  <option value="QRIS All Payment">QRIS All Payment</option>
+                  <option value="Lainnya (Hubungi Admin Sparkle)">Lainnya (Hubungi Admin Sparkle)</option>
+                </select>
+              </div>
             </div>
 
             {/* Area Selection for Free Shipping */}
-            <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+            <div className="space-y-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <Map className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>AREA UTAMA PENGIRIMAN</span>
               </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setIsJaksel(true)}
-                  className={`px-3 py-2 border-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                  className={`px-3 py-2.5 border-3 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                     isJaksel
-                      ? 'border-brand-dark bg-brand-mint text-brand-dark shadow-[2.5px_2.5px_0px_#121212]'
-                      : 'border-stone-200 bg-white text-stone-600 hover:bg-stone-50 border-b-4'
+                      ? 'border-brand-dark bg-brand-mint text-brand-dark shadow-[3px_3px_0px_#000000] -translate-y-0.5'
+                      : 'border-brand-dark bg-white text-stone-600 hover:bg-brand-pink/10 shadow-[2px_2px_0px_#000000] active:translate-y-0.5 active:shadow-none'
                   }`}
                 >
                   Jakarta Selatan
@@ -223,34 +225,34 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsJaksel(false)}
-                  className={`px-3 py-2 border-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                  className={`px-3 py-2.5 border-3 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                     !isJaksel
-                      ? 'border-brand-dark bg-stone-100 text-brand-dark shadow-[2.5px_2.5px_0px_#121212]'
-                      : 'border-stone-200 bg-white text-stone-600 hover:bg-stone-50 border-b-4'
+                      ? 'border-brand-dark bg-stone-150 text-brand-dark shadow-[3px_3px_0px_#000000] -translate-y-0.5'
+                      : 'border-brand-dark bg-white text-stone-600 hover:bg-brand-pink/10 shadow-[2px_2px_0px_#000000] active:translate-y-0.5 active:shadow-none'
                   }`}
                 >
                   Luar Jakarta Selatan
                 </button>
               </div>
-              <p className="text-[9px] font-mono text-stone-500 leading-tight pt-1">
+              <p className="text-[9px] font-mono text-stone-500 font-bold leading-tight pt-1">
                 *Gratis ongkos kirim minimal beli 3 item khusus pengiriman area Jakarta Selatan!
               </p>
             </div>
 
             {/* Courier Selection */}
-            <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+            <div className="space-y-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <Truck className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>EXPEDISI / LAYANAN PENGIRIMAN</span>
               </label>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2.5">
                 {SHOP_INFO.shippingOptions.map((courier, index) => (
                   <label
                     key={index}
-                    className={`flex items-center gap-3 px-3 py-2 border-2 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${
+                    className={`flex items-center gap-3 px-3.5 py-3 border-3 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${
                       selectedCourier === courier
-                        ? 'border-brand-dark bg-brand-blue/60 shadow-[2.5px_2.5px_0px_#121212]'
-                        : 'border-stone-200 bg-white text-stone-600 hover:bg-stone-50'
+                        ? 'border-brand-dark bg-brand-blue shadow-[3px_3px_0px_#000000] -translate-y-0.5'
+                        : 'border-brand-dark bg-white text-stone-600 hover:bg-brand-blue/15 shadow-[2px_2px_0px_#000000]'
                     }`}
                   >
                     <input
@@ -258,7 +260,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                       name="courierOption"
                       checked={selectedCourier === courier}
                       onChange={() => setSelectedCourier(courier)}
-                      className="accent-brand-dark"
+                      className="accent-brand-dark w-4 h-4"
                     />
                     <span>{courier}</span>
                   </label>
@@ -268,7 +270,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
             {/* Special Note */}
             <div className="space-y-1">
-              <label className="font-display text-xs text-brand-dark flex items-center gap-1.5">
+              <label className="font-display text-xs text-brand-dark font-black flex items-center gap-1.5 uppercase">
                 <Info className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>CATATAN KHUSUS (Opsional)</span>
               </label>
@@ -277,13 +279,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 value={generalNote}
                 onChange={(e) => setGeneralNote(e.target.value)}
                 placeholder="misal: request tulisan kartu ucapan ulang tahun..."
-                className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl px-3 py-2.5 font-mono text-xs text-brand-dark focus:outline-none"
+                className="w-full brutalist-input font-mono text-xs text-brand-dark py-3"
               />
             </div>
           </div>
 
           {/* Pricing Order Summary inside form */}
-          <div className="bg-stone-100 border-2 border-brand-dark rounded-2xl p-4 space-y-2">
+          <div className="bg-stone-50 border-3 border-brand-dark rounded-2xl p-4 space-y-2.5 shadow-[4px_4px_0px_#000000]">
             <span className="font-display font-black text-xs text-brand-dark tracking-wide block uppercase">
               Rincian Biaya Akhir:
             </span>
@@ -294,14 +296,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             
             <div className="flex justify-between items-center text-xs font-mono">
               <span className="text-stone-500">Harga Semua Produk:</span>
-              <span className="font-bold text-brand-dark">Rp {totalPrice.toLocaleString('id-ID')}</span>
+              <span className="font-black text-brand-dark">Rp {totalPrice.toLocaleString('id-ID')}</span>
             </div>
             
             <div className="flex justify-between items-center text-xs font-mono">
               <span className="text-stone-500">Ongkos Kirim Kurir:</span>
               <span className={`font-bold ${isFreeShipping ? 'text-emerald-700' : 'text-brand-dark'}`}>
                 {isFreeShipping ? (
-                  <span><s>Rp {parseInt(selectedCourier.split(' (Rp ')[1]?.replace(/\D/g, '') || '0', 10).toLocaleString('id-ID')}</s> <strong className="text-xs bg-brand-mint text-brand-dark px-1.5 py-0.5 rounded ml-1">FREE!</strong></span>
+                  <span><s>Rp {parseInt(selectedCourier.split(' (Rp ')[1]?.replace(/\D/g, '') || '0', 10).toLocaleString('id-ID')}</s> <strong className="text-xs bg-brand-mint border border-brand-dark text-brand-dark px-1.5 py-0.5 rounded ml-1 font-mono">FREE!</strong></span>
                 ) : (
                   `Rp ${parseInt(selectedCourier.split(' (Rp ')[1]?.replace(/\D/g, '') || '0', 10).toLocaleString('id-ID')}`
                 )}
@@ -309,16 +311,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             </div>
 
             {isFreeShipping && (
-              <div className="bg-emerald-100 border border-emerald-400 p-2 rounded-lg text-center text-[10px] font-mono text-emerald-800 font-bold uppercase mt-1 flex items-center justify-center gap-1.5">
+              <div className="bg-emerald-150 border-2 border-emerald-500 p-2 rounded-lg text-center text-[10px] font-mono text-emerald-800 font-bold uppercase mt-1 flex items-center justify-center gap-1.5">
                 <AlertCircle className="w-3.5 h-3.5 text-emerald-800 shrink-0" />
                 <span>PROMO GRATIS ONGKIR JAKARTA SELATAN (MIN. BELI 3) DIAKTIFKAN!</span>
               </div>
             )}
 
-            <div className="h-[1.5px] bg-brand-dark/20 my-1.5" />
+            <div className="h-[2px] bg-brand-dark/30 my-1.5" />
             <div className="flex justify-between items-center">
-              <span className="font-display font-extrabold text-sm text-brand-dark">TOTAL ESTIMASI AKHIR:</span>
-              <span className="font-mono font-black text-base text-brand-dark bg-brand-pink/70 px-2 py-0.5 border border-brand-dark rounded">
+              <span className="font-display font-black text-xs sm:text-sm text-brand-dark">TOTAL ESTIMASI AKHIR:</span>
+              <span className="font-mono font-black text-sm sm:text-base text-brand-dark bg-brand-pink border-2 border-brand-dark rounded-xl px-2.5 py-1 shadow-[2.5px_2.5px_0px_#000000]">
                 Rp {(totalPrice + (isFreeShipping ? 0 : parseInt(selectedCourier.split(' (Rp ')[1]?.replace(/\D/g, '') || '0', 10))).toLocaleString('id-ID')}
               </span>
             </div>
@@ -350,10 +352,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               }
             }}
             target="_self"
-            className={`w-full py-3 px-6 rounded-2xl flex items-center justify-center gap-3 border-3 transition-all font-display font-black text-base tracking-widest ${
+            className={`w-full py-3.5 px-6 rounded-2xl flex items-center justify-center gap-3 border-3 transition-all font-display font-black text-sm tracking-wider ${
               isFormValid
-                ? 'bg-[#25D366] border-brand-dark text-brand-dark hover:-translate-y-0.5 shadow-[3.5px_4px_0px_#121212] hover:shadow-[5.5px_6px_0px_#121212] cursor-pointer'
-                : 'bg-stone-200 text-stone-400 border-stone-300 shadow-none cursor-not-allowed pointer-events-none'
+                ? 'bg-[#25D366] border-brand-dark text-brand-dark hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-[4px_4px_0px_#000000] hover:shadow-[5px_5px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-none cursor-pointer'
+                : 'bg-stone-100 text-stone-400 border-stone-200 shadow-none cursor-not-allowed pointer-events-none'
             }`}
           >
             <WhatsAppIcon className="w-5 h-5 shrink-0" />

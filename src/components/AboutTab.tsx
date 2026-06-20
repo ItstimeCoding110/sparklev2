@@ -53,26 +53,26 @@ export const AboutTab: React.FC = () => {
   return (
     <div className="space-y-12 select-none" id="about-tentang-kami-page">
       {/* 1. Brand Banner Intro */}
-      <div className="bg-brand-peach/40 border-3 border-brand-dark p-8 rounded-3xl shadow-[5px_5px_0px_#121212] grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div className="bg-brand-peach border-4 border-brand-dark p-8 rounded-3xl shadow-[8px_8px_0px_#000000] grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-8 space-y-4">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4.5xl text-brand-dark leading-snug">
+          <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brand-dark leading-snug">
             KENALAN SAMA <br />
             <span className="text-brand-pink underline decoration-brand-dark decoration-wavy inline-block mt-1 tracking-tight select-all">
               {SHOP_INFO.name.toUpperCase()}
             </span>
           </h2>
-          <p className="text-sm md:text-base text-stone-700 leading-relaxed font-sans">
+          <p className="text-xs sm:text-sm md:text-base text-stone-850 leading-relaxed font-sans font-bold">
             {SHOP_INFO.about} We believe your wrist and fingers deserve some sparkling personality. Setiap untaian gelang dan cincin di goodtobe.sparkle adalah medium ekspresi keceriaan, persahabatan, dan estetika retro-Y2K yang kental. Yuk tunjukkan pesona aslimu melalui jalinan butiran halus manik terpilih!
           </p>
         </div>
         
         {/* Fun visual bento side-block */}
         <div className="md:col-span-4 flex justify-center">
-          <div className="bg-white border-3 border-brand-dark p-4 rounded-2xl shadow-[4px_4px_0px_#121212] rotate-3 hover:rotate-0 transition-transform duration-300 relative">
-            <span className="absolute -top-3.5 -right-3 bg-brand-pink border-2 border-brand-dark font-mono text-[9px] font-bold rounded px-1.5 py-0.5 shadow-[1.5px_1.5px_0px_#121212]">
+          <div className="bg-white border-3 border-brand-dark p-4 rounded-2xl shadow-[6px_6px_0px_#000000] rotate-2 hover:rotate-0 transition-transform duration-300 relative">
+            <span className="absolute -top-3.5 -right-3 bg-brand-yellow border-2 border-brand-dark font-mono text-[9px] font-black rounded px-2 py-0.5 shadow-[2px_2px_0px_#000000] rotate-6">
               EST. 2026
             </span>
-            <div className="w-48 h-48 bg-brand-mint/30 rounded-xl border border-stone-200 flex items-center justify-center p-2 text-center overflow-hidden">
+            <div className="w-48 h-48 bg-brand-mint/20 rounded-xl border-2 border-brand-dark flex items-center justify-center p-2 text-center overflow-hidden">
               <Logo size="full" className="!justify-center" />
             </div>
           </div>
@@ -82,52 +82,67 @@ export const AboutTab: React.FC = () => {
       {/* 2. Brand Core Pillars */}
       <div className="space-y-6">
         <div className="text-center flex flex-col items-center">
-          <h3 className="font-display text-2xl md:text-3xl text-brand-dark uppercase flex items-center">
-            <span>KENAPA HARUS DI {SHOP_INFO.name}?</span>
+          <h3 className="font-display font-black text-2xl md:text-3xl text-brand-dark uppercase flex items-center">
+            <span>KENAPA HARUS DI {SHOP_INFO.name.split('.')[1]?.toUpperCase() || 'SPARKLE'}?</span>
           </h3>
-          <p className="text-xs font-mono text-stone-500 uppercase mt-0.5 tracking-wider">
+          <p className="text-xs font-mono text-stone-500 font-bold uppercase mt-1 tracking-wider">
             Empat standar keanggunan pergelangan tangan kamu
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feat, i) => (
-            <div
-              key={i}
-              className={`${feat.bgColor} border-3 border-brand-dark p-5 rounded-2xl shadow-[3.5px_3.5px_0px_#121212] hover:-translate-y-1 transition-transform`}
-            >
-              <h4 className="font-display font-black text-lg text-brand-dark leading-tight mb-2">
-                {feat.title}
-              </h4>
-              <p className="text-xs text-stone-700 leading-relaxed font-sans">
-                {feat.desc}
-              </p>
-            </div>
-          ))}
+          {features.map((feat, i) => {
+            const IconComponent = feat.icon;
+            return (
+              <div
+                key={i}
+                className={`${feat.bgColor} border-3 border-brand-dark p-5 rounded-2xl shadow-[4px_4px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5.5px_5.5px_0px_#000000] active:translate-y-0 active:shadow-none transition-all duration-200`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="p-2 bg-white border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#000000] flex items-center justify-center">
+                    <IconComponent className="w-5 h-5 text-brand-dark" />
+                  </span>
+                  <span className="w-3.5 h-3.5 rounded-full border-2 border-brand-dark bg-brand-yellow shadow-[1px_1px_0px_#000000]" />
+                </div>
+                <h4 className="font-display font-black text-lg text-brand-dark leading-tight mb-2">
+                  {feat.title}
+                </h4>
+                <p className="text-xs text-stone-800 leading-relaxed font-sans font-semibold">
+                  {feat.desc}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* 3. FAQ Section */}
-      <div className="bg-white border-3 border-brand-dark p-6 md:p-8 rounded-3xl shadow-[5px_5.5px_0px_#121212] space-y-6">
+      <div className="bg-[#faf8f6] border-4 border-brand-dark p-6 md:p-8 rounded-3xl shadow-[8px_8px_0px_#000000] space-y-8">
         <div className="flex items-center gap-2.5">
           <div>
-            <h3 className="font-display text-2xl text-brand-dark">
+            <h3 className="font-display font-black text-2xl text-brand-dark">
               PERTANYAAN PALING SERING DIAJUKAN (FAQ)
             </h3>
-            <p className="text-[10px] font-mono uppercase tracking-widest text-stone-500">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-bold mt-1">
               Menjawab semua keraguan hatimu, bestie!
             </p>
           </div>
         </div>
 
-        <div className="divide-y divide-stone-200">
+        <div className="grid grid-cols-1 gap-4">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="py-4 first:pt-0 last:pb-0 space-y-2">
-              <h4 className="font-display font-black text-sm md:text-base text-brand-dark flex items-start gap-2 leading-tight">
-                <span className="text-brand-purple font-mono">Q:</span>
-                <span>{faq.q}</span>
+            <div
+              key={idx}
+              className="bg-white border-3 border-brand-dark p-5 rounded-2xl shadow-[4px_4px_0px_#000000] space-y-3 transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5.5px_5.5px_0px_#000000] active:translate-y-0 active:shadow-none"
+            >
+              <h4 className="font-display font-black text-sm md:text-base text-brand-dark flex items-start gap-2.5 leading-tight">
+                <span className="bg-brand-purple text-brand-dark border-2 border-brand-dark font-mono px-2 py-0.5 rounded-lg text-xs shadow-[1.5px_1.5px_0px_#000000] shrink-0 select-none">
+                  Q
+                </span>
+                <span className="pt-0.5">{faq.q}</span>
               </h4>
-              <p className="text-xs md:text-sm text-stone-600 pl-6 leading-relaxed font-sans">
+              <div className="h-[2px] bg-brand-dark/10" />
+              <p className="text-xs md:text-sm text-stone-600 pl-8 leading-relaxed font-sans font-medium">
                 {faq.a}
               </p>
             </div>

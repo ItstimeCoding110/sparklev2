@@ -36,13 +36,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="relative bg-[#faf8f6] border-4 border-brand-dark rounded-3xl w-full max-w-lg md:max-w-2xl overflow-y-auto max-h-[85vh] sm:max-h-[90vh] md:max-h-none shadow-[6px_6px_0px_#121212] sm:shadow-[8px_8px_0px_#121212] z-10 flex flex-col md:flex-row"
+        className="relative bg-[#faf8f6] border-4 border-brand-dark rounded-3xl w-full max-w-lg md:max-w-2xl overflow-y-auto max-h-[85vh] sm:max-h-[90vh] md:max-h-none shadow-[8px_8px_0px_#000000] z-10 flex flex-col md:flex-row"
         id="product-detail-modal"
       >
         {/* Close Button top-right (absolute style) */}
         <button
           onClick={onClose}
-          className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 bg-brand-pink p-1.5 sm:p-2 border-2 border-brand-dark rounded-xl text-brand-dark hover:bg-brand-pink/80 transition-all cursor-pointer shadow-[1.5px_1.5px_0px_#121212] sm:shadow-[2px_2px_0px_#121212] active:translate-y-0.5 active:shadow-none"
+          className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 bg-brand-pink p-1.5 sm:p-2 border-3 border-brand-dark rounded-xl text-brand-dark hover:bg-brand-pink/80 transition-all cursor-pointer shadow-[3px_3px_0px_#000000] active:translate-y-0.5 active:shadow-none"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
@@ -50,15 +50,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Left column: Visual Representation of Selected Product */}
         <div className="w-full md:w-1/2 p-4 sm:p-6 flex flex-col justify-center items-center border-b-4 md:border-b-0 md:border-r-4 border-brand-dark bg-stone-50 relative min-h-[140px] xs:min-h-[180px] sm:min-h-[240px] md:min-h-[300px]">
           {/* Badge overlays inside visual box */}
-          <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 flex flex-col gap-1 items-start">
+          <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 flex flex-col gap-1.5 items-start select-none">
             {product.isBestSeller && (
-              <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 sm:border-2 border-brand-dark px-1.5 sm:px-2 py-0.5 rounded shadow-[1px_1px_0px_#121212]">
-                BEST SELLER
+              <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-2 border-brand-dark px-2 py-0.5 rounded shadow-[2px_2px_0px_#000000] rotate-3">
+                🔥 BEST SELLER
               </span>
             )}
             {product.isNew && (
-              <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 sm:border-2 border-brand-dark px-1.5 sm:px-2 py-0.5 rounded shadow-[1px_1px_0px_#121212]">
-                BARU rilis
+              <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-2 border-brand-dark px-2 py-0.5 rounded shadow-[2px_2px_0px_#000000] -rotate-2">
+                ✨ BARU RILIS
               </span>
             )}
           </div>
@@ -93,21 +93,21 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="space-y-1">
               <div className="flex flex-wrap gap-1.5">
                 {product.isSoldOut ? (
-                  <span className="inline-block bg-red-600 text-white px-2.5 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-wider">
-                    <span>SOLD OUT (HABIS)</span>
+                  <span className="inline-block bg-red-500 text-white px-2.5 py-0.5 border-2 border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-wider -rotate-3">
+                    SOLD OUT (HABIS)
                   </span>
                 ) : (
                   <>
-                    <span className="inline-block bg-brand-purple text-brand-dark px-2 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-bold uppercase">
+                    <span className="inline-block bg-brand-purple text-brand-dark px-2.5 py-0.5 border-2 border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-black uppercase">
                       {product.category} COLLECTION
                     </span>
-                    <span className="inline-block bg-brand-yellow text-brand-dark px-2 py-0.5 border border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-bold uppercase">
+                    <span className="inline-block bg-brand-yellow text-brand-dark px-2.5 py-0.5 border-2 border-brand-dark rounded-full font-mono text-[9px] sm:text-[10px] font-black uppercase">
                       STOK: {product.stock !== undefined ? product.stock : 10}
                     </span>
                   </>
                 )}
               </div>
-              <h2 className="font-display font-black text-lg sm:text-xl md:text-2xl text-brand-dark leading-tight tracking-tight pt-0.5">
+              <h2 className="font-display font-black text-lg sm:text-xl md:text-2xl text-brand-dark leading-tight tracking-tight pt-1">
                 {product.name}{' '}
                 <span className="inline-block font-mono text-xs sm:text-sm font-black text-brand-pink italic">
                   ({product.code.toLowerCase()})
@@ -116,7 +116,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Price section with old price cross-out */}
-            <div className="bg-brand-yellow/30 border-2 border-brand-dark p-2.5 sm:p-3.5 rounded-2xl flex items-center justify-between select-none shadow-[2px_2px_0px_#121212]">
+            <div className="bg-brand-yellow/15 border-3 border-brand-dark p-3 rounded-2xl flex items-center justify-between select-none shadow-[4px_4px_0px_#000000]">
               <span className="font-display font-black text-[10px] sm:text-[11px] text-stone-600 uppercase">Harga:</span>
               <div className="text-right">
                 {product.originalPrice && (
@@ -141,15 +141,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* List / Ingredients Beads tags */}
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <span className="text-[8px] sm:text-[10px] font-mono font-bold text-stone-400 block uppercase tracking-wider">
                 BAHAN DAN RESEP MANIK (100% HANDMADE):
               </span>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1.5">
                 {product.beadsUsed.map((bead, index) => (
                   <span
                     key={index}
-                    className="bg-brand-mint text-brand-dark border border-brand-dark font-sans font-bold px-2 py-0.5 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] shadow-[1px_1px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+                    className="bg-brand-mint text-brand-dark border-2 border-brand-dark font-sans font-bold px-2.5 py-1 rounded-xl text-[9px] sm:text-[10px] shadow-[2.5px_2.5px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3.5px_3.5px_0px_#000000] active:translate-y-0 active:shadow-none transition-all duration-150"
                   >
                     <span>{bead}</span>
                   </span>
@@ -158,7 +158,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Delivery Alert tag */}
-            <div className="bg-brand-peach/25 border border-dashed border-brand-orange p-2 sm:p-2.5 rounded-xl text-[8px] sm:text-[9px] font-mono text-stone-700">
+            <div className="bg-brand-peach/15 border-2 border-dashed border-brand-orange p-2.5 rounded-xl text-[8px] sm:text-[9px] font-mono text-stone-700">
               <span>
                 Setiap aksesoris dirakit handmade presisi tinggi. Pengiriman aman seluruh Indonesia!
               </span>
@@ -166,11 +166,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           {/* Action Footer Button rows */}
-          <div className="pt-3 sm:pt-4 border-t border-dashed border-stone-200 flex gap-2 w-full">
+          <div className="pt-3 sm:pt-4 border-t-2 border-dashed border-stone-200 flex gap-2 w-full">
             {product.isSoldOut ? (
               <button
                 disabled
-                className="w-full rounded-2xl py-2 px-3 sm:py-3 sm:px-4 flex items-center justify-center gap-1.5 sm:gap-2 font-display font-black text-xs sm:text-sm bg-stone-100 text-stone-400 border-2 border-stone-300 cursor-not-allowed select-none"
+                className="w-full rounded-2xl py-3 flex items-center justify-center gap-1.5 sm:gap-2 font-display font-black text-xs sm:text-sm bg-stone-100 text-stone-400 border-3 border-stone-200 cursor-not-allowed select-none"
               >
                 <XCircle className="w-4 h-4 text-stone-400 shrink-0" />
                 <span>MAAF, STOK HABIS (SOLD OUT)</span>
@@ -181,9 +181,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   onAddToCart(product);
                   onClose();
                 }}
-                className="brutalist-button-blue w-full rounded-2xl py-2 px-3 sm:py-3 sm:px-4 flex items-center justify-center gap-1.5 sm:gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3px_0px_#121212] sm:shadow-[4px_4px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all cursor-pointer"
+                className="brutalist-button-blue w-full rounded-2xl py-3 flex items-center justify-center gap-2 text-xs sm:text-sm"
               >
-                <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-dark shrink-0" />
+                <ShoppingCart className="w-4 h-4 text-brand-dark shrink-0" />
                 <span>BELI SEKARANG</span>
               </button>
             )}

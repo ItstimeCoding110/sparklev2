@@ -123,35 +123,37 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
               <div
                 key={product.id}
                 onClick={() => setSelectedDetailProduct(product)}
-                className="group relative bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#121212] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#121212] transition-all duration-300 cursor-pointer"
+                className="group relative bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[4px_4px_0px_#000000] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_#000000] transition-all duration-300 cursor-pointer"
               >
                 {/* Visual badges in top corner */}
-                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex flex-col gap-1 items-start">
+                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex flex-col gap-1.5 items-start select-none">
                   {product.isSoldOut ? (
-                    <span className="bg-red-600 text-white font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
-                      <span>SOLD OUT</span>
+                    <span className="bg-red-500 text-white font-mono text-[8px] sm:text-[9px] font-black uppercase border-2 border-brand-dark px-2 py-0.5 rounded shadow-[2px_2px_0px_#000000] tracking-wider -rotate-3">
+                      SOLD OUT
                     </span>
                   ) : (
                     <>
                       {product.isBestSeller && (
-                        <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider animate-pulse font-bold">
-                          <span>BEST SELLER</span>
+                        <span className="bg-brand-yellow text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-2 border-brand-dark px-2 py-0.5 rounded shadow-[2px_2px_0px_#000000] tracking-wider animate-pulse rotate-3">
+                          🔥 BEST SELLER
                         </span>
                       )}
                       {product.isNew && (
-                        <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
-                          <span>NEW ITEM</span>
+                        <span className="bg-brand-pink text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-2 border-brand-dark px-2 py-0.5 rounded shadow-[2px_2px_0px_#000000] tracking-wider -rotate-2">
+                          ✨ NEW ITEM
                         </span>
                       )}
-                      <span className="bg-brand-orange text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-1.5 border-brand-dark px-1.5 py-0.5 rounded shadow-[1px_1px_0px_#121212] tracking-wider font-bold">
-                        <span>STOK TERBATAS</span>
-                      </span>
+                      {product.stock !== undefined && product.stock <= 3 && product.stock > 0 && (
+                        <span className="bg-brand-orange text-brand-dark font-mono text-[8px] sm:text-[9px] font-black uppercase border-2 border-brand-dark px-2 py-0.5 rounded shadow-[2px_2px_0px_#000000] tracking-wider rotate-6">
+                          ⚠️ STOK TIPIS
+                        </span>
+                      )}
                     </>
                   )}
                 </div>
 
                 {/* Bracelet Animated Visual Container */}
-                <div className={`w-full aspect-square flex items-center justify-center p-2 sm:p-4 rounded-xl sm:rounded-2xl mb-2 sm:mb-4 border-2 border-brand-dark bg-stone-50 transition-all duration-300 overflow-hidden relative ${product.isSoldOut ? 'bg-stone-200/60' : 'group-hover:bg-brand-peach/10'}`}>
+                <div className={`w-full aspect-square flex items-center justify-center p-2 sm:p-4 rounded-2xl mb-3 border-3 border-brand-dark bg-stone-50 transition-all duration-300 overflow-hidden relative ${product.isSoldOut ? 'bg-stone-200/60' : 'group-hover:bg-brand-peach/10'}`}>
                   <div className={`w-full h-full flex items-center justify-center ${product.isSoldOut ? 'grayscale contrast-75 opacity-50' : ''}`}>
                     {product.image ? (
                       <img
@@ -171,7 +173,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                   </div>
                   {product.isSoldOut && (
                     <div className="absolute inset-0 bg-brand-dark/20 flex items-center justify-center">
-                      <span className="bg-red-600 text-white font-display font-black text-[10px] sm:text-xs tracking-wider uppercase px-2.5 py-1.5 border-2 border-brand-dark rounded-xl shadow-[2px_2px_0px_#121212] -rotate-12">
+                      <span className="bg-red-600 text-white font-display font-black text-[10px] sm:text-xs tracking-wider uppercase px-2.5 py-1.5 border-2 border-brand-dark rounded-xl shadow-[2.5px_2.5px_0px_#000000] -rotate-12">
                         <span>OUT OF STOCK</span>
                       </span>
                     </div>
@@ -241,7 +243,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
-                        className="bg-stone-100 text-stone-400 border-2 border-stone-200 text-[10px] sm:text-xs rounded-xl py-1 sm:py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1.5 font-display font-medium w-full sm:w-auto cursor-not-allowed select-none"
+                        className="bg-stone-100 text-stone-400 border-3 border-stone-200 text-[10px] sm:text-xs rounded-xl py-1.5 px-3 flex items-center justify-center gap-1.5 font-display font-medium w-full sm:w-auto cursor-not-allowed select-none"
                       >
                         <XCircle className="w-3.5 h-3.5 text-stone-400 shrink-0" />
                         <span>Habis</span>
@@ -252,7 +254,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                           e.stopPropagation();
                           onAddToCart(product);
                         }}
-                        className="brutalist-button-blue text-[10px] sm:text-xs rounded-xl py-1 sm:py-1.5 px-2 sm:px-3 flex items-center justify-center gap-1.5 font-display font-black w-full sm:w-auto shadow-[1.5px_1.5px_0px_#121212] sm:shadow-[2.5px_2.5px_0px_#121212] transition-all cursor-pointer active:translate-y-0 active:shadow-none"
+                        className="brutalist-button-blue text-[10px] sm:text-xs rounded-xl py-1.5 px-3 flex items-center justify-center gap-1.5 w-full sm:w-auto"
                       >
                         <ShoppingCart className="w-3.5 h-3.5 text-brand-dark shrink-0" />
                         <span>Beli</span>
