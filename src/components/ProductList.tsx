@@ -50,7 +50,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-brand-dark font-black tracking-tight uppercase flex items-center">
-              <span>PILIH PILIHAN KATALOG UNISEX</span>
+              <span>PILIH PILIHAN KATALOG</span>
             </h2>
             <p className="text-[11px] sm:text-xs md:text-sm text-stone-500 font-sans mt-0.5">
               Cincin dan gelang manik-manik estetik netral gender yang didesain agar OOTD kamu makin menyala.
