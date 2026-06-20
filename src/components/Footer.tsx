@@ -9,6 +9,7 @@ interface FooterProps {
   onNavigateToCatalog: () => void;
   onNavigateToAbout: () => void;
   onOpenCart: () => void;
+  onNavigateToPaymentMethods: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -19,6 +20,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateToCatalog,
   onNavigateToAbout,
   onOpenCart,
+  onNavigateToPaymentMethods,
 }) => {
   const handleContactWhatsApp = () => {
     window.open(
@@ -101,6 +103,14 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
+                  onClick={onNavigateToPaymentMethods}
+                  className="hover:text-white cursor-pointer transition-colors text-left"
+                >
+                  Metode Pembayaran
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={onOpenTerms}
                   className="hover:text-white cursor-pointer transition-colors text-left"
                 >
@@ -178,22 +188,6 @@ export const Footer: React.FC<FooterProps> = ({
             “Warnai harimu dengan Sparkle.”
           </p>
 
-          <div className="w-full pt-4 border-t border-white/5 flex flex-col gap-2">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-stone-400">
-              Metode Pembayaran:
-            </span>
-            <div className="flex flex-wrap gap-1.5 text-[9px] sm:text-[10px] font-mono font-bold">
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">COD</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">Seabank</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">BCA</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">Mandiri</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">QRIS</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">GoPay</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">ShopeePay</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">Dana</span>
-              <span className="bg-neutral-900 text-stone-300 border border-white/10 px-2.5 py-0.5 rounded-md">OVO</span>
-            </div>
-          </div>
 
           <div className="w-full flex flex-col md:flex-row md:items-center justify-between text-xs font-mono text-stone-500 gap-3 mt-4 pt-4 border-t border-white/5">
             <div className="space-y-1">

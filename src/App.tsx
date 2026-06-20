@@ -297,6 +297,14 @@ export default function App() {
     }, 100);
   };
 
+  const handleNavigateToPaymentMethods = () => {
+    setActiveTab('shop');
+    setTimeout(() => {
+      const el = document.getElementById('payment-methods-card');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <div className="min-h-screen bg-[#faf8f6] font-sans text-brand-dark overflow-x-hidden p-0 m-0">
       {/* 1. Header Navigation */}
@@ -351,7 +359,7 @@ export default function App() {
             {/* Alamat/Kurir Section */}
             <div className="pt-8 border-t-4 border-brand-dark/10 flex flex-col md:flex-row items-stretch justify-center gap-6 max-w-5xl mx-auto w-full">
               {/* Payment Methods Card */}
-              <div className="flex-1 w-full bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#b58dfb] flex flex-col justify-between">
+              <div id="payment-methods-card" className="flex-1 w-full bg-white text-brand-dark border-3 border-brand-dark p-6 rounded-2xl shadow-[4px_4px_0px_#b58dfb] flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="inline-block bg-brand-purple text-brand-dark px-3 py-1 font-display font-bold text-xs border-2 border-brand-dark rounded-md tracking-wider flex items-center gap-1.5 w-fit">
                     <span>METODE PEMBAYARAN</span>
@@ -451,6 +459,7 @@ export default function App() {
         onNavigateToCatalog={handleNavigateToCatalog}
         onNavigateToAbout={handleNavigateToAbout}
         onOpenCart={() => setIsCartOpen(true)}
+        onNavigateToPaymentMethods={handleNavigateToPaymentMethods}
       />
 
       {/* 3. Sliding Cart Drawer overlay inside React context */}
