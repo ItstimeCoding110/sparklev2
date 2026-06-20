@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={() => setActiveTab('shop')}
           className="cursor-pointer group flex items-center select-none"
         >
-          <Logo size="sm" className="scale-110 hover:rotate-1 hover:scale-115 transition-transform duration-200" />
+          <Logo size="sm" className="hover:rotate-1 hover:scale-105 transition-transform duration-200" />
         </div>
 
         {/* Navigation Tabs */}
