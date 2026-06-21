@@ -208,11 +208,11 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormName(product.name);
     setFormCode(product.code);
     setFormCategory(product.category);
-    setFormDescription(product.description);
+    setFormDescription(product.description || '');
     setFormPrice(product.price);
     setFormOriginalPrice(product.originalPrice || '');
-    setFormBeads(product.beadsUsed.join(', '));
-    setFormColors(product.colors.join(', '));
+    setFormBeads((product.beadsUsed || []).join(', '));
+    setFormColors((product.colors || []).join(', '));
     setFormImageBase64(product.image || null);
     setFormIsNew(!!product.isNew);
     setFormIsBestSeller(!!product.isBestSeller);
@@ -1150,7 +1150,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                           <img src={p.image} className="h-full w-full object-contain" alt="" />
                         ) : (
                           <div className="flex gap-0.5 justify-center items-center">
-                            {p.colors.slice(0, 3).map((col, idx) => (
+                            {(p.colors || []).slice(0, 3).map((col, idx) => (
                               <span key={idx} className="h-2.5 w-2.5 rounded-full border border-stone-300" style={{ backgroundColor: col }} />
                             ))}
                           </div>

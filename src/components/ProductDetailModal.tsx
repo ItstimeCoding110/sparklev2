@@ -156,7 +156,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 BAHAN DAN RESEP MANIK (100% HANDMADE):
               </span>
               <div className="flex flex-wrap gap-1">
-                {product.beadsUsed.map((bead, index) => (
+                {(product.beadsUsed || []).map((bead, index) => (
                   <span
                     key={index}
                     className="bg-brand-mint text-brand-dark border border-brand-dark font-sans font-bold px-2 py-0.5 sm:py-1 rounded-lg sm:rounded-xl text-[9px] sm:text-[10px] shadow-[1px_1px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"

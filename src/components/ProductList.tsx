@@ -25,8 +25,8 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
     const list = products.filter((product) => {
       const matchSearch =
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.beadsUsed.some((bead) => bead.toLowerCase().includes(searchQuery.toLowerCase()));
+        (product.description || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (product.beadsUsed || []).some((bead) => bead.toLowerCase().includes(searchQuery.toLowerCase()));
 
       const matchCategory =
         selectedCategory === 'Semua' || product.category === selectedCategory;
@@ -193,7 +193,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                       Resep Manik Utama:
                     </span>
                     <div className="flex flex-wrap gap-1">
-                      {product.beadsUsed.map((bead, i) => (
+                      {(product.beadsUsed || []).map((bead, i) => (
                         <span
                           key={i}
                           className="bg-stone-50 border border-stone-200 text-stone-600 px-1.5 py-0.5 rounded-md text-[9px] font-mono"

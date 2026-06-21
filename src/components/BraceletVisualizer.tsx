@@ -27,11 +27,12 @@ export const BraceletVisualizer: React.FC<BraceletVisualizerProps> = ({
 
     // Otherwise, generate a mock eye-catching sequence based on colors and wording
     const result: Bead[] = [];
-    const colorCount = colors.length;
+    const colorsList = colors && colors.length > 0 ? colors : ['#ff6584', '#ffd056', '#7dd3fc'];
+    const colorCount = colorsList.length;
     
     // Fill with about 16 standard beads
     for (let i = 0; i < 16; i++) {
-      const color = colors[i % colorCount];
+      const color = colorsList[i % colorCount];
       
       // Add a special shape here and there
       if (i === 3) {

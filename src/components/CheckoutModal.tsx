@@ -48,7 +48,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       .map((item, idx) => {
         const p = item.product;
         const codeStr = p.code ? ` (${p.code})` : '';
-        const detailsText = `\n     └─ Kategori: ${p.category}\n     └─ Detail Manik: ${p.beadsUsed.join(', ')}`;
+        const detailsText = `\n     └─ Kategori: ${p.category}\n     └─ Detail Manik: ${(p.beadsUsed || []).join(', ')}`;
 
         return `${idx + 1}. *[${item.quantity}x] ${p.name}${codeStr}*\n     Harga: Rp ${(p.price * item.quantity).toLocaleString('id-ID')}${detailsText}`;
       })
