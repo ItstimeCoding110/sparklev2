@@ -346,23 +346,6 @@ export default function App() {
     fetchSupabaseStatus();
   };
 
-  // Sync products to localStorage (secondary hook)
-  useEffect(() => {
-    try {
-      localStorage.setItem('manikkita_products', JSON.stringify(products));
-    } catch (e) {
-      console.warn('Failed to save products to localStorage:', e);
-    }
-  }, [products]);
-
-  // Sync categories to localStorage (secondary hook)
-  useEffect(() => {
-    try {
-      localStorage.setItem('manikkita_categories', JSON.stringify(categories));
-    } catch (e) {
-      console.warn('Failed to save categories to localStorage:', e);
-    }
-  }, [categories]);
 
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     try {
