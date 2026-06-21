@@ -15,6 +15,19 @@ import { motion, AnimatePresence } from 'motion/react';
 import { supabase, mapDbToProduct, mapProductToDb, SQL_INIT_SCRIPT } from './supabaseClient';
 
 export default function App() {
+  // Cache versioning migration to force clear old/outdated caches dynamically
+  try {
+    const CURRENT_CACHE_VERSION = 'v2';
+    const savedVersion = localStorage.getItem('manikkita_cache_version');
+    if (savedVersion !== CURRENT_CACHE_VERSION) {
+      localStorage.removeItem('manikkita_products');
+      localStorage.removeItem('manikkita_categories');
+      localStorage.setItem('manikkita_cache_version', CURRENT_CACHE_VERSION);
+    }
+  } catch (e) {
+    console.warn('Failed to check cache version:', e);
+  }
+
   const [activeTab, setActiveTab] = useState<string>('shop');
   const [products, setProducts] = useState<Product[]>(() => {
     try {
