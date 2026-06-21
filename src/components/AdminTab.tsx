@@ -63,6 +63,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isSavingProduct, setIsSavingProduct] = useState(false);
   const [loginHistory, setLoginHistory] = useState<LoginLog[]>(() => {
     try {
       const saved = localStorage.getItem('manikkita_login_history');
@@ -393,7 +394,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormStatus(`Jenis katalog "${catName}" sukses dihapus.`);
   };
 
-  const handleSaveProduct = (e: React.FormEvent) => {
+  const handleSaveProduct = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formName || !formCode || !formDescription) {
@@ -407,59 +408,68 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     const priceNum = Number(formPrice) || 0;
     const origPriceNum = formOriginalPrice ? Number(formOriginalPrice) : undefined;
 
-    if (isEditing) {
-      // Edit existing product
-      const updated = products.map(prod => {
-        if (prod.id === isEditing) {
-          const finalStock = Number(formStock) || 0;
-          return {
-            ...prod,
-            name: formName,
-            code: formCode.toUpperCase(),
-            category: formCategory,
-            description: formDescription,
-            price: priceNum,
-            originalPrice: origPriceNum,
-            beadsUsed: beadArr,
-            colors: colorArr,
-            image: formImageBase64 || '',
-            isNew: formIsNew,
-            isBestSeller: formIsBestSeller,
-            isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
-            stock: finalStock,
-          };
-        }
-        return prod;
-      });
-      onUpdateProducts(updated);
-      setFormStatus(`Produk ${formName} (${formCode.toUpperCase()}) berhasil diperbarui!`);
-    } else {
-      // Add new product
-      const finalStock = Number(formStock) || 0;
-      const newProduct: Product = {
-        id: 'user_p_' + Date.now(),
-        name: formName,
-        code: formCode.toUpperCase(),
-        category: formCategory,
-        description: formDescription,
-        price: priceNum,
-        originalPrice: origPriceNum,
-        beadsUsed: beadArr,
-        colors: colorArr,
-        image: formImageBase64 || '',
-        isNew: formIsNew,
-        isBestSeller: formIsBestSeller,
-        isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
-        stock: finalStock,
-      };
-      onUpdateProducts([newProduct, ...products]);
-      setFormStatus(`Sukses mengupload produk baru: ${formName} (${formCode.toUpperCase()})`);
-    }
+    if (isSavingProduct) return;
+    setIsSavingProduct(true);
 
-    resetForm();
+    try {
+      if (isEditing) {
+        // Edit existing product
+        const updated = products.map(prod => {
+          if (prod.id === isEditing) {
+            const finalStock = Number(formStock) || 0;
+            return {
+              ...prod,
+              name: formName,
+              code: formCode.toUpperCase(),
+              category: formCategory,
+              description: formDescription,
+              price: priceNum,
+              originalPrice: origPriceNum,
+              beadsUsed: beadArr,
+              colors: colorArr,
+              image: formImageBase64 || '',
+              isNew: formIsNew,
+              isBestSeller: formIsBestSeller,
+              isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
+              stock: finalStock,
+            };
+          }
+          return prod;
+        });
+        await onUpdateProducts(updated);
+        setFormStatus(`Produk ${formName} (${formCode.toUpperCase()}) berhasil diperbarui!`);
+      } else {
+        // Add new product
+        const finalStock = Number(formStock) || 0;
+        const newProduct: Product = {
+          id: 'user_p_' + Date.now(),
+          name: formName,
+          code: formCode.toUpperCase(),
+          category: formCategory,
+          description: formDescription,
+          price: priceNum,
+          originalPrice: origPriceNum,
+          beadsUsed: beadArr,
+          colors: colorArr,
+          image: formImageBase64 || '',
+          isNew: formIsNew,
+          isBestSeller: formIsBestSeller,
+          isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
+          stock: finalStock,
+        };
+        await onUpdateProducts([newProduct, ...products]);
+        setFormStatus(`Sukses mengupload produk baru: ${formName} (${formCode.toUpperCase()})`);
+      }
+      resetForm();
+    } catch (err: any) {
+      console.error('Error saving product:', err);
+      alert('Gagal menyinkronkan ke database: ' + (err.message || err));
+    } finally {
+      setIsSavingProduct(false);
+    }
   };
 
-  const handleToggleProductSold = (id: string) => {
+  const handleToggleProductSold = async (id: string) => {
     const updated = products.map(p => {
       if (p.id === id) {
         const nextState = !p.isSoldOut;
@@ -467,18 +477,28 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       }
       return p;
     });
-    onUpdateProducts(updated);
-    const affected = products.find(p => p.id === id);
-    if (affected) {
-      setFormStatus(`Status produk "${affected.name}" cepat diubah menjadi: ${!affected.isSoldOut ? 'Sold Out' : 'Ready'}`);
+    try {
+      await onUpdateProducts(updated);
+      const affected = products.find(p => p.id === id);
+      if (affected) {
+        setFormStatus(`Status produk "${affected.name}" cepat diubah menjadi: ${!affected.isSoldOut ? 'Sold Out' : 'Ready'}`);
+      }
+    } catch (err: any) {
+      console.error('Error toggling sold state:', err);
+      setFormStatus(`Gagal mengubah status produk di database.`);
     }
   };
 
-  const handleDeleteProduct = (id: string, name: string) => {
+  const handleDeleteProduct = async (id: string, name: string) => {
     if (window.confirm(`Apakah Anda yakin ingin menghapus produk "${name}" dari katalog?`)) {
       const filtered = products.filter(p => p.id !== id);
-      onUpdateProducts(filtered);
-      setFormStatus(`Produk "${name}" sukses dihapus.`);
+      try {
+        await onUpdateProducts(filtered);
+        setFormStatus(`Produk "${name}" sukses dihapus.`);
+      } catch (err: any) {
+        console.error('Error deleting product:', err);
+        setFormStatus(`Gagal menghapus produk dari database.`);
+      }
     }
   };
 
@@ -1022,10 +1042,24 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               )}
               <button
                 type="submit"
-                className="brutalist-button-blue flex-1 py-3.5 rounded-2xl flex items-center justify-center gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3.5px_0px_#000000] transition-all cursor-pointer"
+                disabled={isSavingProduct}
+                className={`flex-1 py-3.5 rounded-2xl flex items-center justify-center gap-2 font-display font-black text-xs sm:text-sm shadow-[3px_3.5px_0px_#000000] transition-all cursor-pointer ${
+                  isSavingProduct 
+                    ? 'bg-stone-200 text-stone-500 border-2 border-stone-400 cursor-not-allowed shadow-none'
+                    : 'brutalist-button-blue shadow-[3px_3.5px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none'
+                }`}
               >
-                <Plus className="w-4 h-4 text-brand-dark" />
-                <span>{isEditing ? 'SIMPAN PERUBAHAN' : 'PUBLIKASIKAN KE KATALOG'}</span>
+                {isSavingProduct ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 animate-spin text-stone-500" />
+                    <span>MENYINKRONKAN...</span>
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-4 h-4 text-brand-dark" />
+                    <span>{isEditing ? 'SIMPAN PERUBAHAN' : 'PUBLIKASIKAN KE KATALOG'}</span>
+                  </>
+                )}
               </button>
             </div>
           </form>

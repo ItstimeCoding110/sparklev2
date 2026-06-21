@@ -77,7 +77,7 @@ export default function App() {
     }
   };
 
-  // Sync products and categories on mount
+  // Sync products and categories on mount & listen to real-time changes
   useEffect(() => {
     const loadInitialData = async () => {
       // Try to load products from Supabase
@@ -120,9 +120,84 @@ export default function App() {
     };
 
     loadInitialData();
+
+    // Subscribe to real-time changes in products table
+    const productsChannel = supabase
+      .channel('realtime-products')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'products' },
+        (payload) => {
+          console.log('Realtime product change detected:', payload);
+          setProducts((prevProducts) => {
+            let updatedProducts = [...prevProducts];
+            if (payload.eventType === 'INSERT') {
+              const newProd = mapDbToProduct(payload.new);
+              if (!updatedProducts.some(p => p.id === newProd.id)) {
+                updatedProducts = [newProd, ...updatedProducts];
+              }
+            } else if (payload.eventType === 'UPDATE') {
+              const updatedProd = mapDbToProduct(payload.new);
+              updatedProducts = updatedProducts.map(p => p.id === updatedProd.id ? updatedProd : p);
+            } else if (payload.eventType === 'DELETE') {
+              const deletedId = payload.old.id;
+              updatedProducts = updatedProducts.filter(p => p.id !== deletedId);
+            }
+            try {
+              localStorage.setItem('manikkita_products', JSON.stringify(updatedProducts));
+            } catch (e) {
+              console.warn('Failed to save products to localStorage:', e);
+            }
+            return updatedProducts;
+          });
+        }
+      )
+      .subscribe();
+
+    // Subscribe to real-time changes in categories table
+    const categoriesChannel = supabase
+      .channel('realtime-categories')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'categories' },
+        (payload) => {
+          console.log('Realtime category change detected:', payload);
+          setCategories((prevCategories) => {
+            let updatedCategories = [...prevCategories];
+            if (payload.eventType === 'INSERT') {
+              const newCat = payload.new.name;
+              if (!updatedCategories.includes(newCat)) {
+                updatedCategories.push(newCat);
+              }
+            } else if (payload.eventType === 'UPDATE') {
+              const oldCat = payload.old.name;
+              const newCat = payload.new.name;
+              updatedCategories = updatedCategories.map(c => c === oldCat ? newCat : c);
+            } else if (payload.eventType === 'DELETE') {
+              const deletedCat = payload.old.name;
+              updatedCategories = updatedCategories.filter(c => c !== deletedCat);
+            }
+            try {
+              localStorage.setItem('manikkita_categories', JSON.stringify(updatedCategories));
+            } catch (e) {
+              console.warn('Failed to save categories to localStorage:', e);
+            }
+            return updatedCategories;
+          });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(productsChannel);
+      supabase.removeChannel(categoriesChannel);
+    };
   }, []);
 
   const handleUpdateProducts = async (newProducts: Product[]) => {
+    // Keep reference to previous state to compare
+    const previousProducts = products;
+
     setProducts(newProducts);
     try {
       localStorage.setItem('manikkita_products', JSON.stringify(newProducts));
@@ -131,24 +206,51 @@ export default function App() {
     }
     
     try {
-      // 1. Dapatkan ID produk yang ada di Supabase saat ini
-      const { data: existing, error: getErr } = await supabase.from('products').select('id');
-      if (getErr) throw getErr;
-
-      const existingIds = (existing || []).map((p: any) => p.id);
-      const incomingIds = newProducts.map(p => p.id);
-
-      // 2. Hapus produk yang tidak ada di newProducts
-      const toDelete = existingIds.filter(id => !incomingIds.includes(id));
-      if (toDelete.length > 0) {
-        const { error: delErr } = await supabase.from('products').delete().in('id', toDelete);
+      // 1. Dapatkan produk yang dihapus (ada di previous, tapi tidak ada di newProducts)
+      const deleted = previousProducts.filter(old => !newProducts.some(p => p.id === old.id));
+      if (deleted.length > 0) {
+        const { error: delErr } = await supabase
+          .from('products')
+          .delete()
+          .in('id', deleted.map(p => p.id));
         if (delErr) throw delErr;
       }
 
-      // 3. Upsert produk baru
-      if (newProducts.length > 0) {
-        const rowsToUpsert = newProducts.map(mapProductToDb);
-        const { error: upsertErr } = await supabase.from('products').upsert(rowsToUpsert, { onConflict: 'id' });
+      // 2. Dapatkan produk yang ditambahkan (ada di newProducts, tapi tidak ada di previous)
+      const added = newProducts.filter(p => !previousProducts.some(old => old.id === p.id));
+      if (added.length > 0) {
+        const rowsToInsert = added.map(mapProductToDb);
+        const { error: insErr } = await supabase
+          .from('products')
+          .insert(rowsToInsert);
+        if (insErr) throw insErr;
+      }
+
+      // 3. Dapatkan produk yang dimodifikasi (ada di kedua daftar, tapi nilainya berubah)
+      const updated = newProducts.filter(p => {
+        const old = previousProducts.find(o => o.id === p.id);
+        if (!old) return false;
+        return (
+          old.name !== p.name ||
+          old.code !== p.code ||
+          old.category !== p.category ||
+          old.description !== p.description ||
+          old.price !== p.price ||
+          old.originalPrice !== p.originalPrice ||
+          old.image !== p.image ||
+          old.isNew !== p.isNew ||
+          old.isBestSeller !== p.isBestSeller ||
+          old.isSoldOut !== p.isSoldOut ||
+          old.stock !== p.stock ||
+          JSON.stringify(old.colors) !== JSON.stringify(p.colors) ||
+          JSON.stringify(old.beadsUsed) !== JSON.stringify(p.beadsUsed)
+        );
+      });
+      if (updated.length > 0) {
+        const rowsToUpsert = updated.map(mapProductToDb);
+        const { error: upsertErr } = await supabase
+          .from('products')
+          .upsert(rowsToUpsert, { onConflict: 'id' });
         if (upsertErr) throw upsertErr;
       }
 
@@ -156,11 +258,14 @@ export default function App() {
     } catch (err: any) {
       console.error('Sync products failed:', err);
       setToastMessage(`Gagal sinkronisasi ke Supabase: ${err.message || err}`);
+      throw err;
     }
     fetchSupabaseStatus();
   };
 
   const handleUpdateCategories = async (newCategories: string[]) => {
+    const previousCategories = categories;
+
     setCategories(newCategories);
     try {
       localStorage.setItem('manikkita_categories', JSON.stringify(newCategories));
@@ -169,30 +274,31 @@ export default function App() {
     }
     
     try {
-      // 1. Dapatkan nama kategori saat ini di Supabase
-      const { data: existing, error: getErr } = await supabase.from('categories').select('name');
-      if (getErr) throw getErr;
-
-      const existingNames = (existing || []).map((c: any) => c.name);
-
-      // 2. Hapus kategori yang sudah tidak ada
-      const toDelete = existingNames.filter(name => !newCategories.includes(name));
-      if (toDelete.length > 0) {
-        const { error: delErr } = await supabase.from('categories').delete().in('name', toDelete);
+      // 1. Dapatkan kategori yang dihapus
+      const deleted = previousCategories.filter(old => !newCategories.includes(old));
+      if (deleted.length > 0) {
+        const { error: delErr } = await supabase
+          .from('categories')
+          .delete()
+          .in('name', deleted);
         if (delErr) throw delErr;
       }
 
-      // 3. Upsert kategori baru
-      if (newCategories.length > 0) {
-        const rowsToUpsert = newCategories.map(name => ({ name }));
-        const { error: upsertErr } = await supabase.from('categories').upsert(rowsToUpsert, { onConflict: 'name' });
-        if (upsertErr) throw upsertErr;
+      // 2. Dapatkan kategori yang ditambahkan
+      const added = newCategories.filter(cat => !previousCategories.includes(cat));
+      if (added.length > 0) {
+        const rowsToInsert = added.map(name => ({ name }));
+        const { error: insErr } = await supabase
+          .from('categories')
+          .insert(rowsToInsert);
+        if (insErr) throw insErr;
       }
 
       setToastMessage('Kategori berhasil disinkronisasi ke database Supabase!');
     } catch (err: any) {
       console.error('Sync categories failed:', err);
       setToastMessage(`Gagal sinkronisasi kategori ke Supabase: ${err.message || err}`);
+      throw err;
     }
     fetchSupabaseStatus();
   };
