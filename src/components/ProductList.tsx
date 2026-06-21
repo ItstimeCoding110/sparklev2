@@ -11,9 +11,10 @@ interface ProductListProps {
   categoriesList: string[];
   onAddToCart: (product: Product) => void;
   isLoading?: boolean;
+  supabaseStatus?: any;
 }
 
-export const ProductList: React.FC<ProductListProps> = ({ products, categoriesList, onAddToCart, isLoading }) => {
+export const ProductList: React.FC<ProductListProps> = ({ products, categoriesList, onAddToCart, isLoading, supabaseStatus }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
   const [selectedDetailProduct, setSelectedDetailProduct] = useState<Product | null>(null);
@@ -90,6 +91,18 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
           ))}
         </div>
       </div>
+
+      {supabaseStatus && !supabaseStatus.connected && (
+        <div className="bg-brand-pink border-3 border-brand-dark p-4 rounded-2xl shadow-[3px_3px_0px_#000000] flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-brand-dark shrink-0 mt-0.5" />
+          <div>
+            <h4 className="font-display text-sm font-black text-brand-dark uppercase">Koneksi Database Supabase Bermasalah</h4>
+            <p className="text-xs font-mono text-stone-800 mt-1">
+              Pesan Kesalahan: {supabaseStatus.errorMsg || 'Gagal terhubung ke database. Katalog beralih ke mode offline menggunakan data cadangan.'}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Grid List Products */}
       {isLoading ? (
