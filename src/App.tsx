@@ -86,7 +86,11 @@ export default function App() {
         if (!prodErr && dbProds) {
           const mapped = dbProds.map(mapDbToProduct);
           setProducts(mapped);
-          localStorage.setItem('manikkita_products', JSON.stringify(mapped));
+          try {
+            localStorage.setItem('manikkita_products', JSON.stringify(mapped));
+          } catch (e) {
+            console.warn('Failed to save products to localStorage:', e);
+          }
         } else if (prodErr) {
           console.error('Error fetching products from Supabase:', prodErr.message);
         }
@@ -100,7 +104,11 @@ export default function App() {
         if (!catErr && dbCats) {
           const catsList = dbCats.map((c: any) => c.name);
           setCategories(catsList);
-          localStorage.setItem('manikkita_categories', JSON.stringify(catsList));
+          try {
+            localStorage.setItem('manikkita_categories', JSON.stringify(catsList));
+          } catch (e) {
+            console.warn('Failed to save categories to localStorage:', e);
+          }
         } else if (catErr) {
           console.error('Error fetching categories from Supabase:', catErr.message);
         }
@@ -116,7 +124,11 @@ export default function App() {
 
   const handleUpdateProducts = async (newProducts: Product[]) => {
     setProducts(newProducts);
-    localStorage.setItem('manikkita_products', JSON.stringify(newProducts));
+    try {
+      localStorage.setItem('manikkita_products', JSON.stringify(newProducts));
+    } catch (e) {
+      console.warn('Failed to save products to localStorage:', e);
+    }
     
     try {
       // 1. Dapatkan ID produk yang ada di Supabase saat ini
@@ -150,7 +162,11 @@ export default function App() {
 
   const handleUpdateCategories = async (newCategories: string[]) => {
     setCategories(newCategories);
-    localStorage.setItem('manikkita_categories', JSON.stringify(newCategories));
+    try {
+      localStorage.setItem('manikkita_categories', JSON.stringify(newCategories));
+    } catch (e) {
+      console.warn('Failed to save categories to localStorage:', e);
+    }
     
     try {
       // 1. Dapatkan nama kategori saat ini di Supabase
@@ -183,12 +199,20 @@ export default function App() {
 
   // Sync products to localStorage (secondary hook)
   useEffect(() => {
-    localStorage.setItem('manikkita_products', JSON.stringify(products));
+    try {
+      localStorage.setItem('manikkita_products', JSON.stringify(products));
+    } catch (e) {
+      console.warn('Failed to save products to localStorage:', e);
+    }
   }, [products]);
 
   // Sync categories to localStorage (secondary hook)
   useEffect(() => {
-    localStorage.setItem('manikkita_categories', JSON.stringify(categories));
+    try {
+      localStorage.setItem('manikkita_categories', JSON.stringify(categories));
+    } catch (e) {
+      console.warn('Failed to save categories to localStorage:', e);
+    }
   }, [categories]);
 
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
@@ -218,7 +242,11 @@ export default function App() {
 
   // Sync cart items to localStorage so state persists beautifully
   useEffect(() => {
-    localStorage.setItem('manikkita_cart', JSON.stringify(cartItems));
+    try {
+      localStorage.setItem('manikkita_cart', JSON.stringify(cartItems));
+    } catch (e) {
+      console.warn('Failed to save cart to localStorage:', e);
+    }
   }, [cartItems]);
 
   const cartItemsCount = useMemo(() => {
