@@ -32,9 +32,9 @@ export default function App() {
   const [products, setProducts] = useState<Product[]>(() => {
     try {
       const saved = localStorage.getItem('manikkita_products');
-      return saved ? JSON.parse(saved) : PRODUCTS;
+      return saved ? JSON.parse(saved) : [];
     } catch {
-      return PRODUCTS;
+      return [];
     }
   });
 
@@ -49,9 +49,9 @@ export default function App() {
   const [categories, setCategories] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('manikkita_categories');
-      return saved ? JSON.parse(saved) : ['Gelang', 'Cincin'];
+      return saved ? JSON.parse(saved) : [];
     } catch {
-      return ['Gelang', 'Cincin'];
+      return [];
     }
   });
 
@@ -104,9 +104,38 @@ export default function App() {
     let categoriesChannel: any = null;
 
     const loadInitialData = async () => {
+      // Helper function to fetch with retries (up to 3 times, with 1 second delay)
+      const fetchProductsWithRetry = async (retries = 3, delay = 1000) => {
+        for (let i = 0; i < retries; i++) {
+          try {
+            const { data, error } = await supabase.from('products').select('*');
+            if (!error && data) return { data, error: null };
+            if (i === retries - 1) return { data: null, error };
+          } catch (err) {
+            if (i === retries - 1) return { data: null, error: err };
+          }
+          await new Promise((res) => setTimeout(res, delay));
+        }
+        return { data: null, error: new Error('Failed after retries') };
+      };
+
+      const fetchCategoriesWithRetry = async (retries = 3, delay = 1000) => {
+        for (let i = 0; i < retries; i++) {
+          try {
+            const { data, error } = await supabase.from('categories').select('name');
+            if (!error && data) return { data, error: null };
+            if (i === retries - 1) return { data: null, error };
+          } catch (err) {
+            if (i === retries - 1) return { data: null, error: err };
+          }
+          await new Promise((res) => setTimeout(res, delay));
+        }
+        return { data: null, error: new Error('Failed after retries') };
+      };
+
       // Try to load products from Supabase
       try {
-        const { data: dbProds, error: prodErr } = await supabase.from('products').select('*');
+        const { data: dbProds, error: prodErr } = await fetchProductsWithRetry();
         if (!prodErr && dbProds) {
           const mapped = dbProds.map(mapDbToProduct);
           setProducts(mapped);
@@ -116,7 +145,7 @@ export default function App() {
             console.warn('Failed to save products to localStorage:', e);
           }
         } else if (prodErr) {
-          console.error('Error fetching products from Supabase:', prodErr.message);
+          console.error('Error fetching products from Supabase after retries:', prodErr.message || prodErr);
         }
       } catch (err) {
         console.error('Error connecting to Supabase for products:', err);
@@ -124,7 +153,7 @@ export default function App() {
 
       // Try to load categories from Supabase
       try {
-        const { data: dbCats, error: catErr } = await supabase.from('categories').select('name');
+        const { data: dbCats, error: catErr } = await fetchCategoriesWithRetry();
         if (!catErr && dbCats) {
           const catsList = dbCats.map((c: any) => c.name);
           setCategories(catsList);
@@ -134,7 +163,7 @@ export default function App() {
             console.warn('Failed to save categories to localStorage:', e);
           }
         } else if (catErr) {
-          console.error('Error fetching categories from Supabase:', catErr.message);
+          console.error('Error fetching categories from Supabase after retries:', catErr.message || catErr);
         }
       } catch (err) {
         console.error('Error connecting to Supabase for categories:', err);
