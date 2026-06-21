@@ -110,11 +110,11 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#000000] animate-pulse space-y-3 sm:space-y-4 min-h-[300px]"
+              className="bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#000000] space-y-3 sm:space-y-4 min-h-[300px]"
             >
               {/* Card visual skeleton */}
-              <div className="w-full aspect-square bg-stone-100 border-2 border-brand-dark rounded-xl sm:rounded-2xl flex items-center justify-center p-3 text-center">
-                <span className="text-[10px] sm:text-xs font-mono font-bold text-stone-500 uppercase tracking-widest leading-relaxed">
+              <div className="w-full aspect-square shimmer-bg border-2 border-brand-dark rounded-xl sm:rounded-2xl flex items-center justify-center p-3 text-center">
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-stone-550 uppercase tracking-widest leading-relaxed">
                   sedang memuat data<br/>harap ditunggu
                 </span>
               </div>
@@ -122,17 +122,17 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
               {/* Product Info skeleton */}
               <div className="space-y-2 mt-2">
                 {/* Category tag */}
-                <div className="h-3 bg-stone-200 rounded w-1/4"></div>
+                <div className="h-3 shimmer-bg rounded w-1/4"></div>
                 {/* Name */}
-                <div className="h-5 bg-stone-200 border-2 border-brand-dark rounded-md w-3/4"></div>
+                <div className="h-5 shimmer-bg border-2 border-brand-dark rounded-md w-3/4"></div>
                 {/* Description */}
-                <div className="h-3 bg-stone-150 rounded w-5/6"></div>
+                <div className="h-3 shimmer-bg rounded w-5/6"></div>
               </div>
               
               {/* Price & Buy Button skeleton */}
               <div className="space-y-2 mt-4">
-                <div className="h-4 bg-stone-200 rounded w-1/3"></div>
-                <div className="h-9 sm:h-11 bg-stone-200 border-2 border-brand-dark rounded-xl w-full"></div>
+                <div className="h-4 shimmer-bg rounded w-1/3"></div>
+                <div className="h-9 sm:h-11 shimmer-bg border-2 border-brand-dark rounded-xl w-full"></div>
               </div>
             </div>
           ))}
