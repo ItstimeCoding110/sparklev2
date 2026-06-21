@@ -10,9 +10,10 @@ interface ProductListProps {
   products: Product[];
   categoriesList: string[];
   onAddToCart: (product: Product) => void;
+  isLoading?: boolean;
 }
 
-export const ProductList: React.FC<ProductListProps> = ({ products, categoriesList, onAddToCart }) => {
+export const ProductList: React.FC<ProductListProps> = ({ products, categoriesList, onAddToCart, isLoading }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
   const [selectedDetailProduct, setSelectedDetailProduct] = useState<Product | null>(null);
@@ -91,7 +92,35 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
       </div>
 
       {/* Grid List Products */}
-      {filteredProducts.length === 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#000000] animate-pulse space-y-3 sm:space-y-4 min-h-[300px]"
+            >
+              {/* Card visual skeleton */}
+              <div className="w-full aspect-square bg-stone-100 border-2 border-brand-dark rounded-xl sm:rounded-2xl"></div>
+              
+              {/* Product Info skeleton */}
+              <div className="space-y-2 mt-2">
+                {/* Category tag */}
+                <div className="h-3 bg-stone-200 rounded w-1/4"></div>
+                {/* Name */}
+                <div className="h-5 bg-stone-200 border-2 border-brand-dark rounded-md w-3/4"></div>
+                {/* Description */}
+                <div className="h-3 bg-stone-150 rounded w-5/6"></div>
+              </div>
+              
+              {/* Price & Buy Button skeleton */}
+              <div className="space-y-2 mt-4">
+                <div className="h-4 bg-stone-200 rounded w-1/3"></div>
+                <div className="h-9 sm:h-11 bg-stone-200 border-2 border-brand-dark rounded-xl w-full"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : filteredProducts.length === 0 ? (
         <div className="text-center py-12 bg-white border-3 border-dashed border-brand-dark rounded-3xl p-6">
           <h3 className="font-display text-lg sm:text-xl text-brand-dark font-black">Waduh, Gak Ketemu Bestie!</h3>
           <p className="text-xs text-stone-500 font-mono mt-1 max-w-[280px] mx-auto">

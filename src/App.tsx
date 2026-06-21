@@ -25,6 +25,14 @@ export default function App() {
     }
   });
 
+  const [isLoadingData, setIsLoadingData] = useState<boolean>(() => {
+    try {
+      return !localStorage.getItem('manikkita_products');
+    } catch {
+      return true;
+    }
+  });
+
   const [categories, setCategories] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('manikkita_categories');
@@ -120,6 +128,7 @@ export default function App() {
       }
 
       fetchSupabaseStatus();
+      setIsLoadingData(false);
 
       // Subscribe to real-time changes in products table (only after initial select finishes)
       productsChannel = supabase
@@ -522,6 +531,7 @@ export default function App() {
               products={products}
               categoriesList={categories}
               onAddToCart={handleAddToCart}
+              isLoading={isLoadingData}
             />
 
             {/* Alamat/Kurir Section */}
