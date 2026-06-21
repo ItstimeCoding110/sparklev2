@@ -186,19 +186,61 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormStatus('Anda berhasil logout dari Panel Admin.');
   };
 
-  // Convert uploaded image file to string representation (Base64)
+  // Compress image helper using canvas
+  const compressImage = (
+    file: File,
+    maxWidth: number,
+    maxHeight: number,
+    quality: number,
+    callback: (base64: string) => void
+  ) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+          callback(compressedBase64);
+        } else {
+          callback(event.target?.result as string);
+        }
+      };
+      img.src = event.target?.result as string;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Convert uploaded image file to string representation (Base64) with compression
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert('File gambar terlalu besar! Harap gunakan file di bawah 2MB.');
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File gambar terlalu besar! Harap gunakan file di bawah 5MB.');
         return;
       }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormImageBase64(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      compressImage(file, 800, 800, 0.7, (base64) => {
+        setFormImageBase64(base64);
+      });
     }
   };
 
