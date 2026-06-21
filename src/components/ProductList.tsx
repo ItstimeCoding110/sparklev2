@@ -178,7 +178,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                     <h3 className="font-display text-xs sm:text-base md:text-lg text-brand-dark font-black tracking-tight leading-tight group-hover:text-brand-pink transition-colors line-clamp-1 sm:line-clamp-2">
                       {product.name}{' '}
                       <span className="font-mono text-[9px] sm:text-xs font-bold text-stone-500">
-                        ({product.code.toLowerCase()})
+                        ({(product.code || '').toLowerCase()})
                       </span>
                     </h3>
                     

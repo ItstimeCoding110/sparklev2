@@ -380,7 +380,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
             originalPrice: origPriceNum,
             beadsUsed: beadArr,
             colors: colorArr,
-            image: formImageBase64 || undefined,
+            image: formImageBase64 || '',
             isNew: formIsNew,
             isBestSeller: formIsBestSeller,
             isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
@@ -404,7 +404,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         originalPrice: origPriceNum,
         beadsUsed: beadArr,
         colors: colorArr,
-        image: formImageBase64 || undefined,
+        image: formImageBase64 || '',
         isNew: formIsNew,
         isBestSeller: formIsBestSeller,
         isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
@@ -1159,7 +1159,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
                       <div>
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <span className="font-mono text-[9px] font-bold text-brand-pink uppercase tracking-wider">
-                            ({p.code.toUpperCase()})
+                            ({(p.code || '').toUpperCase()})
                           </span>
                           <span className="font-mono bg-stone-100 text-[8px] font-bold text-stone-600 px-1.5 border py-0.5 rounded">
                             {p.category}

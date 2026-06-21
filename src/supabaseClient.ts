@@ -45,19 +45,37 @@ ALTER TABLE categories DISABLE ROW LEVEL SECURITY;
 ALTER TABLE products DISABLE ROW LEVEL SECURITY;
 `;
 
+// Helper to safely parse array from DB (JSONB, raw JSON string, or comma-separated string)
+function safeParseArray(val: any): string[] {
+  if (Array.isArray(val)) return val;
+  if (typeof val === 'string') {
+    const trimmed = val.trim();
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {
+        // Fall through to plain comma-split
+      }
+    }
+    return val.split(',').map(s => s.trim()).filter(Boolean);
+  }
+  return [];
+}
+
 // Helper: Map DB product to Frontend standard
 export function mapDbToProduct(dbRow: any): Product {
   return {
     id: dbRow.id,
     name: dbRow.name,
-    code: dbRow.code,
+    code: dbRow.code || '',
     description: dbRow.description || '',
     price: dbRow.price,
     originalPrice: dbRow.original_price || undefined,
     image: dbRow.image || '',
     category: dbRow.category,
-    colors: Array.isArray(dbRow.colors) ? dbRow.colors : (typeof dbRow.colors === 'string' ? JSON.parse(dbRow.colors) : dbRow.colors || []),
-    beadsUsed: Array.isArray(dbRow.beads_used) ? dbRow.beads_used : (typeof dbRow.beads_used === 'string' ? JSON.parse(dbRow.beads_used) : dbRow.beads_used || []),
+    colors: safeParseArray(dbRow.colors),
+    beadsUsed: safeParseArray(dbRow.beads_used),
     isBestSeller: !!dbRow.is_best_seller,
     isNew: !!dbRow.is_new,
     isSoldOut: !!dbRow.is_sold_out,

@@ -120,7 +120,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <h2 className="font-display font-black text-lg sm:text-xl md:text-2xl text-brand-dark leading-tight tracking-tight pt-0.5">
                 {product.name}{' '}
                 <span className="inline-block font-mono text-xs sm:text-sm font-black text-brand-pink italic">
-                  ({product.code.toLowerCase()})
+                  ({(product.code || '').toLowerCase()})
                 </span>
               </h2>
             </div>
