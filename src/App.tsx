@@ -79,6 +79,9 @@ export default function App() {
 
   // Sync products and categories on mount & listen to real-time changes
   useEffect(() => {
+    let productsChannel: any = null;
+    let categoriesChannel: any = null;
+
     const loadInitialData = async () => {
       // Try to load products from Supabase
       try {
@@ -117,80 +120,111 @@ export default function App() {
       }
 
       fetchSupabaseStatus();
+
+      // Subscribe to real-time changes in products table (only after initial select finishes)
+      productsChannel = supabase
+        .channel('realtime-products')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'products' },
+          (payload) => {
+            console.log('Realtime product change detected:', payload);
+            
+            // Defensive check: if payload.new is empty or lacks critical fields, ignore it
+            if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
+              const row = payload.new;
+              if (!row || !row.id || !row.name) {
+                console.warn('Realtime payload new is missing or incomplete, skipping state update.', payload);
+                return;
+              }
+            } else if (payload.eventType === 'DELETE') {
+              const row = payload.old;
+              if (!row || !row.id) {
+                console.warn('Realtime payload old is missing or incomplete, skipping state delete.', payload);
+                return;
+              }
+            }
+
+            setProducts((prevProducts) => {
+              let updatedProducts = [...prevProducts];
+              if (payload.eventType === 'INSERT') {
+                const newProd = mapDbToProduct(payload.new);
+                if (!updatedProducts.some(p => p.id === newProd.id)) {
+                  updatedProducts = [newProd, ...updatedProducts];
+                }
+              } else if (payload.eventType === 'UPDATE') {
+                const updatedProd = mapDbToProduct(payload.new);
+                updatedProducts = updatedProducts.map(p => p.id === updatedProd.id ? updatedProd : p);
+              } else if (payload.eventType === 'DELETE') {
+                const deletedId = payload.old.id;
+                updatedProducts = updatedProducts.filter(p => p.id !== deletedId);
+              }
+              try {
+                localStorage.setItem('manikkita_products', JSON.stringify(updatedProducts));
+              } catch (e) {
+                console.warn('Failed to save products to localStorage:', e);
+              }
+              return updatedProducts;
+            });
+          }
+        )
+        .subscribe();
+
+      // Subscribe to real-time changes in categories table
+      categoriesChannel = supabase
+        .channel('realtime-categories')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'categories' },
+          (payload) => {
+            console.log('Realtime category change detected:', payload);
+            
+            if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
+              const row = payload.new;
+              if (!row || !row.name) {
+                console.warn('Realtime category payload new is missing or incomplete, skipping.', payload);
+                return;
+              }
+            } else if (payload.eventType === 'DELETE') {
+              const row = payload.old;
+              if (!row || !row.name) {
+                console.warn('Realtime category payload old is missing or incomplete, skipping.', payload);
+                return;
+              }
+            }
+
+            setCategories((prevCategories) => {
+              let updatedCategories = [...prevCategories];
+              if (payload.eventType === 'INSERT') {
+                const newCat = payload.new.name;
+                if (!updatedCategories.includes(newCat)) {
+                  updatedCategories.push(newCat);
+                }
+              } else if (payload.eventType === 'UPDATE') {
+                const oldCat = payload.old.name;
+                const newCat = payload.new.name;
+                updatedCategories = updatedCategories.map(c => c === oldCat ? newCat : c);
+              } else if (payload.eventType === 'DELETE') {
+                const deletedCat = payload.old.name;
+                updatedCategories = updatedCategories.filter(c => c !== deletedCat);
+              }
+              try {
+                localStorage.setItem('manikkita_categories', JSON.stringify(updatedCategories));
+              } catch (e) {
+                console.warn('Failed to save categories to localStorage:', e);
+              }
+              return updatedCategories;
+            });
+          }
+        )
+        .subscribe();
     };
 
     loadInitialData();
 
-    // Subscribe to real-time changes in products table
-    const productsChannel = supabase
-      .channel('realtime-products')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'products' },
-        (payload) => {
-          console.log('Realtime product change detected:', payload);
-          setProducts((prevProducts) => {
-            let updatedProducts = [...prevProducts];
-            if (payload.eventType === 'INSERT') {
-              const newProd = mapDbToProduct(payload.new);
-              if (!updatedProducts.some(p => p.id === newProd.id)) {
-                updatedProducts = [newProd, ...updatedProducts];
-              }
-            } else if (payload.eventType === 'UPDATE') {
-              const updatedProd = mapDbToProduct(payload.new);
-              updatedProducts = updatedProducts.map(p => p.id === updatedProd.id ? updatedProd : p);
-            } else if (payload.eventType === 'DELETE') {
-              const deletedId = payload.old.id;
-              updatedProducts = updatedProducts.filter(p => p.id !== deletedId);
-            }
-            try {
-              localStorage.setItem('manikkita_products', JSON.stringify(updatedProducts));
-            } catch (e) {
-              console.warn('Failed to save products to localStorage:', e);
-            }
-            return updatedProducts;
-          });
-        }
-      )
-      .subscribe();
-
-    // Subscribe to real-time changes in categories table
-    const categoriesChannel = supabase
-      .channel('realtime-categories')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'categories' },
-        (payload) => {
-          console.log('Realtime category change detected:', payload);
-          setCategories((prevCategories) => {
-            let updatedCategories = [...prevCategories];
-            if (payload.eventType === 'INSERT') {
-              const newCat = payload.new.name;
-              if (!updatedCategories.includes(newCat)) {
-                updatedCategories.push(newCat);
-              }
-            } else if (payload.eventType === 'UPDATE') {
-              const oldCat = payload.old.name;
-              const newCat = payload.new.name;
-              updatedCategories = updatedCategories.map(c => c === oldCat ? newCat : c);
-            } else if (payload.eventType === 'DELETE') {
-              const deletedCat = payload.old.name;
-              updatedCategories = updatedCategories.filter(c => c !== deletedCat);
-            }
-            try {
-              localStorage.setItem('manikkita_categories', JSON.stringify(updatedCategories));
-            } catch (e) {
-              console.warn('Failed to save categories to localStorage:', e);
-            }
-            return updatedCategories;
-          });
-        }
-      )
-      .subscribe();
-
     return () => {
-      supabase.removeChannel(productsChannel);
-      supabase.removeChannel(categoriesChannel);
+      if (productsChannel) supabase.removeChannel(productsChannel);
+      if (categoriesChannel) supabase.removeChannel(categoriesChannel);
     };
   }, []);
 
