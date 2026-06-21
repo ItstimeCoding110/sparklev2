@@ -100,7 +100,11 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
               className="bg-white border-3 border-brand-dark rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-5 flex flex-col justify-between shadow-[3px_3px_0px_#000000] animate-pulse space-y-3 sm:space-y-4 min-h-[300px]"
             >
               {/* Card visual skeleton */}
-              <div className="w-full aspect-square bg-stone-100 border-2 border-brand-dark rounded-xl sm:rounded-2xl"></div>
+              <div className="w-full aspect-square bg-stone-100 border-2 border-brand-dark rounded-xl sm:rounded-2xl flex items-center justify-center p-3 text-center">
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-stone-500 uppercase tracking-widest leading-relaxed">
+                  sedang memuat data<br/>harap ditunggu
+                </span>
+              </div>
               
               {/* Product Info skeleton */}
               <div className="space-y-2 mt-2">
