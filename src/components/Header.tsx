@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, Heart, Sparkles, HelpCircle, Info } from 'lucide-react';
+import { ShoppingBag, ShoppingCart, Heart, Sparkles, HelpCircle, Info } from 'lucide-react';
 import { SHOP_INFO } from '../data';
 import { Logo } from './Logo';
 
@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-2 border-2.5 border-brand-dark bg-brand-blue text-brand-dark px-4 py-2.5 rounded-xl shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000000] active:translate-y-0 active:shadow-[1px_1px_0px_#000000] transition-all cursor-pointer select-none"
             id="header-cart-button"
           >
-            <ShoppingBag className="w-5 h-5 text-brand-dark" />
+            <ShoppingCart className="w-5 h-5 text-brand-dark" />
             <span className="font-display font-bold text-sm hidden sm:inline text-brand-dark">
               Keranjang
             </span>

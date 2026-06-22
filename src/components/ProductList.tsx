@@ -22,11 +22,12 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
   // Filter categories dynamically passed from App.tsx
   const categories = useMemo(() => ['Semua', ...(categoriesList || ['Gelang', 'Cincin'])], [categoriesList]);
 
-  // Compute filtered products list and place sold out at the bottom
+  // Compute filtered products list and place sold out at the bottom, sorted by product code
   const filteredProducts = useMemo(() => {
     const list = products.filter((product) => {
       const matchSearch =
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (product.code || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
         (product.description || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
         (product.beadsUsed || []).some((bead) => bead.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -36,11 +37,15 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
       return matchSearch && matchCategory;
     });
 
-    // Sort: Ready items (isSoldOut === false or undefined) go first, Sold out goes last
+    // Sort: Ready items (isSoldOut === false or undefined) go first, Sold out goes last.
+    // Within each group, sort by product code naturally (alphabetical + numerical).
     return [...list].sort((a, b) => {
       const aSold = a.isSoldOut ? 1 : 0;
       const bSold = b.isSoldOut ? 1 : 0;
-      return aSold - bSold;
+      if (aSold !== bSold) {
+        return aSold - bSold;
+      }
+      return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
     });
   }, [products, searchQuery, selectedCategory]);
 
@@ -221,12 +226,14 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
                       </span>
                     </div>
 
-                    <h3 className="font-display text-xs sm:text-base md:text-lg text-brand-dark font-black tracking-tight leading-tight group-hover:text-brand-pink transition-colors line-clamp-1 sm:line-clamp-2">
-                      {product.name}{' '}
-                      <span className="font-mono text-[9px] sm:text-xs font-bold text-stone-500">
-                        ({(product.code || '').toLowerCase()})
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-display text-xs sm:text-base md:text-lg text-brand-dark font-black tracking-tight leading-tight group-hover:text-brand-pink transition-colors line-clamp-2 flex-1">
+                        {product.name}
+                      </h3>
+                      <span className="font-mono text-[9px] sm:text-xs font-black text-white bg-brand-dark px-1.5 py-0.5 rounded border border-brand-dark shadow-[1.5px_1.5px_0px_#ff6584] uppercase shrink-0">
+                        {product.code}
                       </span>
-                    </h3>
+                    </div>
                     
                     <p className="text-[10px] sm:text-xs text-stone-600 line-clamp-2 sm:line-clamp-3 font-sans leading-tight sm:leading-relaxed">
                       {product.description}

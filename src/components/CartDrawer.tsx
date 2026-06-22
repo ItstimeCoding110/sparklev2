@@ -1,6 +1,6 @@
 import React from 'react';
 import { CartItem } from '../types';
-import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, Box, Sparkles } from 'lucide-react';
+import { X, Trash2, Plus, Minus, ShoppingCart, ArrowRight, Box, Sparkles } from 'lucide-react';
 import { BraceletVisualizer } from './BraceletVisualizer';
 
 interface CartDrawerProps {
@@ -35,7 +35,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         {/* Header Drawer Banner */}
         <div className="bg-brand-pink text-brand-dark p-4 border-b-4 border-brand-dark flex justify-between items-center select-none">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-5.5 h-5.5 text-brand-dark" />
+            <ShoppingCart className="w-5.5 h-5.5 text-brand-dark" />
             <div>
               <h3 className="font-display font-black text-xl leading-none">
                 KERANJANG BELANJA
@@ -59,7 +59,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         <div className="flex-1 p-5 overflow-y-auto space-y-4 select-none bg-stone-50/50">
           {cartItems.length === 0 ? (
             <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
-              <ShoppingBag className="w-14 h-14 text-stone-400 mx-auto animate-bounce mb-1" />
+              <ShoppingCart className="w-14 h-14 text-stone-400 mx-auto animate-bounce mb-1" />
               <h4 className="font-display text-lg text-brand-dark leading-tight">Keranjang Kosong Melompong!</h4>
               <p className="text-xs text-stone-500 font-mono max-w-[240px]">
                 Waduh bestie, buruan isi dengan gelang atau cincin manik impianmu biar tangan makin estetik!
