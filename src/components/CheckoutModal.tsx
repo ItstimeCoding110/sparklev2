@@ -108,6 +108,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           <button
             onClick={onClose}
             className="p-1 px-2.5 bg-white hover:bg-rose-100 border-2 border-brand-dark rounded-xl transition-all cursor-pointer font-bold text-xs shadow-[2px_2px_0px_#000000] active:translate-y-0.5"
+            aria-label="Tutup form checkout"
           >
             <X className="w-5.5 h-5.5 text-brand-dark" />
           </button>

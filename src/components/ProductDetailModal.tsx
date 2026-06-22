@@ -45,6 +45,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <button
           onClick={onClose}
           className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-20 bg-brand-pink p-1.5 sm:p-2 border-2 border-brand-dark rounded-xl text-brand-dark hover:bg-brand-pink/80 transition-all cursor-pointer shadow-[1.5px_1.5px_0px_#000000] sm:shadow-[2px_2px_0px_#000000] active:translate-y-0.5 active:shadow-none"
+          aria-label="Tutup detail produk"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>

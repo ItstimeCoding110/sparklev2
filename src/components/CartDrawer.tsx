@@ -124,6 +124,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                           onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
                           className="p-1 hover:bg-stone-200 rounded cursor-pointer"
                           disabled={item.quantity <= 1}
+                          aria-label="Kurangi jumlah"
                         >
                           <Minus className="w-3 h-3 text-brand-dark" />
                         </button>
@@ -135,6 +136,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                           className="p-1 hover:bg-stone-200 rounded cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                           disabled={item.quantity >= (p.stock !== undefined ? p.stock : 10)}
                           title={item.quantity >= (p.stock !== undefined ? p.stock : 10) ? "Maksimal stok tercapai" : "Tambah jumlah"}
+                          aria-label="Tambah jumlah"
                         >
                           <Plus className="w-3 h-3 text-brand-dark" />
                         </button>
@@ -147,6 +149,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     onClick={() => onRemoveItem(item.id)}
                     className="absolute top-2.5 right-2.5 p-1 bg-stone-50 hover:bg-rose-100 hover:text-rose-500 text-stone-400 border border-brand-dark rounded-lg transition-colors cursor-pointer"
                     title="Buang dari keranjang"
+                    aria-label="Buang dari keranjang"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
