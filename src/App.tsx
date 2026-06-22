@@ -133,9 +133,16 @@ export default function App() {
         return { data: null, error: new Error('Failed after retries') };
       };
 
-      // Try to load products from Supabase
+      // Load products, categories, and connection status in parallel using Promise.all
       try {
-        const { data: dbProds, error: prodErr } = await fetchProductsWithRetry();
+        const [prodResult, catResult] = await Promise.all([
+          fetchProductsWithRetry(),
+          fetchCategoriesWithRetry(),
+          fetchSupabaseStatus()
+        ]);
+
+        const dbProds = prodResult.data;
+        const prodErr = prodResult.error;
         if (!prodErr && dbProds) {
           const mapped = dbProds.map(mapDbToProduct);
           setProducts(mapped);
@@ -147,13 +154,9 @@ export default function App() {
         } else if (prodErr) {
           console.error('Error fetching products from Supabase after retries:', prodErr.message || prodErr);
         }
-      } catch (err) {
-        console.error('Error connecting to Supabase for products:', err);
-      }
 
-      // Try to load categories from Supabase
-      try {
-        const { data: dbCats, error: catErr } = await fetchCategoriesWithRetry();
+        const dbCats = catResult.data;
+        const catErr = catResult.error;
         if (!catErr && dbCats) {
           const catsList = dbCats.map((c: any) => c.name);
           setCategories(catsList);
@@ -166,10 +169,9 @@ export default function App() {
           console.error('Error fetching categories from Supabase after retries:', catErr.message || catErr);
         }
       } catch (err) {
-        console.error('Error connecting to Supabase for categories:', err);
+        console.error('Error loading initial data from Supabase in parallel:', err);
       }
 
-      fetchSupabaseStatus();
       setIsLoadingData(false);
 
       // Subscribe to real-time changes in products table (only after initial select finishes)
