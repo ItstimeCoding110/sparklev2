@@ -84,16 +84,21 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
             </div>
 
             {/* Sort Selector */}
-            <div className="relative shrink-0">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as 'code' | 'name')}
-                className="appearance-none bg-stone-50 border-2 border-brand-dark rounded-xl pl-3.5 pr-10 py-2.5 text-xs text-brand-dark font-mono focus:outline-none focus:ring-2 focus:ring-brand-purple cursor-pointer w-full sm:w-auto"
-              >
-                <option value="code">Kode Produk</option>
-                <option value="name">Nama Produk (A-Z)</option>
-              </select>
-              <ChevronDown className="w-4 h-4 text-brand-dark absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
+              <span className="text-[10px] sm:text-xs font-mono font-black text-brand-dark uppercase whitespace-nowrap">
+                Sortir:
+              </span>
+              <div className="relative flex-1 sm:flex-none">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as 'code' | 'name')}
+                  className="appearance-none bg-stone-50 border-2 border-brand-dark rounded-xl pl-3.5 pr-10 py-2.5 text-xs text-brand-dark font-mono focus:outline-none focus:ring-2 focus:ring-brand-purple cursor-pointer w-full sm:w-36"
+                >
+                  <option value="code">Kode Produk</option>
+                  <option value="name">Nama (A-Z)</option>
+                </select>
+                <ChevronDown className="w-4 h-4 text-brand-dark absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
