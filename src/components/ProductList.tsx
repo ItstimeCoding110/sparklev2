@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Product } from '../types';
 import { PRODUCTS } from '../data';
 import { BraceletVisualizer } from './BraceletVisualizer';
-import { ShoppingCart, Search, Compass, Heart, Sparkles, Flame, Zap, Hourglass, XCircle, AlertCircle } from 'lucide-react';
+import { ShoppingCart, Search, Compass, Heart, Sparkles, Flame, Zap, Hourglass, XCircle, AlertCircle, ChevronDown } from 'lucide-react';
 import { ProductDetailModal } from './ProductDetailModal';
 import { AnimatePresence } from 'motion/react';
 
@@ -18,11 +18,12 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
   const [selectedDetailProduct, setSelectedDetailProduct] = useState<Product | null>(null);
+  const [sortBy, setSortBy] = useState<'code' | 'name'>('code');
 
   // Filter categories dynamically passed from App.tsx
   const categories = useMemo(() => ['Semua', ...(categoriesList || ['Gelang', 'Cincin'])], [categoriesList]);
 
-  // Compute filtered products list and place sold out at the bottom, sorted by product code
+  // Compute filtered products list and place sold out at the bottom, sorted by chosen criteria
   const filteredProducts = useMemo(() => {
     const list = products.filter((product) => {
       const matchSearch =
@@ -38,16 +39,20 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
     });
 
     // Sort: Ready items (isSoldOut === false or undefined) go first, Sold out goes last.
-    // Within each group, sort by product code naturally (alphabetical + numerical).
+    // Within each group, sort by code or name based on selection.
     return [...list].sort((a, b) => {
       const aSold = a.isSoldOut ? 1 : 0;
       const bSold = b.isSoldOut ? 1 : 0;
       if (aSold !== bSold) {
         return aSold - bSold;
       }
-      return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
+      if (sortBy === 'code') {
+        return (a.code || '').localeCompare(b.code || '', undefined, { numeric: true, sensitivity: 'base' });
+      } else {
+        return (a.name || '').localeCompare(b.name || '', undefined, { sensitivity: 'base' });
+      }
     });
-  }, [products, searchQuery, selectedCategory]);
+  }, [products, searchQuery, selectedCategory, sortBy]);
 
   return (
     <div className="space-y-8 select-none" id="katalog-produk-section">
@@ -64,16 +69,32 @@ export const ProductList: React.FC<ProductListProps> = ({ products, categoriesLi
             </p>
           </div>
           
-          {/* Live search input */}
-          <div className="relative w-full md:max-w-xs">
-            <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari aksesoris, warna, manik..."
-              className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl pl-10 pr-4 py-2.5 text-xs text-brand-dark font-mono focus:outline-none focus:ring-2 focus:ring-brand-purple"
-            />
+          {/* Search & Sort Container */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:max-w-md shrink-0">
+            {/* Live search input */}
+            <div className="relative flex-1">
+              <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Cari kode produk favoritmu"
+                className="w-full bg-stone-50 border-2 border-brand-dark rounded-xl pl-10 pr-4 py-2.5 text-xs text-brand-dark font-mono focus:outline-none focus:ring-2 focus:ring-brand-purple"
+              />
+            </div>
+
+            {/* Sort Selector */}
+            <div className="relative shrink-0">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as 'code' | 'name')}
+                className="appearance-none bg-stone-50 border-2 border-brand-dark rounded-xl pl-3.5 pr-10 py-2.5 text-xs text-brand-dark font-mono focus:outline-none focus:ring-2 focus:ring-brand-purple cursor-pointer w-full sm:w-auto"
+              >
+                <option value="code">Kode Produk</option>
+                <option value="name">Nama Produk (A-Z)</option>
+              </select>
+              <ChevronDown className="w-4 h-4 text-brand-dark absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
           </div>
         </div>
 
