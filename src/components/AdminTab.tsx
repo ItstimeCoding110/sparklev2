@@ -394,6 +394,55 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setFormStatus(`Jenis katalog "${catName}" sukses dihapus.`);
   };
 
+  const dataURLtoBlob = (dataurl: string) => {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  };
+
+  const uploadImageToStorage = async (base64Str: string, productCode: string): Promise<string> => {
+    if (!base64Str.startsWith('data:image/')) {
+      return base64Str;
+    }
+
+    try {
+      const blob = dataURLtoBlob(base64Str);
+      const fileExt = blob.type.split('/')[1] || 'jpeg';
+      const fileName = `${productCode.toLowerCase()}_${Date.now()}.${fileExt}`;
+      const filePath = `products/${fileName}`;
+
+      // Upload to 'product-images' bucket
+      const { data, error } = await supabase.storage
+        .from('product-images')
+        .upload(filePath, blob, {
+          contentType: blob.type,
+          cacheControl: '3600',
+          upsert: true
+        });
+
+      if (error) {
+        console.warn('Failed to upload image to Supabase Storage, using Base64 fallback:', error);
+        return base64Str;
+      }
+
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(filePath);
+
+      return urlData.publicUrl || base64Str;
+    } catch (err) {
+      console.warn('Error during image upload, using Base64 fallback:', err);
+      return base64Str;
+    }
+  };
+
   const handleSaveProduct = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -412,6 +461,13 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     setIsSavingProduct(true);
 
     try {
+      // Upload image to Supabase Storage if it is a new base64 image
+      let finalImageUrl = formImageBase64 || '';
+      if (formImageBase64 && formImageBase64.startsWith('data:image/')) {
+        setFormStatus('Sedang mengunggah gambar ke penyimpanan cloud...');
+        finalImageUrl = await uploadImageToStorage(formImageBase64, formCode);
+      }
+
       if (isEditing) {
         // Edit existing product
         const updated = products.map(prod => {
@@ -427,7 +483,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
               originalPrice: origPriceNum,
               beadsUsed: beadArr,
               colors: colorArr,
-              image: formImageBase64 || '',
+              image: finalImageUrl,
               isNew: formIsNew,
               isBestSeller: formIsBestSeller,
               isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
@@ -451,7 +507,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
           originalPrice: origPriceNum,
           beadsUsed: beadArr,
           colors: colorArr,
-          image: formImageBase64 || '',
+          image: finalImageUrl,
           isNew: formIsNew,
           isBestSeller: formIsBestSeller,
           isSoldOut: finalStock <= 0 ? true : formIsSoldOut,
