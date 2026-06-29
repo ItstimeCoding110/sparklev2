@@ -220,7 +220,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
         const ctx = canvas.getContext('2d');
         if (ctx) {
           ctx.drawImage(img, 0, 0, width, height);
-          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+          const compressedBase64 = canvas.toDataURL('image/webp', quality);
           callback(compressedBase64);
         } else {
           callback(event.target?.result as string);
@@ -406,14 +406,45 @@ export const AdminTab: React.FC<AdminTabProps> = ({
     return new Blob([u8arr], { type: mime });
   };
 
+  const convertToWebP = (base64Str: string, quality = 0.7): Promise<string> => {
+    return new Promise((resolve) => {
+      if (!base64Str.startsWith('data:image/') || base64Str.startsWith('data:image/webp')) {
+        resolve(base64Str);
+        return;
+      }
+
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          const webpBase64 = canvas.toDataURL('image/webp', quality);
+          resolve(webpBase64);
+        } else {
+          resolve(base64Str);
+        }
+      };
+      img.onerror = () => {
+        resolve(base64Str);
+      };
+      img.src = base64Str;
+    });
+  };
+
   const uploadImageToStorage = async (base64Str: string, productCode: string): Promise<string> => {
     if (!base64Str.startsWith('data:image/')) {
       return base64Str;
     }
 
     try {
-      const blob = dataURLtoBlob(base64Str);
-      const fileExt = blob.type.split('/')[1] || 'jpeg';
+      // Automatically convert base64 to WebP format first!
+      const webpBase64 = await convertToWebP(base64Str, 0.7);
+      
+      const blob = dataURLtoBlob(webpBase64);
+      const fileExt = 'webp';
       const fileName = `${productCode.toLowerCase()}_${Date.now()}.${fileExt}`;
       const filePath = `products/${fileName}`;
 
@@ -421,7 +452,7 @@ export const AdminTab: React.FC<AdminTabProps> = ({
       const { data, error } = await supabase.storage
         .from('product-images')
         .upload(filePath, blob, {
-          contentType: blob.type,
+          contentType: 'image/webp',
           cacheControl: '3600',
           upsert: true
         });
